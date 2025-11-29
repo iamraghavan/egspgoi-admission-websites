@@ -21,42 +21,19 @@ type Logo = {
 };
 
 const logos: Logo[] = [
-  { src: aicteLogo, alt: 'AICTE Logo' },
-  { src: annaLogo, alt: 'Anna University Logo' },
-  { src: bharathidasanLogo, alt: 'Bharathidasan University Logo' },
-  { src: cfrAuLogo, alt: 'CFR AU Logo' },
-  { src: doteLogo, alt: 'DOTE Logo' },
-  { src: incLogo, alt: 'INC Logo' },
-  { src: naacLogo, alt: 'NAAC Logo' },
-  { src: nbaLogo, alt: 'NBA Logo' },
-  { src: nirfLogo, alt: 'NIRF Logo' },
-  { src: pciLogo, alt: 'PCI Logo' },
-  { src: ttndrmgruLogo, alt: 'TTNDR MGRU Logo' },
-  { src: ugcLogo, alt: 'UGC Logo' },
+  { src: aicteLogo, alt: 'AICTE' },
+  { src: annaLogo, alt: 'Anna University' },
+  { src: bharathidasanLogo, alt: 'Bharathidasan University' },
+  { src: cfrAuLogo, alt: 'CFR AU' },
+  { src: doteLogo, alt: 'DOTE' },
+  { src: incLogo, alt: 'INC' },
+  { src: naacLogo, alt: 'NAAC' },
+  { src: nbaLogo, alt: 'NBA' },
+  { src: nirfLogo, alt: 'NIRF' },
+  { src: pciLogo, alt: 'PCI' },
+  { src: ttndrmgruLogo, alt: 'TTNDR MGRU' },
+  { src: ugcLogo, alt: 'UGC' },
 ];
-
-type LogoCardProps = React.ComponentProps<'div'> & {
-  logo: Logo;
-};
-
-function LogoCard({ logo, className, ...props }: LogoCardProps) {
-  return (
-    <div
-      className={cn(
-        'flex h-32 items-center justify-center p-6 sm:h-36',
-        className
-      )}
-      {...props}
-    >
-      <Image
-        alt={logo.alt}
-        className="h-auto w-full max-w-32 object-contain"
-        src={logo.src}
-      />
-    </div>
-  );
-}
-
 
 export function AccreditationLogos() {
   return (
@@ -68,12 +45,18 @@ export function AccreditationLogos() {
         <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
           Our institutions are accredited and recognized by leading educational and governmental bodies, a testament to our commitment to academic excellence.
         </p>
-        <div
-          className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border bg-gray-200 shadow-sm sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
-        >
-          {logos.map((logo, index) => (
-            <LogoCard key={index} logo={logo} className="bg-background" />
-          ))}
+        <div className="relative flex w-full overflow-hidden">
+          <div className="flex w-max animate-marquee-infinite motion-safe:hover:pause">
+            {[...logos, ...logos].map((logo, index) => (
+              <div key={index} className="flex-shrink-0 px-8">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
