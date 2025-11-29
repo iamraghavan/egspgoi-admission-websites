@@ -1,61 +1,95 @@
 
-import { Award, BarChart3, Gem, Handshake, Repeat, Trophy } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+'use client';
+
+import Image, { type StaticImageData } from 'next/image';
+import { cn } from '@/lib/utils';
+import { Award, BarChart3, Handshake, Trophy } from 'lucide-react';
+
+import naacLogo from '@/app/assets/accreditation/naac.webp';
+import nbaLogo from '@/app/assets/accreditation/nba.webp';
+import nirfLogo from '@/app/assets/accreditation/nirf.webp';
 
 const achievements = [
   {
-    icon: Award,
     title: 'NBA - Tier-1',
     description: 'Washington Accord Accredited',
+    icon: <Image src={nbaLogo} alt="NBA Logo" className="h-12 w-auto object-contain" />,
   },
   {
-    icon: BarChart3,
     title: 'NIRF Ranking',
     description: 'All India Rank Band 201-300',
+    icon: <Image src={nirfLogo} alt="NIRF Logo" className="h-12 w-auto object-contain" />,
   },
   {
-    icon: Gem,
     title: 'NAAC A++',
     description: 'Top-tier institutional accreditation',
+    icon: <Image src={naacLogo} alt="NAAC Logo" className="h-12 w-auto object-contain" />,
   },
   {
-    icon: Trophy,
     title: 'State Level Achievement',
     description: 'Awarded 3rd time for academics',
+    icon: <Trophy className="h-12 w-12" />,
   },
   {
-    icon: Handshake,
     title: '150+ Industrial Relationships',
     description: 'Strong network for student placements',
+    icon: <Handshake className="h-12 w-12" />,
   },
 ];
 
+const Feature = ({
+  title,
+  description,
+  icon,
+  index,
+}: {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  index: number;
+}) => {
+  return (
+    <div
+      className={cn(
+        'flex flex-col lg:border-r py-10 relative group/feature dark:border-neutral-800',
+        (index === 0 || index === 4) && 'lg:border-l dark:border-neutral-800',
+        index < 4 && 'lg:border-b dark:border-neutral-800'
+      )}
+    >
+      {index < 4 && (
+        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-secondary to-transparent pointer-events-none" />
+      )}
+      {index >= 4 && (
+        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-secondary to-transparent pointer-events-none" />
+      )}
+      <div className="mb-4 relative z-10 px-10 text-primary">{icon}</div>
+      <div className="text-lg font-bold mb-2 relative z-10 px-10">
+        <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-border group-hover/feature:bg-accent transition-all duration-200 origin-center" />
+        <span className="group-hover/feature:translate-x-2 transition duration-200 inline-block text-foreground">
+          {title}
+        </span>
+      </div>
+      <p className="text-sm text-muted-foreground max-w-xs relative z-10 px-10">
+        {description}
+      </p>
+    </div>
+  );
+};
+
 export function AchievementsSection() {
   return (
-    <section id="achievements" className="relative w-full bg-gradient-to-r from-primary to-accent py-16 md:py-24 text-primary-foreground">
-      <div className="absolute inset-0 bg-black/30"></div>
-      <div className="relative container mx-auto px-6">
+    <section id="achievements" className="w-full bg-background py-16 md:py-24">
+       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold font-headline">Our Achievements</h2>
-          <p className="text-lg text-primary-foreground/80 mt-4 max-w-2xl mx-auto">
-            Decades of commitment to excellence in education, recognized by prestigious bodies and industry leaders.
-          </p>
+            <h2 className="text-3xl md:text-4xl font-bold font-headline bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text">Our Achievements</h2>
+            <p className="text-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
+                Decades of commitment to excellence in education, recognized by prestigious bodies and industry leaders.
+            </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
-          {achievements.map((achievement, index) => (
-            <Card
-              key={index}
-              className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground backdrop-blur-sm transform hover:-translate-y-2 transition-transform duration-300 ease-in-out"
-            >
-              <CardContent className="flex flex-col items-center justify-start text-center p-6">
-                <div className="mb-4 p-4 bg-primary-foreground/10 rounded-full">
-                  <achievement.icon className="h-10 w-10 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold font-headline mb-2">{achievement.title}</h3>
-                <p className="text-sm text-primary-foreground/80">{achievement.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 relative z-10 max-w-7xl mx-auto border-t border-b">
+        {achievements.map((achievement, index) => (
+            <Feature key={achievement.title} {...achievement} index={index} />
+        ))}
         </div>
       </div>
     </section>
