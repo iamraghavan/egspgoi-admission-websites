@@ -1,3 +1,4 @@
+import { AccreditationLogos } from '@/components/accreditation-logos';
 import { HeroSection } from '@/components/hero-section';
 import { PlacementPartners } from '@/components/placement-partners';
 import { ProgramCategories } from '@/components/program-categories';
@@ -12,6 +13,7 @@ export default function Home() {
       <SiteHeader />
       <main className="flex-1">
         <HeroSection />
+        <AccreditationLogos />
         <ProgramCategories />
         <ProgramHighlights />
         <TestimonialSlider />
