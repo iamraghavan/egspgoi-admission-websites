@@ -148,10 +148,12 @@ IconListItem.displayName = "IconListItem";
 
 
 function NavMenu() {
+  const sortedNavLinks = [...navLinks].sort((a, b) => a.text.localeCompare(b.text));
+  
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        {navLinks.map((link) => (
+        {sortedNavLinks.map((link) => (
           <NavigationMenuItem key={link.text}>
             {link.subLinks ? (
               <>
@@ -179,14 +181,11 @@ function NavMenu() {
                         </NavigationMenuLink>
                       </li>
                     )}
-                    {link.text === 'Institutions' 
-                      ? (link.subLinks as (typeof navLinks[7]['subLinks'])).map((subLink) => (
-                          subLink.icon && <IconListItem key={subLink.title} title={subLink.title} href={subLink.href} icon={subLink.icon}>{subLink.description}</IconListItem>
-                        ))
-                      : (link.subLinks as (typeof navLinks[1]['subLinks'])).map((subLink) => (
-                          <ListItem key={subLink.title} title={subLink.title} href={subLink.href}>{subLink.description}</ListItem>
-                        ))
-                    }
+                    {link.subLinks.map((subLink) => (
+                      subLink.icon 
+                        ? <IconListItem key={subLink.title} title={subLink.title} href={subLink.href} icon={subLink.icon}>{subLink.description}</IconListItem>
+                        : <ListItem key={subLink.title} title={subLink.title} href={subLink.href}>{subLink.description}</ListItem>
+                    ))}
                   </ul>
                 </NavigationMenuContent>
               </>
@@ -206,6 +205,7 @@ function NavMenu() {
 
 function MobileNav() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const sortedNavLinks = [...navLinks].sort((a, b) => a.text.localeCompare(b.text));
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -224,7 +224,7 @@ function MobileNav() {
               </Link>
             </div>
             <nav className="flex flex-col space-y-4 mt-6">
-            {navLinks.map((link) => (
+            {sortedNavLinks.map((link) => (
               <React.Fragment key={link.text}>
                 {link.subLinks ? (
                   <div className="flex flex-col space-y-2">
@@ -266,7 +266,7 @@ function MobileNav() {
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-background">
       <div className="container flex h-20 max-w-screen-2xl items-center">
         <div className="mr-4 flex items-center">
           <Link href="/" className="mr-6 flex items-center space-x-2">
