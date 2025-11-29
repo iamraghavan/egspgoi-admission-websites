@@ -97,32 +97,6 @@ const navLinks = [
 
 const campusIllustration = PlaceHolderImages.find(p => p.id === 'campus-illustration');
 
-const ListItem = React.forwardRef<
-  React.ElementRef<'a'>,
-  React.ComponentPropsWithoutRef<'a'>
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-            className
-          )}
-          {...props}
-        >
-          <div className="text-base font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
-ListItem.displayName = 'ListItem';
-
 function NavMenu() {
   const [activeInstitution, setActiveInstitution] = React.useState(navLinks.find(l => l.text === 'Institutions')?.subLinks?.[0]);
   const [activeDomain, setActiveDomain] = React.useState(courseDomains[0]);
@@ -138,22 +112,26 @@ function NavMenu() {
                 <NavigationMenuContent>
                   {link.text === 'Institutions' && Array.isArray(link.subLinks) ? (
                      <div className="grid grid-cols-3 gap-6 p-6 w-[60rem]">
-                       <div className="col-span-1 flex flex-col space-y-2">
+                       <ul className="col-span-1 flex flex-col space-y-2">
                         {link.subLinks.map((subLink) => (
-                          <button
-                            key={subLink.title}
-                            onMouseEnter={() => setActiveInstitution(subLink)}
-                            className={cn(
-                              'text-left p-3 rounded-md transition-colors text-foreground',
-                              activeInstitution?.id === subLink.id ? 'bg-accent/10' : 'hover:bg-accent/10'
-                            )}
-                          >
-                             <span className={cn("font-semibold", activeInstitution?.id === subLink.id ? "text-primary" : "")}>
-                              {subLink.title}
-                            </span>
-                          </button>
+                          <li key={subLink.title}>
+                            <NavigationMenuLink asChild>
+                              <a
+                                onMouseEnter={() => setActiveInstitution(subLink)}
+                                href={subLink.href}
+                                className={cn(
+                                  'block text-left p-3 rounded-md transition-colors text-foreground w-full',
+                                  activeInstitution?.id === subLink.id ? 'bg-accent/10' : 'hover:bg-accent/10'
+                                )}
+                              >
+                                 <span className={cn("font-semibold", activeInstitution?.id === subLink.id ? "text-primary" : "")}>
+                                  {subLink.title}
+                                </span>
+                              </a>
+                            </NavigationMenuLink>
+                          </li>
                         ))}
-                       </div>
+                       </ul>
                        <div className="col-span-2 flex items-center bg-accent/5 rounded-lg p-6">
                           {activeInstitution && (
                             <div className="grid grid-cols-2 gap-6 items-center w-full">
@@ -181,41 +159,46 @@ function NavMenu() {
                        </div>
                      </div>
                   ) : link.text === 'Academics' ? (
-                     <div className="grid grid-cols-3 gap-8 p-8 w-screen max-w-7xl -translate-x-1/2 left-1/2">
+                     <div className="grid grid-cols-12 gap-8 p-8 w-screen max-w-7xl -translate-x-1/2 left-1/2">
                         {/* Column 1: Academic Levels */}
-                        <div className="flex flex-col space-y-2">
+                        <ul className="col-span-3 flex flex-col space-y-2 border-r">
                             {academicLevels.map((level, index) => (
-                                <React.Fragment key={level.title}>
-                                    <Link
-                                        href={level.href}
-                                        className="text-base font-medium text-foreground/80 hover:text-primary transition-colors py-2 px-3 rounded-md"
-                                    >
-                                        {level.title}
-                                    </Link>
-                                    {index < academicLevels.length - 1 && <Separator className="bg-border/50" />}
-                                </React.Fragment>
+                                <li key={level.title}>
+                                  <NavigationMenuLink asChild>
+                                      <Link
+                                          href={level.href}
+                                          className="text-base font-medium text-foreground/80 hover:text-primary transition-colors py-2 px-3 rounded-md block"
+                                      >
+                                          {level.title}
+                                      </Link>
+                                  </NavigationMenuLink>
+                                  {index < academicLevels.length - 1 && <Separator className="bg-border/50" />}
+                                </li>
                             ))}
-                        </div>
+                        </ul>
 
                         {/* Column 2: Course Domains */}
-                        <div className="flex flex-col space-y-2">
+                        <ul className="col-span-4 flex flex-col space-y-2">
                             {courseDomains.map((domain) => (
-                                <Link
-                                    key={domain.title}
-                                    href={domain.href}
-                                    onMouseEnter={() => setActiveDomain(domain)}
-                                    className={cn(
-                                        "text-base text-foreground/80 hover:text-primary transition-colors py-2 px-3 rounded-md",
-                                        activeDomain.title === domain.title && "bg-accent/10 text-primary"
-                                    )}
-                                >
-                                    {domain.title}
-                                </Link>
+                              <li key={domain.title}>
+                                <NavigationMenuLink asChild>
+                                  <Link
+                                      href={domain.href}
+                                      onMouseEnter={() => setActiveDomain(domain)}
+                                      className={cn(
+                                          "block text-base text-foreground/80 hover:text-primary transition-colors py-2 px-3 rounded-md",
+                                          activeDomain.title === domain.title && "bg-accent/10 text-primary"
+                                      )}
+                                  >
+                                      {domain.title}
+                                  </Link>
+                                </NavigationMenuLink>
+                              </li>
                             ))}
-                        </div>
+                        </ul>
 
                         {/* Column 3: Dynamic Content Block */}
-                        <div className="bg-accent/5 rounded-lg p-6 flex flex-col justify-center">
+                        <div className="col-span-5 bg-accent/5 rounded-lg p-6 flex flex-col justify-center">
                             {activeDomain && (
                                 <div className="flex flex-col items-start gap-4">
                                      {campusIllustration && (
@@ -350,3 +333,5 @@ export function SiteHeader() {
     </header>
   );
 }
+
+    
