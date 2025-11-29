@@ -5,14 +5,7 @@ import Link from 'next/link';
 import {
   GraduationCap,
   Menu,
-  BookOpen,
-  Building,
-  School,
   ArrowRight,
-  FlaskConical,
-  Briefcase,
-  PenSquare,
-  Landmark,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
