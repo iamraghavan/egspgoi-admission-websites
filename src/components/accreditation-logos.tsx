@@ -1,14 +1,18 @@
 import Image from 'next/image';
 
 const logos = [
-  { src: '/assets/accreditation/NAAC.webp', alt: 'NAAC Logo' },
-  { src: '/assets/accreditation/NBA.webp', alt: 'NBA Logo' },
-  { src: '/assets/accreditation/AICTE.webp', alt: 'AICTE Logo' },
-  { src: '/assets/accreditation/UGC.webp', alt: 'UGC Logo' },
-  { src: '/assets/accreditation/NIRF.webp', alt: 'NIRF Logo' },
-  { src: '/assets/accreditation/ABET.webp', alt: 'ABET Logo' },
-  { src: '/assets/accreditation/AACSB.webp', alt: 'AACSB Logo' },
-  { src: '/assets/accreditation/ISO.webp', alt: 'ISO Logo' },
+  { src: '/assets/accreditation/naac.webp', alt: 'NAAC Logo' },
+  { src: '/assets/accreditation/nba.webp', alt: 'NBA Logo' },
+  { src: '/assets/accreditation/aicte.webp', alt: 'AICTE Logo' },
+  { src: '/assets/accreditation/ugc.webp', alt: 'UGC Logo' },
+  { src: '/assets/accreditation/nirf.webp', alt: 'NIRF Logo' },
+  { src: '/assets/accreditation/anna-university.webp', alt: 'Anna University Logo' },
+  { src: '/assets/accreditation/bharathidasan-university.webp', alt: 'Bharathidasan University Logo' },
+  { src: '/assets/accreditation/pci.webp', alt: 'PCI Logo' },
+  { src: '/assets/accreditation/inc.webp', alt: 'INC Logo' },
+  { src: '/assets/accreditation/dote.webp', alt: 'DOTE Logo' },
+  { src: '/assets/accreditation/ttndrmgru.webp', alt: 'TTNDR MGRU Logo' },
+  { src: '/assets/accreditation/cfr_au.webp', alt: 'CFR AU Logo' },
 ];
 
 export function AccreditationLogos() {
