@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { GraduationCap, Menu, X } from 'lucide-react';
+import { GraduationCap, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -14,7 +14,13 @@ import React from 'react';
 
 const navLinks = [
   { href: '#about', text: 'About EGS' },
-  { href: '#scholarship', text: 'Scholarship' },
+  {
+    text: 'Academics',
+    subLinks: [
+      { href: '#programs', text: 'Programs' },
+      { href: '#departments', text: 'Departments' },
+    ],
+  },
   {
     text: 'Admissions',
     subLinks: [
@@ -23,19 +29,14 @@ const navLinks = [
       { href: '#requirements', text: 'Requirements' },
     ],
   },
-  { href: '#placements', text: 'Placements' },
   { href: '#alumni', text: 'Alumni' },
   { href: '#career-guidance', text: 'Career Guidance' },
-    {
-    text: 'Campuses',
-    subLinks: [
-      { href: '#main-campus', text: 'Main Campus' },
-      { href: '#city-campus', text: 'City Campus' },
-    ],
-  },
-  { href: '#faq', text: 'FAQ' },
   { href: '#contact', text: 'Contact Us' },
+  { href: '#faq', text: 'FAQ' },
+  { href: '#placements', text: 'Placements' },
+  { href: '#scholarship', text: 'Scholarship' },
 ];
+
 
 function NavMenu() {
   return (
@@ -46,7 +47,7 @@ function NavMenu() {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="text-sm font-medium transition-colors hover:bg-transparent hover:text-primary focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="text-sm font-medium transition-colors hover:bg-transparent hover:text-primary focus-visible:ring-0 focus-visible:ring-offset-0 px-3"
               >
                 {link.text}
               </Button>
@@ -63,7 +64,7 @@ function NavMenu() {
           <Link
             key={link.text}
             href={link.href}
-            className="text-sm font-medium transition-colors hover:text-primary"
+            className="text-sm font-medium transition-colors hover:text-primary px-3"
           >
             {link.text}
           </Link>
@@ -146,11 +147,11 @@ export function SiteHeader() {
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center space-x-2 lg:space-x-4 text-sm font-medium flex-1">
+        <nav className="hidden md:flex items-center justify-between flex-1">
           <NavMenu />
         </nav>
 
-        <div className="flex flex-1 items-center justify-end space-x-4">
+        <div className="flex flex-1 items-center justify-end space-x-4 md:flex-none">
           <Button asChild className="hidden md:flex">
             <Link href="#apply">Apply Now</Link>
           </Button>
