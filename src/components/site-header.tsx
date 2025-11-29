@@ -22,17 +22,17 @@ const navLinks = [
   {
     text: 'Academics',
     subLinks: [
-      { 
+      {
         title: "Engineering",
         href: "#programs",
         description: "Explore our world-class engineering programs, from computer science to mechanical."
       },
-      { 
+      {
         title: "Arts & Science",
         href: "#programs",
         description: "Dive into the humanities, social sciences, and natural sciences."
       },
-      { 
+      {
         title: "Business",
         href: "#programs",
         description: "Develop leadership skills and business acumen in our competitive business programs."
@@ -42,17 +42,17 @@ const navLinks = [
   {
     text: 'Admissions',
     subLinks: [
-      { 
+      {
         title: "Apply Online",
         href: "#apply",
         description: "Start your application process here and join the EGS family."
       },
-      { 
+      {
         title: "Admission Process",
         href: "#process",
         description: "Learn about the steps and timelines for our admission process."
       },
-      { 
+      {
         title: "Requirements",
         href: "#requirements",
         description: "Find out the specific requirements for your chosen program."
@@ -149,7 +149,7 @@ IconListItem.displayName = "IconListItem";
 
 function NavMenu() {
   const sortedNavLinks = [...navLinks].sort((a, b) => a.text.localeCompare(b.text));
-  
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -182,7 +182,7 @@ function NavMenu() {
                       </li>
                     )}
                     {link.subLinks.map((subLink) => (
-                      subLink.icon 
+                      subLink.icon
                         ? <IconListItem key={subLink.title} title={subLink.title} href={subLink.href} icon={subLink.icon}>{subLink.description}</IconListItem>
                         : <ListItem key={subLink.title} title={subLink.title} href={subLink.href}>{subLink.description}</ListItem>
                     ))}
@@ -190,11 +190,11 @@ function NavMenu() {
                 </NavigationMenuContent>
               </>
             ) : (
-              <Link href={link.href} legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                <Link href={link.href}>
                   {link.text}
-                </NavigationMenuLink>
-              </Link>
+                </Link>
+              </NavigationMenuLink>
             )}
           </NavigationMenuItem>
         ))}
