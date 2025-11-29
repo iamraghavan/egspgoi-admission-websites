@@ -59,6 +59,12 @@
       "description": "Logo of a placement partner",
       "imageUrl": "https://images.unsplash.com/photo-1619551734325-81aaf323686c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjQzNjg1MTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "company logo"
+    },
+    {
+      "id": "campus-illustration",
+      "description": "A line art illustration of a university campus",
+      "imageUrl": "https://images.unsplash.com/photo-1646330685088-d8a402b0dcc2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2FtcHVzJTIwaWxsdXN0cmF0aW9ufGVufDB8fHx8MTc2NDQzNjgwNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "campus illustration"
     }
   ]
 }

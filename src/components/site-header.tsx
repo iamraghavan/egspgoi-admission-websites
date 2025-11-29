@@ -3,7 +3,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { GraduationCap, Menu, BookOpen, Building, School } from 'lucide-react';
+import { GraduationCap, Menu, BookOpen, Building, School, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   NavigationMenu,
@@ -16,6 +16,8 @@ import {
 } from '@/components/ui/navigation-menu';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+import Image from 'next/image';
 
 const navLinks = [
   { text: 'About EGS', href: '#about' },
@@ -70,25 +72,27 @@ const navLinks = [
         title: "EGS Engineering College",
         href: "#",
         description: "Our flagship institution for engineering and technology.",
-        icon: Building
+        id: "institution-eng"
       },
       {
         title: "EGS Arts & Science College",
         href: "#",
         description: "A center for excellence in arts, humanities, and sciences.",
-        icon: School
+        id: "institution-as"
       },
       {
         title: "EGS Business School",
         href: "#",
         description: "Fostering the next generation of business leaders and entrepreneurs.",
-        icon: BookOpen
+        id: "institution-biz"
       },
     ],
   },
   { text: 'Placements', href: '#placements' },
   { text: 'Scholarship', href: '#scholarship' },
 ];
+
+const campusIllustration = PlaceHolderImages.find(p => p.id === "campus-illustration");
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
@@ -116,39 +120,9 @@ const ListItem = React.forwardRef<
 });
 ListItem.displayName = "ListItem";
 
-
-const IconListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a"> & { icon: React.ElementType }
->(({ className, title, children, icon: Icon, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "flex select-none items-start space-x-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <Icon className="h-6 w-6 mt-1 text-primary"/>
-          <div className="space-y-1">
-            <div className="text-base font-medium leading-none">{title}</div>
-            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-              {children}
-            </p>
-          </div>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
-IconListItem.displayName = "IconListItem";
-
-
 function NavMenu() {
   const sortedNavLinks = [...navLinks].sort((a, b) => a.text.localeCompare(b.text));
+  const [activeInstitution, setActiveInstitution] = React.useState(navLinks.find(l => l.text === 'Institutions')?.subLinks?.[0]);
 
   return (
     <NavigationMenu>
@@ -159,34 +133,63 @@ function NavMenu() {
               <>
                 <NavigationMenuTrigger>{link.text}</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className={cn(
-                    "grid gap-3 p-4",
-                    link.text === 'Institutions' ? "md:w-[550px] lg:w-[600px] lg:grid-cols-[.75fr_1fr]" : "md:w-[400px] lg:w-[500px]"
-                  )}>
-                    {link.text === 'Institutions' && (
-                       <li className="row-span-3">
-                        <NavigationMenuLink asChild>
-                          <a
-                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                            href="#"
+                   {link.text === 'Institutions' ? (
+                     <div className="grid grid-cols-3 gap-6 p-6 w-[60rem]">
+                       <div className="col-span-1 flex flex-col space-y-2">
+                        {link.subLinks.map((subLink) => (
+                          <button
+                            key={subLink.title}
+                            onMouseEnter={() => setActiveInstitution(subLink)}
+                            className={cn(
+                              "text-left p-3 rounded-md transition-colors",
+                              activeInstitution?.id === subLink.id ? "bg-accent/50 text-accent-foreground" : "hover:bg-accent/30"
+                            )}
                           >
-                            <GraduationCap className="h-8 w-8 text-primary" />
-                            <div className="mb-2 mt-4 text-lg font-medium">
-                              Our Institutions
+                             <span className={cn("font-medium", activeInstitution?.id === subLink.id ? "text-accent" : "")}>
+                              {subLink.title}
+                            </span>
+                          </button>
+                        ))}
+                       </div>
+                       <div className="col-span-2 flex items-center">
+                          {activeInstitution && (
+                            <div className="grid grid-cols-2 gap-6 items-center w-full">
+                              <div>
+                                <h3 className="text-xl font-semibold text-accent mb-2">{activeInstitution.title}</h3>
+                                <p className="text-muted-foreground mb-4">{activeInstitution.description}</p>
+                                <Link href={activeInstitution.href} className="text-sm font-semibold text-primary hover:underline flex items-center gap-1">
+                                  EXPLORE <ArrowRight className="h-4 w-4" />
+                                </Link>
+                              </div>
+                              <div>
+                                {campusIllustration && (
+                                   <Image
+                                    src={campusIllustration.imageUrl}
+                                    alt="Campus illustration"
+                                    width={250}
+                                    height={150}
+                                    className="object-contain"
+                                    data-ai-hint={campusIllustration.imageHint}
+                                  />
+                                )}
+                              </div>
                             </div>
-                            <p className="text-sm leading-tight text-muted-foreground">
-                              A family of colleges dedicated to academic excellence and student success.
-                            </p>
-                          </a>
-                        </NavigationMenuLink>
-                      </li>
-                    )}
-                    {link.subLinks.map((subLink) => (
-                      subLink.icon
-                        ? <IconListItem key={subLink.title} title={subLink.title} href={subLink.href} icon={subLink.icon}>{subLink.description}</IconListItem>
-                        : <ListItem key={subLink.title} title={subLink.title} href={subLink.href}>{subLink.description}</ListItem>
-                    ))}
-                  </ul>
+                          )}
+                       </div>
+                     </div>
+                   ) : (
+                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                      {link.subLinks.map((subLink) => (
+                        <ListItem
+                          key={subLink.title}
+                          title={subLink.title}
+                          href={subLink.href}
+                        >
+                          {subLink.description}
+                        </ListItem>
+                      ))}
+                    </ul>
+                   )}
                 </NavigationMenuContent>
               </>
             ) : (
