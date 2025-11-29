@@ -1,7 +1,5 @@
 import Image, { type StaticImageData } from 'next/image';
 
-import { cn } from '@/lib/utils';
-
 import aicteLogo from '@/app/assets/accreditation/aicte.webp';
 import annaLogo from '@/app/assets/accreditation/anna-university.webp';
 import bharathidasanLogo from '@/app/assets/accreditation/bharathidasan-university.webp';
