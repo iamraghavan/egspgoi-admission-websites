@@ -71,7 +71,7 @@ const Feature = ({
 
 export function AchievementsSection() {
   return (
-    <section id="achievements" className="w-full bg-gradient-to-b from-primary to-accent py-16 md:py-24">
+    <section id="achievements" className="w-full bg-gradient-to-r from-primary to-accent py-16 md:py-24">
        <div className="container mx-auto px-6">
         <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold font-headline text-primary-foreground">Our Achievements</h2>
