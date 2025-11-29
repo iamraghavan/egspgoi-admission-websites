@@ -36,31 +36,64 @@ const categories = [
   'Curriculum',
 ];
 
-const courseBasedPrograms = [
-  {
-    icon: <Code className="h-8 w-8 text-blue-500" />,
-    name: 'B.E. Computer Science',
-    description:
-      'Master the art of software development, AI, and cybersecurity with our cutting-edge curriculum.',
-  },
-  {
-    icon: <Briefcase className="h-8 w-8 text-green-500" />,
-    name: 'B.Tech Information Technology',
-    description:
-      'Bridge the gap between technology and business, focusing on data management and network solutions.',
-  },
-  {
-    icon: <BookOpen className="h-8 w-8 text-purple-500" />,
-    name: 'B.Sc. Data Science',
-    description:
-      'Unlock insights from data. Learn machine learning, statistical modeling, and big data analytics.',
-  },
-  {
-    icon: <Landmark className="h-8 w-8 text-red-500" />,
-    name: 'B.A. English Literature',
-    description: 'Explore the world of literature, from classic to contemporary works.',
-  },
-];
+const programsByCategory = {
+    'Undergraduate': [
+      {
+        icon: <Code className="h-8 w-8 text-blue-500" />,
+        name: 'B.E. Computer Science',
+        description:
+          'Master the art of software development, AI, and cybersecurity with our cutting-edge curriculum.',
+      },
+      {
+        icon: <Briefcase className="h-8 w-8 text-green-500" />,
+        name: 'B.Tech Information Technology',
+        description:
+          'Bridge the gap between technology and business, focusing on data management and network solutions.',
+      },
+      {
+        icon: <BookOpen className="h-8 w-8 text-purple-500" />,
+        name: 'B.Sc. Data Science',
+        description:
+          'Unlock insights from data. Learn machine learning, statistical modeling, and big data analytics.',
+      },
+      {
+        icon: <Landmark className="h-8 w-8 text-red-500" />,
+        name: 'B.A. English Literature',
+        description: 'Explore the world of literature, from classic to contemporary works.',
+      },
+    ],
+    'Integrated Degree': [
+        {
+            icon: <Code className="h-8 w-8 text-blue-500" />,
+            name: 'Integrated M.Sc. Software Systems',
+            description: 'A 5-year course combining undergraduate and postgraduate studies in software systems.',
+        },
+    ],
+    'Postgraduate': [
+      {
+        icon: <Code className="h-8 w-8 text-blue-500" />,
+        name: 'M.E. Software Engineering',
+        description: 'Advanced studies in software design, development, and project management.',
+      },
+      {
+        icon: <BookOpen className="h-8 w-8 text-purple-500" />,
+        name: 'M.Sc. Artificial Intelligence',
+        description: 'Specialize in AI, machine learning, and neural networks with this postgraduate degree.',
+      },
+    ],
+    'Doctoral': [
+        {
+            icon: <BookOpen className="h-8 w-8 text-purple-500" />,
+            name: 'Ph.D. in Computer Science',
+            description: 'Conduct cutting-edge research in various areas of computer science.',
+        },
+    ],
+    'Fellowship': [],
+    'Certificate': [],
+    'Online Programs': [],
+    'Curriculum': [],
+};
+
 
 export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
   const [activeCategory, setActiveCategory] = React.useState(categories[0]);
@@ -69,6 +102,8 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
   if (!isOpen) {
     return null;
   }
+
+  const activePrograms = programsByCategory[activeCategory as keyof typeof programsByCategory] || [];
 
   return (
     <div className="fixed top-16 left-0 right-0 bottom-0 z-40 bg-black/50" onClick={onClose}>
@@ -129,21 +164,27 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                <Button className="w-full mt-6">ALL INSTITUTIONS</Button>
             </aside>
             <main className="col-span-9 p-8 bg-gray-50/50 h-[calc(100vh-129px)] overflow-y-auto">
-              <h2 className="text-xl font-semibold mb-6">Course-Based Programs</h2>
-              <div className="grid grid-cols-2 gap-6">
-                {courseBasedPrograms.map((item) => (
-                  <Card key={item.name} className="p-6 flex flex-col items-start gap-4 hover:shadow-lg transition-shadow">
-                    <div className="flex items-center gap-3">
-                        {item.icon}
-                        <h3 className="text-lg font-bold">{item.name}</h3>
-                    </div>
-                    <p className="text-muted-foreground text-sm flex-grow">{item.description}</p>
-                    <Link href="#" className="text-sm font-semibold text-primary flex items-center gap-1">
-                        LEARN MORE <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </Card>
-                ))}
-              </div>
+              <h2 className="text-xl font-semibold mb-6">{activeCategory} Programs</h2>
+              {activePrograms.length > 0 ? (
+                <div className="grid grid-cols-2 gap-6">
+                  {activePrograms.map((item) => (
+                    <Card key={item.name} className="p-6 flex flex-col items-start gap-4 hover:shadow-lg transition-shadow">
+                      <div className="flex items-center gap-3">
+                          {item.icon}
+                          <h3 className="text-lg font-bold">{item.name}</h3>
+                      </div>
+                      <p className="text-muted-foreground text-sm flex-grow">{item.description}</p>
+                      <Link href="#" className="text-sm font-semibold text-primary flex items-center gap-1">
+                          LEARN MORE <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </Card>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex items-center justify-center h-full">
+                  <p className="text-muted-foreground">No programs available for this category yet.</p>
+                </div>
+              )}
             </main>
           </div>
         </div>
