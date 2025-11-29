@@ -6,7 +6,6 @@ import aicteLogo from '@/app/assets/accreditation/aicte.webp';
 import annaLogo from '@/app/assets/accreditation/anna-university.webp';
 import bharathidasanLogo from '@/app/assets/accreditation/bharathidasan-university.webp';
 import cfrAuLogo from '@/app/assets/accreditation/cfr_au.webp';
-import doteLogo from '@/app/assets/accreditation/dote.webp';
 import incLogo from '@/app/assets/accreditation/inc.webp';
 import naacLogo from '@/app/assets/accreditation/naac.webp';
 import nbaLogo from '@/app/assets/accreditation/nba.webp';
@@ -25,7 +24,6 @@ const logos: Logo[] = [
   { src: annaLogo, alt: 'Anna University' },
   { src: bharathidasanLogo, alt: 'Bharathidasan University' },
   { src: cfrAuLogo, alt: 'CFR AU' },
-  { src: doteLogo, alt: 'DOTE' },
   { src: incLogo, alt: 'INC' },
   { src: naacLogo, alt: 'NAAC' },
   { src: nbaLogo, alt: 'NBA' },
