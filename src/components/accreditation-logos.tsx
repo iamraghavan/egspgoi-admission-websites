@@ -1,18 +1,18 @@
 import Image from 'next/image';
 
 const logos = [
-  { src: '/assets/accreditation/naac.webp', alt: 'NAAC Logo' },
-  { src: '/assets/accreditation/nba.webp', alt: 'NBA Logo' },
-  { src: '/assets/accreditation/aicte.webp', alt: 'AICTE Logo' },
-  { src: '/assets/accreditation/ugc.webp', alt: 'UGC Logo' },
-  { src: '/assets/accreditation/nirf.webp', alt: 'NIRF Logo' },
-  { src: '/assets/accreditation/anna-university.webp', alt: 'Anna University Logo' },
-  { src: '/assets/accreditation/bharathidasan-university.webp', alt: 'Bharathidasan University Logo' },
-  { src: '/assets/accreditation/pci.webp', alt: 'PCI Logo' },
-  { src: '/assets/accreditation/inc.webp', alt: 'INC Logo' },
-  { src: '/assets/accreditation/dote.webp', alt: 'DOTE Logo' },
-  { src: '/assets/accreditation/ttndrmgru.webp', alt: 'TTNDR MGRU Logo' },
-  { src: '/assets/accreditation/cfr_au.webp', alt: 'CFR AU Logo' },
+  { src: 'https://picsum.photos/seed/naac/120/60', alt: 'NAAC Logo' },
+  { src: 'https://picsum.photos/seed/nba/120/60', alt: 'NBA Logo' },
+  { src: 'https://picsum.photos/seed/aicte/120/60', alt: 'AICTE Logo' },
+  { src: 'https://picsum.photos/seed/ugc/120/60', alt: 'UGC Logo' },
+  { src: 'https://picsum.photos/seed/nirf/120/60', alt: 'NIRF Logo' },
+  { src: 'https://picsum.photos/seed/anna/120/60', alt: 'Anna University Logo' },
+  { src: 'https://picsum.photos/seed/bharathidasan/120/60', alt: 'Bharathidasan University Logo' },
+  { src: 'https://picsum.photos/seed/pci/120/60', alt: 'PCI Logo' },
+  { src: 'https://picsum.photos/seed/inc/120/60', alt: 'INC Logo' },
+  { src: 'https://picsum.photos/seed/dote/120/60', alt: 'DOTE Logo' },
+  { src: 'https://picsum.photos/seed/ttndrmgru/120/60', alt: 'TTNDR MGRU Logo' },
+  { src: 'https://picsum.photos/seed/cfrau/120/60', alt: 'CFR AU Logo' },
 ];
 
 export function AccreditationLogos() {
