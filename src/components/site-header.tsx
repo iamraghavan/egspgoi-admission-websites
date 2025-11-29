@@ -6,6 +6,7 @@ import {
   GraduationCap,
   Menu,
   ArrowRight,
+  ChevronRight,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -241,7 +242,7 @@ function NavMenu() {
               </>
             ) : (
               <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                <Link href={link.href}>{link.text}</Link>
+                <Link href={link.href!}>{link.text}</Link>
               </NavigationMenuLink>
             )}
           </NavigationMenuItem>
