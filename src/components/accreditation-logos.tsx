@@ -1,18 +1,32 @@
 import Image from 'next/image';
 
+import aicteLogo from '@/app/assets/accreditation/aicte.webp';
+import annaLogo from '@/app/assets/accreditation/anna-university.webp';
+import bharathidasanLogo from '@/app/assets/accreditation/bharathidasan-university.webp';
+import cfrAuLogo from '@/app/assets/accreditation/cfr_au.webp';
+import doteLogo from '@/app/assets/accreditation/dote.webp';
+import incLogo from '@/app/assets/accreditation/inc.webp';
+import naacLogo from '@/app/assets/accreditation/naac.webp';
+import nbaLogo from '@/app/assets/accreditation/nba.webp';
+import nirfLogo from '@/app/assets/accreditation/nirf.webp';
+import pciLogo from '@/app/assets/accreditation/pci.webp';
+import ttndrmgruLogo from '@/app/assets/accreditation/ttndrmgru.webp';
+import ugcLogo from '@/app/assets/accreditation/ugc.webp';
+
+
 const logos = [
-  { src: 'https://picsum.photos/seed/naac/120/60', alt: 'NAAC Logo' },
-  { src: 'https://picsum.photos/seed/nba/120/60', alt: 'NBA Logo' },
-  { src: 'https://picsum.photos/seed/aicte/120/60', alt: 'AICTE Logo' },
-  { src: 'https://picsum.photos/seed/ugc/120/60', alt: 'UGC Logo' },
-  { src: 'https://picsum.photos/seed/nirf/120/60', alt: 'NIRF Logo' },
-  { src: 'https://picsum.photos/seed/anna/120/60', alt: 'Anna University Logo' },
-  { src: 'https://picsum.photos/seed/bharathidasan/120/60', alt: 'Bharathidasan University Logo' },
-  { src: 'https://picsum.photos/seed/pci/120/60', alt: 'PCI Logo' },
-  { src: 'https://picsum.photos/seed/inc/120/60', alt: 'INC Logo' },
-  { src: 'https://picsum.photos/seed/dote/120/60', alt: 'DOTE Logo' },
-  { src: 'https://picsum.photos/seed/ttndrmgru/120/60', alt: 'TTNDR MGRU Logo' },
-  { src: 'https://picsum.photos/seed/cfrau/120/60', alt: 'CFR AU Logo' },
+  { src: aicteLogo, alt: 'AICTE Logo' },
+  { src: annaLogo, alt: 'Anna University Logo' },
+  { src: bharathidasanLogo, alt: 'Bharathidasan University Logo' },
+  { src: cfrAuLogo, alt: 'CFR AU Logo' },
+  { src: doteLogo, alt: 'DOTE Logo' },
+  { src: incLogo, alt: 'INC Logo' },
+  { src: naacLogo, alt: 'NAAC Logo' },
+  { src: nbaLogo, alt: 'NBA Logo' },
+  { src: nirfLogo, alt: 'NIRF Logo' },
+  { src: pciLogo, alt: 'PCI Logo' },
+  { src: ttndrmgruLogo, alt: 'TTNDR MGRU Logo' },
+  { src: ugcLogo, alt: 'UGC Logo' },
 ];
 
 export function AccreditationLogos() {
@@ -32,6 +46,7 @@ export function AccreditationLogos() {
                   width={120}
                   height={60}
                   className="object-contain filter grayscale"
+                  unoptimized
                 />
               </div>
             ))}
