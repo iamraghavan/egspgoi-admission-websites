@@ -95,7 +95,6 @@ const navLinks = [
 ];
 
 const campusIllustration = PlaceHolderImages.find(p => p.id === 'campus-illustration');
-const academicsIllustration = PlaceHolderImages.find(p => p.id === 'campus-illustration');
 
 const ListItem = React.forwardRef<
   React.ElementRef<'a'>,
@@ -145,7 +144,7 @@ function NavMenu() {
                             onMouseEnter={() => setActiveInstitution(subLink)}
                             className={cn(
                               'text-left p-3 rounded-md transition-colors text-foreground',
-                              activeInstitution?.id === subLink.id ? 'bg-accent/20' : 'hover:bg-accent/10'
+                              activeInstitution?.id === subLink.id ? 'bg-accent/10' : 'hover:bg-accent/10'
                             )}
                           >
                              <span className={cn("font-semibold", activeInstitution?.id === subLink.id ? "text-primary" : "")}>
@@ -218,14 +217,14 @@ function NavMenu() {
                         <div className="bg-accent/5 rounded-lg p-6 flex flex-col justify-center">
                             {activeDomain && (
                                 <div className="flex flex-col items-start gap-4">
-                                     {academicsIllustration && (
+                                     {campusIllustration && (
                                         <Image
-                                            src={academicsIllustration.imageUrl}
+                                            src={campusIllustration.imageUrl}
                                             alt={activeDomain.title}
                                             width={500}
                                             height={200}
                                             className="object-cover rounded-md w-full h-40"
-                                            data-ai-hint={academicsIllustration.imageHint}
+                                            data-ai-hint={campusIllustration.imageHint}
                                         />
                                     )}
                                     <h3 className="text-xl font-bold font-headline text-primary">{activeDomain.title}</h3>
@@ -325,7 +324,7 @@ function MobileNav() {
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-background">
       <div className="container flex h-20 max-w-screen-2xl items-center">
         <div className="mr-4 flex items-center">
           <Link href="/" className="mr-6 flex items-center space-x-2">
