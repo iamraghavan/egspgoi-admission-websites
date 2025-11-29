@@ -39,13 +39,11 @@ export function AccreditationLogos() {
         <div className="relative overflow-hidden">
           <div className="flex animate-marquee-infinite items-center">
             {[...logos, ...logos].map((logo, index) => (
-              <div key={index} className="flex-shrink-0 w-48 h-24 mx-8 flex items-center justify-center">
+              <div key={index} className="flex-shrink-0 w-48 h-24 mx-6 flex items-center justify-center">
                 <Image
                   src={logo.src}
                   alt={logo.alt}
-                  width={120}
-                  height={60}
-                  className="object-contain filter grayscale"
+                  className="object-contain max-h-20 w-auto"
                   unoptimized
                 />
               </div>
