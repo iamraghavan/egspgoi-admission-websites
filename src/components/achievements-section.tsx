@@ -1,9 +1,8 @@
-
 'use client';
 
-import Image, { type StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { Award, BarChart3, Handshake, Trophy } from 'lucide-react';
+import { Handshake, Trophy } from 'lucide-react';
 
 import naacLogo from '@/app/assets/accreditation/naac.webp';
 import nbaLogo from '@/app/assets/accreditation/nba.webp';
@@ -57,10 +56,10 @@ const Feature = ({
       )}
     >
       {index < 4 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-secondary to-transparent pointer-events-none" />
+        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-secondary/50 to-transparent pointer-events-none" />
       )}
       {index >= 4 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-secondary to-transparent pointer-events-none" />
+        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-secondary/50 to-transparent pointer-events-none" />
       )}
       <div className="mb-4 relative z-10 px-10 text-primary">{icon}</div>
       <div className="text-lg font-bold mb-2 relative z-10 px-10">
