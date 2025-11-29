@@ -14,6 +14,17 @@ interface MegaMenuProps {
   onClose: () => void;
 }
 
+const topNavItems = [
+    'Engineering', 
+    'Arts & Science', 
+    'Polytechnic', 
+    'Pharmacy', 
+    'Nursing', 
+    'BNYS', 
+    'International School', 
+    'Metriculation School',
+];
+
 const categories = [
   'Recent Launches',
   'Sales',
@@ -56,6 +67,7 @@ const recentLaunches = [
 
 export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
   const [activeCategory, setActiveCategory] = React.useState('Recent Launches');
+  const [activeTopNav, setActiveTopNav] = React.useState(topNavItems[0]);
 
   if (!isOpen) {
     return null;
@@ -70,14 +82,24 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
         <div className="container mx-auto max-w-screen-2xl">
           <div className="border-b">
             <div className="flex h-16 items-center justify-between px-6">
-                <div className="flex items-center space-x-8 text-sm font-medium">
-                    <button className="text-primary border-b-2 border-primary pb-1">Apps</button>
-                    <button className="text-muted-foreground hover:text-foreground">Suites</button>
-                    <button className="text-muted-foreground hover:text-foreground">Zoho One</button>
-                    <button className="text-muted-foreground hover:text-foreground">Marketplace</button>
+                <div className="flex items-center space-x-6 text-sm font-medium overflow-x-auto pb-2">
+                    {topNavItems.map((item) => (
+                        <button
+                          key={item}
+                          onClick={() => setActiveTopNav(item)}
+                          className={cn(
+                            'whitespace-nowrap pb-1',
+                            activeTopNav === item
+                              ? 'text-primary border-b-2 border-primary'
+                              : 'text-muted-foreground hover:text-foreground'
+                          )}
+                        >
+                          {item}
+                        </button>
+                    ))}
                 </div>
-                <div className="flex items-center space-x-4">
-                    <Link href="#" className="text-sm font-medium text-primary hover:underline">EXPLORE ALL PRODUCTS <ArrowRight className="inline h-4 w-4" /></Link>
+                <div className="flex items-center space-x-4 pl-4">
+                    <Link href="#" className="text-sm font-medium text-primary hover:underline whitespace-nowrap">ALL INSTITUTIONS <ArrowRight className="inline h-4 w-4" /></Link>
                     <Button variant="ghost" size="icon" onClick={onClose}>
                         <X className="h-5 w-5" />
                         <span className="sr-only">Close menu</span>
@@ -107,7 +129,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                   </button>
                 ))}
               </nav>
-               <Button className="w-full mt-6">EXPLORE ALL PRODUCTS</Button>
+               <Button className="w-full mt-6">ALL INSTITUTIONS</Button>
             </aside>
             <main className="col-span-9 p-8 bg-gray-50/50 h-[calc(100vh-129px)] overflow-y-auto">
               <h2 className="text-xl font-semibold mb-6">Recent Launches</h2>
