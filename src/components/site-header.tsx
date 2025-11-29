@@ -1,76 +1,206 @@
+
 'use client';
 
+import React from 'react';
 import Link from 'next/link';
-import { GraduationCap, Menu } from 'lucide-react';
+import { GraduationCap, Menu, BookOpen, Building, School } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from '@/components/ui/navigation-menu';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import React from 'react';
+import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { href: '#about', text: 'About EGS' },
+  { text: 'About EGS', href: '#about' },
   {
     text: 'Academics',
     subLinks: [
-      { href: '#programs', text: 'Programs' },
-      { href: '#departments', text: 'Departments' },
+      { 
+        title: "Engineering",
+        href: "#programs",
+        description: "Explore our world-class engineering programs, from computer science to mechanical."
+      },
+      { 
+        title: "Arts & Science",
+        href: "#programs",
+        description: "Dive into the humanities, social sciences, and natural sciences."
+      },
+      { 
+        title: "Business",
+        href: "#programs",
+        description: "Develop leadership skills and business acumen in our competitive business programs."
+      },
     ],
   },
   {
     text: 'Admissions',
     subLinks: [
-      { href: '#apply', text: 'Apply Online' },
-      { href: '#process', text: 'Admission Process' },
-      { href: '#requirements', text: 'Requirements' },
+      { 
+        title: "Apply Online",
+        href: "#apply",
+        description: "Start your application process here and join the EGS family."
+      },
+      { 
+        title: "Admission Process",
+        href: "#process",
+        description: "Learn about the steps and timelines for our admission process."
+      },
+      { 
+        title: "Requirements",
+        href: "#requirements",
+        description: "Find out the specific requirements for your chosen program."
+      },
     ],
   },
-  { href: '#alumni', text: 'Alumni' },
-  { href: '#career-guidance', text: 'Career Guidance' },
-  { href: '#contact', text: 'Contact Us' },
-  { href: '#faq', text: 'FAQ' },
-  { href: '#placements', text: 'Placements' },
-  { href: '#scholarship', text: 'Scholarship' },
+  { text: 'Alumni', href: '#alumni' },
+  { text: 'Career Guidance', href: '#career-guidance' },
+  { text: 'Contact Us', href: '#contact' },
+  { text: 'FAQ', href: '#faq' },
+  {
+    text: 'Institutions',
+    subLinks: [
+      {
+        title: "EGS Engineering College",
+        href: "#",
+        description: "Our flagship institution for engineering and technology.",
+        icon: Building
+      },
+      {
+        title: "EGS Arts & Science College",
+        href: "#",
+        description: "A center for excellence in arts, humanities, and sciences.",
+        icon: School
+      },
+      {
+        title: "EGS Business School",
+        href: "#",
+        description: "Fostering the next generation of business leaders and entrepreneurs.",
+        icon: BookOpen
+      },
+    ],
+  },
+  { text: 'Placements', href: '#placements' },
+  { text: 'Scholarship', href: '#scholarship' },
 ];
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-base font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  );
+});
+ListItem.displayName = "ListItem";
+
+
+const IconListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a"> & { icon: React.ElementType }
+>(({ className, title, children, icon: Icon, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "flex select-none items-start space-x-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <Icon className="h-6 w-6 mt-1 text-primary"/>
+          <div className="space-y-1">
+            <div className="text-base font-medium leading-none">{title}</div>
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+              {children}
+            </p>
+          </div>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  );
+});
+IconListItem.displayName = "IconListItem";
 
 
 function NavMenu() {
   return (
-    <>
-      {navLinks.map((link) =>
-        link.subLinks ? (
-          <DropdownMenu key={link.text}>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="text-sm font-medium transition-colors hover:bg-transparent hover:text-primary focus-visible:ring-0 focus-visible:ring-offset-0 px-3"
-              >
-                {link.text}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {link.subLinks.map((subLink) => (
-                <DropdownMenuItem key={subLink.text} asChild>
-                  <Link href={subLink.href}>{subLink.text}</Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        ) : (
-          <Link
-            key={link.text}
-            href={link.href}
-            className="text-sm font-medium transition-colors hover:text-primary px-3"
-          >
-            {link.text}
-          </Link>
-        )
-      )}
-    </>
+    <NavigationMenu>
+      <NavigationMenuList>
+        {navLinks.map((link) => (
+          <NavigationMenuItem key={link.text}>
+            {link.subLinks ? (
+              <>
+                <NavigationMenuTrigger>{link.text}</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className={cn(
+                    "grid gap-3 p-4",
+                    link.text === 'Institutions' ? "md:w-[550px] lg:w-[600px] lg:grid-cols-[.75fr_1fr]" : "md:w-[400px] lg:w-[500px]"
+                  )}>
+                    {link.text === 'Institutions' && (
+                       <li className="row-span-3">
+                        <NavigationMenuLink asChild>
+                          <a
+                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                            href="#"
+                          >
+                            <GraduationCap className="h-8 w-8 text-primary" />
+                            <div className="mb-2 mt-4 text-lg font-medium">
+                              Our Institutions
+                            </div>
+                            <p className="text-sm leading-tight text-muted-foreground">
+                              A family of colleges dedicated to academic excellence and student success.
+                            </p>
+                          </a>
+                        </NavigationMenuLink>
+                      </li>
+                    )}
+                    {link.text === 'Institutions' 
+                      ? (link.subLinks as (typeof navLinks[7]['subLinks'])).map((subLink) => (
+                          subLink.icon && <IconListItem key={subLink.title} title={subLink.title} href={subLink.href} icon={subLink.icon}>{subLink.description}</IconListItem>
+                        ))
+                      : (link.subLinks as (typeof navLinks[1]['subLinks'])).map((subLink) => (
+                          <ListItem key={subLink.title} title={subLink.title} href={subLink.href}>{subLink.description}</ListItem>
+                        ))
+                    }
+                  </ul>
+                </NavigationMenuContent>
+              </>
+            ) : (
+              <Link href={link.href} legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  {link.text}
+                </NavigationMenuLink>
+              </Link>
+            )}
+          </NavigationMenuItem>
+        ))}
+      </NavigationMenuList>
+    </NavigationMenu>
   );
 }
 
@@ -90,7 +220,7 @@ function MobileNav() {
             <div className="border-b pb-4">
               <Link href="/" className="flex items-center space-x-2" onClick={() => setIsOpen(false)}>
                 <GraduationCap className="h-6 w-6 text-primary" />
-                <span className="font-bold font-headline">EGS Admissions Hub</span>
+                <span className="font-bold font-headline">EGS Admissions</span>
               </Link>
             </div>
             <nav className="flex flex-col space-y-4 mt-6">
@@ -101,12 +231,12 @@ function MobileNav() {
                     <span className="font-semibold text-muted-foreground px-4">{link.text}</span>
                     {link.subLinks.map(subLink => (
                        <Link
-                        key={subLink.text}
+                        key={subLink.title}
                         href={subLink.href}
                         onClick={() => setIsOpen(false)}
                         className="text-muted-foreground hover:text-foreground pl-8"
                       >
-                        {subLink.text}
+                        {subLink.title}
                       </Link>
                     ))}
                   </div>
@@ -147,11 +277,11 @@ export function SiteHeader() {
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center justify-between flex-1">
+        <div className="hidden md:flex flex-1 justify-center">
           <NavMenu />
-        </nav>
+        </div>
 
-        <div className="flex flex-1 items-center justify-end space-x-4 md:flex-none">
+        <div className="flex flex-1 items-center justify-end space-x-4 md:flex-initial">
           <Button asChild className="hidden md:flex">
             <Link href="#apply">Apply Now</Link>
           </Button>
