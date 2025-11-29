@@ -1,3 +1,4 @@
+
 import { AccreditationLogos } from '@/components/accreditation-logos';
 import { AchievementsSection } from '@/components/achievements-section';
 import { HeroSection } from '@/components/hero-section';
@@ -25,5 +26,6 @@ export default function Home() {
     </div>
   );
 }
+
 
 
