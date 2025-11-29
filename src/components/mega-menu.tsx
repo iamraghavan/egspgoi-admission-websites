@@ -5,7 +5,7 @@ import React from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Card } from './ui/card';
-import { ArrowRight, Briefcase, Code, Landmark, Search, X } from 'lucide-react';
+import { ArrowRight, BookOpen, Briefcase, Code, Landmark, Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
@@ -26,47 +26,44 @@ const topNavItems = [
 ];
 
 const categories = [
-  'Recent Launches',
-  'Sales',
-  'Marketing',
-  'Commerce and POS',
-  'Service',
-  'Finance',
-  'Human Resources',
-  'Legal',
-  'Security and IT Management',
-  'BI and Analytics',
-  'Project Management',
+  'Undergraduate',
+  'Integrated Degree',
+  'Postgraduate',
+  'Doctoral',
+  'Fellowship',
+  'Certificate',
+  'Online Programs',
+  'Curriculum',
 ];
 
-const recentLaunches = [
+const courseBasedPrograms = [
   {
     icon: <Code className="h-8 w-8 text-blue-500" />,
-    name: 'Engineering',
+    name: 'B.E. Computer Science',
     description:
-      'Modern engineering programs to build, create, and join the digital revolution.',
+      'Master the art of software development, AI, and cybersecurity with our cutting-edge curriculum.',
   },
   {
     icon: <Briefcase className="h-8 w-8 text-green-500" />,
-    name: 'Business',
+    name: 'B.Tech Information Technology',
     description:
-      'Easy domain registration, transfer, and secured DNS management for your startup.',
+      'Bridge the gap between technology and business, focusing on data management and network solutions.',
   },
   {
-    icon: <Landmark className="h-8 w-8 text-purple-500" />,
-    name: 'Law',
+    icon: <BookOpen className="h-8 w-8 text-purple-500" />,
+    name: 'B.Sc. Data Science',
     description:
-      'Unified legal studies solution built for all aspiring professionals.',
+      'Unlock insights from data. Learn machine learning, statistical modeling, and big data analytics.',
   },
   {
-    icon: <Briefcase className="h-8 w-8 text-red-500" />,
-    name: 'Research Studio',
-    description: 'Cloud-based qualitative data analysis tool for scholars.',
+    icon: <Landmark className="h-8 w-8 text-red-500" />,
+    name: 'B.A. English Literature',
+    description: 'Explore the world of literature, from classic to contemporary works.',
   },
 ];
 
 export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
-  const [activeCategory, setActiveCategory] = React.useState('Recent Launches');
+  const [activeCategory, setActiveCategory] = React.useState(categories[0]);
   const [activeTopNav, setActiveTopNav] = React.useState(topNavItems[0]);
 
   if (!isOpen) {
@@ -132,9 +129,9 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                <Button className="w-full mt-6">ALL INSTITUTIONS</Button>
             </aside>
             <main className="col-span-9 p-8 bg-gray-50/50 h-[calc(100vh-129px)] overflow-y-auto">
-              <h2 className="text-xl font-semibold mb-6">Recent Launches</h2>
+              <h2 className="text-xl font-semibold mb-6">Course-Based Programs</h2>
               <div className="grid grid-cols-2 gap-6">
-                {recentLaunches.map((item) => (
+                {courseBasedPrograms.map((item) => (
                   <Card key={item.name} className="p-6 flex flex-col items-start gap-4 hover:shadow-lg transition-shadow">
                     <div className="flex items-center gap-3">
                         {item.icon}
@@ -142,7 +139,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                     </div>
                     <p className="text-muted-foreground text-sm flex-grow">{item.description}</p>
                     <Link href="#" className="text-sm font-semibold text-primary flex items-center gap-1">
-                        TRY NOW <ArrowRight className="h-4 w-4" />
+                        LEARN MORE <ArrowRight className="h-4 w-4" />
                     </Link>
                   </Card>
                 ))}
