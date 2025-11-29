@@ -40,7 +40,7 @@ export function AccreditationLogos() {
           Recognized by the Best
         </h2>
         <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Our institutions are accredited and recognized by leading educational and governmental bodies, a testament to our commitment to academic excellence.
+          Our institution's accreditation and affiliation with leading educational and governmental bodies are a testament to our commitment to academic excellence.
         </p>
         <div className="relative flex w-full overflow-hidden">
           <div className="flex w-max animate-marquee-infinite motion-safe:hover:pause">
