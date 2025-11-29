@@ -18,7 +18,7 @@ export function HeroSection() {
             data-ai-hint={heroImage.imageHint}
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-r from-accent/80 to-primary/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-accent/80" />
       </div>
       <div className="relative container mx-auto px-6 py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">

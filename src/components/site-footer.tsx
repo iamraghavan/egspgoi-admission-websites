@@ -7,7 +7,7 @@ const TwitterIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export function SiteFooter() {
   return (
-    <footer className="bg-gradient-to-r from-accent to-primary text-primary-foreground">
+    <footer className="bg-gradient-to-r from-primary to-accent text-primary-foreground">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div>
