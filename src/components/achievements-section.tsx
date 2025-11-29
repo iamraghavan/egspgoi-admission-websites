@@ -27,12 +27,12 @@ const achievements = [
   {
     title: 'State Level Achievement',
     description: 'Awarded 3rd time for academics',
-    icon: <Trophy className="h-12 w-12" />,
+    icon: <Trophy className="h-12 w-12 text-primary-foreground/80" />,
   },
   {
     title: '150+ Industrial Relationships',
     description: 'Strong network for student placements',
-    icon: <Handshake className="h-12 w-12" />,
+    icon: <Handshake className="h-12 w-12 text-primary-foreground/80" />,
   },
 ];
 
@@ -50,25 +50,19 @@ const Feature = ({
   return (
     <div
       className={cn(
-        'flex flex-col lg:border-r py-10 relative group/feature dark:border-neutral-800',
-        (index === 0 || index === 4) && 'lg:border-l dark:border-neutral-800',
-        index < 4 && 'lg:border-b dark:border-neutral-800'
+        'flex flex-col lg:border-r py-10 relative group/feature border-primary-foreground/20',
+        (index === 0 || index === 4) && 'lg:border-l',
+        index < 4 && 'lg:border-b'
       )}
     >
-      {index < 4 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-secondary/50 to-transparent pointer-events-none" />
-      )}
-      {index >= 4 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-secondary/50 to-transparent pointer-events-none" />
-      )}
-      <div className="mb-4 relative z-10 px-10 text-primary">{icon}</div>
+      <div className="mb-4 relative z-10 px-10">{icon}</div>
       <div className="text-lg font-bold mb-2 relative z-10 px-10">
-        <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-border group-hover/feature:bg-accent transition-all duration-200 origin-center" />
-        <span className="group-hover/feature:translate-x-2 transition duration-200 inline-block text-foreground">
+        <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-primary-foreground/20 group-hover/feature:bg-primary-foreground/50 transition-all duration-200 origin-center" />
+        <span className="group-hover/feature:translate-x-2 transition duration-200 inline-block text-primary-foreground">
           {title}
         </span>
       </div>
-      <p className="text-sm text-muted-foreground max-w-xs relative z-10 px-10">
+      <p className="text-sm text-primary-foreground/80 max-w-xs relative z-10 px-10">
         {description}
       </p>
     </div>
@@ -77,15 +71,15 @@ const Feature = ({
 
 export function AchievementsSection() {
   return (
-    <section id="achievements" className="w-full bg-gradient-to-b from-primary/10 to-accent/10 py-16 md:py-24">
+    <section id="achievements" className="w-full bg-gradient-to-b from-primary to-accent py-16 md:py-24">
        <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text">Our Achievements</h2>
-            <p className="text-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold font-headline text-primary-foreground">Our Achievements</h2>
+            <p className="text-lg text-primary-foreground/80 mt-4 max-w-2xl mx-auto">
                 Decades of commitment to excellence in education, recognized by prestigious bodies and industry leaders.
             </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 relative z-10 max-w-7xl mx-auto border-t border-b">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 relative z-10 max-w-7xl mx-auto border-t border-b border-primary-foreground/20">
         {achievements.map((achievement, index) => (
             <Feature key={achievement.title} {...achievement} index={index} />
         ))}
