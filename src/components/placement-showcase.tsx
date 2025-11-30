@@ -41,7 +41,6 @@ export function PlacementShowcase() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-6">
-            <h3 className="text-2xl font-bold font-headline text-primary-foreground mb-4 text-center">Featured Placements</h3>
              <Carousel
               opts={{ align: 'start', loop: true }}
               plugins={[Autoplay({ delay: 3500, stopOnInteraction: true })]}
@@ -69,7 +68,6 @@ export function PlacementShowcase() {
           </div>
 
           <div className="lg:col-span-6">
-            <h3 className="text-2xl font-bold font-headline text-primary-foreground mb-4 text-center">Student Success Stories</h3>
              <Carousel
               opts={{ align: 'start', loop: true }}
               plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]}
