@@ -129,9 +129,9 @@ export function FindProgram() {
               className="grid md:grid-cols-[1fr_auto] gap-4 items-center border-b pb-8"
             >
               <div className="flex gap-4">
-                <span className="w-1.5 bg-yellow-400 rounded-full"></span>
+                <span className="w-1.5 bg-accent rounded-full"></span>
                 <div>
-                  <h3 className="text-xl font-bold text-accent mb-1">
+                  <h3 className="text-xl font-bold text-primary mb-1">
                     {program.title}
                   </h3>
                   <p className="text-sm text-muted-foreground mb-4">
