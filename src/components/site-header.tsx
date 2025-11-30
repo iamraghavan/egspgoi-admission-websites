@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -67,7 +68,7 @@ export function SiteHeader() {
         <div className="container flex h-full max-w-screen-2xl items-center">
           <div className="mr-4 flex items-center">
             <Link href="/" className="mr-6 flex items-center space-x-2">
-              <Image src={logo} alt="EGS GOI Logo" className="h-20 w-auto" />
+              <Image src={logo} alt="EGS GOI Logo" className="h-16 md:h-20 w-auto" />
             </Link>
           </div>
 
@@ -113,11 +114,11 @@ function MobileNav() {
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <Button variant="ghost" className="md:hidden" size="icon">
-          <Menu className="h-8 w-8" />
+          <Menu className="h-9 w-9" />
           <span className="sr-only">Open Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-[300px]">
+      <SheetContent side="left" className="w-[300px] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left">
         <div className="flex flex-col h-full">
           <div className="border-b pb-4">
             <Link
@@ -125,7 +126,7 @@ function MobileNav() {
               className="flex items-center space-x-2"
               onClick={() => setIsOpen(false)}
             >
-              <Image src={logo} alt="EGS GOI Logo" className="h-10 w-auto" />
+              <Image src={logo} alt="EGS GOI Logo" className="h-12 w-auto" />
             </Link>
           </div>
           <nav className="flex flex-col space-y-2 mt-6">
