@@ -25,6 +25,9 @@ export default function Home() {
         <TestimonialSlider />
         <CtaSection />
       </main>
+      <div className="bg-gradient-to-r from-primary to-accent">
+        <hr className="border-t border-primary-foreground/20" />
+      </div>
       <SiteFooter />
     </div>
   );
