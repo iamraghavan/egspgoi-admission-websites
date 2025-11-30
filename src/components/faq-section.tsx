@@ -1,7 +1,6 @@
 "use client";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 type FAQItem = {
@@ -11,34 +10,28 @@ type FAQItem = {
 
 interface FAQSectionProps {
   title?: string;
-  subtitle?: string;
   description?: string;
-  buttonLabel?: string;
-  onButtonClick?: () => void;
   faqsLeft: FAQItem[];
   faqsRight: FAQItem[];
   className?: string;
 }
 
 export function FaqSection({
-  title = "Product & Account Help",
-  subtitle = "Frequently Asked Questions",
-  description = "Get instant answers to the most common questions about your account, product setup, and updates.",
-  buttonLabel = "Browse All FAQs →",
-  onButtonClick,
+  title = "Frequently Asked Questions",
+  description = "Everything you need to know about our institutions, from admissions and academics to campus life and career opportunities.",
   faqsLeft,
   faqsRight,
   className,
 }: FAQSectionProps) {
   return (
-    <section className={cn("w-full bg-background py-16 md:py-24", className)}>
+    <section className={cn("w-full bg-gradient-to-r from-primary to-accent py-16 md:py-24", className)}>
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text">
+            <h2 className="text-3xl md:text-4xl font-bold font-headline text-primary-foreground">
                 {title}
             </h2>
-            <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
+            <p className="text-lg text-primary-foreground/80 mt-4 max-w-3xl mx-auto">
                 {description}
             </p>
         </div>
@@ -53,11 +46,11 @@ export function FaqSection({
               className="w-full"
             >
               {faqColumn.map((faq, i) => (
-                <AccordionItem key={i} value={`item-${columnIndex}-${i}`}>
-                  <AccordionTrigger className="text-left text-base font-semibold hover:no-underline">
+                <AccordionItem key={i} value={`item-${columnIndex}-${i}`} className="border-primary-foreground/20">
+                  <AccordionTrigger className="text-left text-base font-semibold text-primary-foreground hover:no-underline">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                  <AccordionContent className="text-sm text-primary-foreground/80 leading-relaxed">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>

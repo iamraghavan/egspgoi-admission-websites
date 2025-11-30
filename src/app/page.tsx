@@ -68,8 +68,6 @@ export default function Home() {
         <PlacementShowcase />
         <LogoCloud />
         <FaqSection
-            title="Frequently Asked Questions"
-            description="Everything you need to know about our institutions, from admissions and academics to campus life and career opportunities."
             faqsLeft={faqsLeft}
             faqsRight={faqsRight}
         />
