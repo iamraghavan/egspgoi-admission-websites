@@ -31,32 +31,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  webpack(config) {
-    const fileLoaderRule = config.module.rules.find((rule) =>
-      (rule as { test: RegExp }).test?.test?.('.svg')
-    );
-
-    config.module.rules.push(
-      {
-        ...fileLoaderRule as object,
-        test: /\.svg$/i,
-        resourceQuery: /url/, // *.svg?url
-      },
-      {
-        test: /\.svg$/i,
-        issuer: fileLoaderRule.issuer,
-        resourceQuery: { not: [...(fileLoaderRule.resourceQuery?.not || []), /url/] },
-        use: ['@svgr/webpack'],
-      }
-    );
-
-    if (fileLoaderRule) {
-      fileLoaderRule.exclude = /\.svg$/i;
-    }
-
-
-    return config;
-  },
 };
 
 export default nextConfig;
