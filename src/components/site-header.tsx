@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { GraduationCap, Menu, Search, X } from 'lucide-react';
+import { GraduationCap, Menu, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
@@ -23,7 +23,7 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95">
         <div className="container flex h-16 max-w-screen-2xl items-center">
           <div className="mr-4 flex items-center">
             <Link href="/" className="mr-6 flex items-center space-x-2">
