@@ -4,46 +4,40 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 
 export function CtaSection() {
-  const testimonialImages = [
-    PlaceHolderImages.find((p) => p.id === 'testimonial-1'),
-    PlaceHolderImages.find((p) => p.id === 'testimonial-2'),
-    PlaceHolderImages.find((p) => p.id === 'testimonial-3'),
-  ].filter(Boolean);
+  const ctaImage = PlaceHolderImages.find((p) => p.id === 'testimonial-2');
 
   return (
-    <section className="py-16 md:py-24">
-      <div className="mx-4 md:mx-auto md:max-w-5xl flex flex-col items-center justify-center text-center bg-gradient-to-br from-primary to-accent rounded-2xl p-10 text-white shadow-2xl">
-        <div className="flex flex-wrap items-center justify-center p-1 rounded-full bg-primary/30 backdrop-blur border border-primary-foreground/20 text-sm">
-          <div className="flex items-center">
-            {testimonialImages.map((img, index) => (
-              <Image
-                key={img!.id}
-                className={`size-7 rounded-full border-2 border-white ${index > 0 ? '-translate-x-' + index * 2 : ''}`}
-                src={img!.imageUrl}
-                alt={img!.description}
-                width={28}
-                height={28}
-                data-ai-hint={img!.imageHint}
-              />
-            ))}
+    <section className="bg-primary/95 dark:bg-slate-900 w-full">
+      <div className="container mx-auto px-6 py-16 md:py-24">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="text-white text-center md:text-left">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline leading-tight mb-4">
+              Get Your Free Admission Guide Today
+            </h2>
+            <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-lg mx-auto md:mx-0">
+              Start unifying your journey towards a world-class education with our easy-to-use, AI-powered admission guide that works as hard as you do.
+            </p>
+            <a
+              href="#apply"
+              className="inline-block px-8 py-3 bg-white text-primary hover:bg-white/90 transition-all rounded-md font-bold uppercase text-sm mt-2"
+            >
+              Get The Guide
+            </a>
           </div>
-          <p className="-translate-x-2 font-medium ml-4">
-            Join our community of 25k+ students
-          </p>
+          <div className="relative flex justify-center md:justify-end h-80">
+            <div className="absolute inset-0 bg-accent rounded-2xl transform -rotate-6 transition-transform group-hover:rotate-0 duration-300"></div>
+            {ctaImage && (
+              <Image
+                src={ctaImage.imageUrl}
+                alt="Student studying"
+                width={400}
+                height={400}
+                className="relative object-cover rounded-2xl shadow-2xl w-full h-full"
+                data-ai-hint={ctaImage.imageHint}
+              />
+            )}
+          </div>
         </div>
-        <h2 className="text-4xl md:text-5xl md:leading-[60px] font-semibold font-headline max-w-xl mt-5 bg-gradient-to-r from-white to-primary-foreground/70 text-transparent bg-clip-text">
-          Ready to Start Your Journey?
-        </h2>
-        <p className="mt-4 text-lg text-primary-foreground/80 max-w-xl">
-          Your future begins here. Apply now to become part of a legacy of
-          excellence and innovation.
-        </p>
-        <a
-          href="#apply"
-          className="px-8 py-3 bg-white text-primary hover:bg-white/90 transition-all rounded-full font-bold uppercase text-sm mt-8"
-        >
-          Apply Now
-        </a>
       </div>
     </section>
   );
