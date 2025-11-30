@@ -1,9 +1,10 @@
 
+
 import { AccreditationLogos } from '@/components/accreditation-logos';
 import { AchievementsSection } from '@/components/achievements-section';
 import { FindProgram } from '@/components/find-program';
 import { HeroSection } from '@/components/hero-section';
-import { PlacementPartners } from '@/components/placement-partners';
+import { LogoCloud } from '@/components/logo-cloud';
 import { PlacementShowcase } from '@/components/placement-showcase';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
@@ -19,8 +20,8 @@ export default function Home() {
         <AchievementsSection />
         <FindProgram />
         <PlacementShowcase />
+        <LogoCloud />
         <TestimonialSlider />
-        <PlacementPartners />
       </main>
       <SiteFooter />
     </div>

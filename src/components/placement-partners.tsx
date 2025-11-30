@@ -1,9 +1,10 @@
 
+
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export function PlacementPartners() {
-  const partners = PlaceHolderImages.filter(p => p.id.startsWith('partner-'));
+  const partners = PlaceHolderImages.filter(p => p.id.startsWith('partner-')).slice(0, 6);
 
   return (
     <section id="placements" className="w-full bg-secondary/50 py-16 md:py-24">
