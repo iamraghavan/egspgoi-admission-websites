@@ -2,6 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import logo from '@/app/assets/logo/egspgoi_svg_white.svg';
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Input } from './ui/input';
+import { Button } from './ui/button';
 
 const socialLinks = [
   { name: 'Facebook', href: '#', icon: Facebook },
@@ -36,9 +38,9 @@ const quickLinks = [
 export function SiteFooter() {
   return (
     <footer className="bg-gradient-to-r from-primary to-accent text-primary-foreground">
-      <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16">
-            <div className="md:col-span-3">
+      <div className="container mx-auto px-6 pt-16 pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+            <div className="lg:col-span-3">
                 <Link href="/" className="flex items-center space-x-2">
                     <Image src={logo} alt="EGS GOI Logo" className="h-20 w-auto" />
                 </Link>
@@ -47,60 +49,100 @@ export function SiteFooter() {
                 </p>
             </div>
 
-            <div className="md:col-span-3">
-                <h3 className="font-semibold font-headline text-lg">Institutions</h3>
-                <ul className="mt-4 space-y-2 text-sm">
-                    {institutions.map(item => (
-                        <li key={item.name}>
-                            <Link href={item.href} className="text-primary-foreground/80 hover:text-white hover:underline transition-colors">
-                                {item.name}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-
-            <div className="md:col-span-2">
-                <h3 className="font-semibold font-headline text-lg">Quick Links</h3>
-                 <ul className="mt-4 space-y-2 text-sm">
-                    {quickLinks.map(item => (
-                        <li key={item.name}>
-                            <Link href={item.href} className="text-primary-foreground/80 hover:text-white hover:underline transition-colors">
-                                {item.name}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-
-            <div className="md:col-span-4">
-                <h3 className="font-semibold font-headline text-lg">Admissions</h3>
-                <div className="mt-4 space-y-2 text-sm text-primary-foreground/80">
-                    <p><a href="tel:+919976888999" className="hover:text-white hover:underline">+91 99768 88999</a></p>
-                    <p><a href="tel:+918680954537" className="hover:text-white hover:underline">+91 86809 54537</a></p>
-                    <p><a href="mailto:admission@egspec.org" className="hover:text-white hover:underline">admission@egspec.org</a></p>
+            <div className="lg:col-span-9">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                     <div>
+                        <h3 className="font-semibold font-headline text-lg">Institutions</h3>
+                        <ul className="mt-4 space-y-2 text-sm">
+                            {institutions.slice(0, 4).map(item => (
+                                <li key={item.name}>
+                                    <Link href={item.href} className="text-primary-foreground/80 hover:text-white hover:underline transition-colors">
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                     <div>
+                        <h3 className="font-semibold font-headline text-lg text-transparent">.</h3>
+                        <ul className="mt-4 space-y-2 text-sm">
+                            {institutions.slice(4).map(item => (
+                                <li key={item.name}>
+                                    <Link href={item.href} className="text-primary-foreground/80 hover:text-white hover:underline transition-colors">
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                     <div>
+                        <h3 className="font-semibold font-headline text-lg">Quick Links</h3>
+                        <ul className="mt-4 space-y-2 text-sm">
+                            {quickLinks.map(item => (
+                                <li key={item.name}>
+                                    <Link href={item.href} className="text-primary-foreground/80 hover:text-white hover:underline transition-colors">
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
-                <h3 className="font-semibold font-headline text-lg mt-6">Contact Us</h3>
-                <address className="mt-4 space-y-2 text-sm text-primary-foreground/80 not-italic">
-                    <p>Old, Nagore Main Rd, Thethi village, Nagore, Nagapattinam, Tamil Nadu 611002</p>
-                    <p><a href="mailto:enquiry@egspec.org" className="hover:text-white hover:underline">enquiry@egspec.org</a></p>
-                </address>
             </div>
         </div>
 
         <hr className="my-8 border-primary-foreground/20" />
 
-        <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
-            <p className="text-primary-foreground/60 mb-4 sm:mb-0">
-                &copy; {new Date().getFullYear()} EGS Institutions. All Rights Reserved.
-            </p>
-            <div className="flex items-center space-x-4">
-                <p className="text-primary-foreground/80 font-medium">Follow Us</p>
-                {socialLinks.map(link => (
-                    <Link key={link.name} href={link.href} aria-label={link.name} className="text-primary-foreground/80 hover:text-white transition-colors">
-                        <link.icon className="h-5 w-5" />
-                    </Link>
-                ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-16">
+            <div className="lg:col-span-3">
+                <h3 className="font-semibold font-headline text-lg">Follow Us</h3>
+                 <div className="flex items-center space-x-4 mt-4">
+                    {socialLinks.map(link => (
+                        <Link key={link.name} href={link.href} aria-label={link.name} className="text-primary-foreground/80 hover:text-white transition-colors">
+                            <link.icon className="h-5 w-5" />
+                        </Link>
+                    ))}
+                </div>
+            </div>
+             <div className="lg:col-span-4">
+                <h3 className="font-semibold font-headline text-lg">Stay Updated</h3>
+                <p className="text-sm text-primary-foreground/80 mt-2 mb-4">Subscribe to our newsletter for the latest updates.</p>
+                <div className="flex w-full max-w-sm items-center space-x-2">
+                    <Input type="email" placeholder="Email" className="bg-primary/50 border-primary-foreground/30 text-white placeholder:text-primary-foreground/70" />
+                    <Button type="submit" variant="secondary" className='bg-white/90 text-primary hover:bg-white'>Subscribe</Button>
+                </div>
+            </div>
+            <div className="lg:col-span-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                     <div>
+                        <h3 className="font-semibold font-headline text-lg">Admissions</h3>
+                        <div className="mt-4 space-y-2 text-sm text-primary-foreground/80">
+                            <p><a href="tel:+919976888999" className="hover:text-white hover:underline">+91 99768 88999</a></p>
+                            <p><a href="tel:+918680954537" className="hover:text-white hover:underline">+91 86809 54537</a></p>
+                            <p><a href="mailto:admission@egspec.org" className="hover:text-white hover:underline">admission@egspec.org</a></p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 className="font-semibold font-headline text-lg">Contact Us</h3>
+                        <address className="mt-4 space-y-2 text-sm text-primary-foreground/80 not-italic">
+                            <p>Old, Nagore Main Rd, Thethi village, Nagore, Nagapattinam, Tamil Nadu 611002</p>
+                            <p><a href="mailto:enquiry@egspec.org" className="hover:text-white hover:underline">enquiry@egspec.org</a></p>
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+       <div className="bg-primary/80">
+        <div className="container mx-auto px-6 py-4">
+            <div className="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left text-xs text-primary-foreground/70">
+                <p className="mb-2 sm:mb-0">
+                    Copyright © 2006 - {new Date().getFullYear()} All Rights Reserved by EGS Pillay Group of Institutions
+                </p>
+                <p>
+                    <span className='mr-2'>Developed By <a href="#" className="font-semibold hover:text-white">Raghavan Jeeva</a></span> | 
+                    <a href="#" className="ml-2 font-semibold hover:text-white">Status Page</a>
+                </p>
             </div>
         </div>
       </div>
