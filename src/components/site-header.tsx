@@ -29,7 +29,7 @@ export function SiteHeader() {
         <div className="container flex h-16 max-w-screen-2xl items-center">
           <div className="mr-4 flex items-center">
             <Link href="/" className="mr-6 flex items-center space-x-2">
-              <Image src={logo} alt="EGS GOI Logo" className="h-10 w-auto" />
+              <Image src={logo} alt="EGS GOI Logo" className="h-12 w-auto" />
             </Link>
           </div>
 
