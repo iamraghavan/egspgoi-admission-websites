@@ -11,6 +11,15 @@ import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
 import React from 'react';
 import { Button } from './ui/button';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/pagination';
 
 const programData = [
   {
@@ -52,7 +61,7 @@ const FilterSelect = ({
       {label}
     </span>
     <Select>
-      <SelectTrigger className="w-full md:w-[200px] bg-transparent border-none text-accent text-base font-semibold pt-5 focus:ring-0 focus:ring-offset-0">
+      <SelectTrigger className="w-full md:w-[200px] bg-transparent border-none text-accent-foreground text-base font-semibold pt-5 focus:ring-0 focus:ring-offset-0">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
@@ -78,38 +87,40 @@ export function FindProgram() {
               Our comprehensive program finder allows you to tailor your search and discover the perfect academic journey.
             </p>
         </div>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 bg-secondary/30 p-4 rounded-lg shadow-sm w-full">
-          <FilterSelect
-            label="Degree"
-            placeholder="Select Degree"
-            items={[
-              { value: 'ug', label: 'Undergraduate' },
-              { value: 'pg', label: 'Postgraduate' },
-              { value: 'integrated', label: 'Integrated Degree' },
-              { value: 'certificate', label: 'Certificate' },
-            ]}
-          />
-          <div className="h-10 w-px bg-border/70 mx-4 hidden md:block" />
-          <FilterSelect
-            label="Interest"
-            placeholder="Select Interest"
-            items={[
-              { value: 'engineering', label: 'Engineering' },
-              { value: 'arts', label: 'Arts & Science' },
-              { value: 'business', label: 'Business' },
-              { value: 'medicine', label: 'Medicine' },
-            ]}
-          />
-          <div className="flex items-center gap-4 text-muted-foreground mx-4">
-            <span className="font-semibold text-sm">OR</span>
-          </div>
-          <div className="relative w-full md:w-auto">
-            <Input
-              placeholder="Search"
-              className="pl-4 pr-10 w-full md:w-[240px] bg-background rounded-full focus-visible:ring-accent"
+        <div className="bg-secondary/30 p-4 rounded-lg shadow-sm w-full">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 w-full">
+            <FilterSelect
+                label="Degree"
+                placeholder="Select Degree"
+                items={[
+                { value: 'ug', label: 'Undergraduate' },
+                { value: 'pg', label: 'Postgraduate' },
+                { value: 'integrated', label: 'Integrated Degree' },
+                { value: 'certificate', label: 'Certificate' },
+                ]}
             />
-            <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-accent" />
-          </div>
+            <div className="h-10 w-px bg-border/70 mx-4 hidden md:block" />
+            <FilterSelect
+                label="Interest"
+                placeholder="Select Interest"
+                items={[
+                { value: 'engineering', label: 'Engineering' },
+                { value: 'arts', label: 'Arts & Science' },
+                { value: 'business', label: 'Business' },
+                { value: 'medicine', label: 'Medicine' },
+                ]}
+            />
+            <div className="flex items-center gap-4 text-muted-foreground mx-4">
+                <span className="font-semibold text-sm">OR</span>
+            </div>
+            <div className="relative w-full md:w-auto">
+                <Input
+                placeholder="Search"
+                className="pl-4 pr-10 w-full md:w-[240px] bg-background rounded-full focus-visible:ring-accent"
+                />
+                <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-accent" />
+            </div>
+            </div>
         </div>
 
         <div className="mt-16 space-y-8">
@@ -149,6 +160,32 @@ export function FindProgram() {
               </div>
             </div>
           ))}
+        </div>
+        <div className="mt-16 flex justify-center">
+            <Pagination>
+                <PaginationContent>
+                    <PaginationItem>
+                    <PaginationPrevious href="#" />
+                    </PaginationItem>
+                    <PaginationItem>
+                    <PaginationLink href="#">1</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                    <PaginationLink href="#" isActive>
+                        2
+                    </PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                    <PaginationLink href="#">3</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                    <PaginationEllipsis />
+                    </PaginationItem>
+                    <PaginationItem>
+                    <PaginationNext href="#" />
+                    </PaginationItem>
+                </PaginationContent>
+            </Pagination>
         </div>
       </div>
     </section>
