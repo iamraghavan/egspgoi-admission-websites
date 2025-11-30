@@ -14,96 +14,158 @@ interface MegaMenuProps {
   onClose: () => void;
 }
 
-const topNavItems = [
-    'Engineering', 
-    'Arts & Science', 
-    'Polytechnic', 
-    'Pharmacy', 
-    'Nursing', 
-    'BNYS', 
-    'International School', 
-    'Metriculation School',
-];
-
-const categories = [
-  'Undergraduate',
-  'Integrated Degree',
-  'Postgraduate',
-  'Doctoral',
-  'Fellowship',
-  'Certificate',
-  'Online Programs',
-  'Curriculum',
-];
-
-const programsByCategory = {
-    'Undergraduate': [
-      {
-        icon: <Code className="h-8 w-8 text-blue-500" />,
-        name: 'B.E. Computer Science',
-        description:
-          'Master the art of software development, AI, and cybersecurity with our cutting-edge curriculum.',
-      },
-      {
-        icon: <Briefcase className="h-8 w-8 text-green-500" />,
-        name: 'B.Tech Information Technology',
-        description:
-          'Bridge the gap between technology and business, focusing on data management and network solutions.',
-      },
-      {
-        icon: <BookOpen className="h-8 w-8 text-purple-500" />,
-        name: 'B.Sc. Data Science',
-        description:
-          'Unlock insights from data. Learn machine learning, statistical modeling, and big data analytics.',
-      },
-      {
-        icon: <Landmark className="h-8 w-8 text-red-500" />,
-        name: 'B.A. English Literature',
-        description: 'Explore the world of literature, from classic to contemporary works.',
-      },
-    ],
-    'Integrated Degree': [
-        {
-            icon: <Code className="h-8 w-8 text-blue-500" />,
-            name: 'Integrated M.Sc. Software Systems',
-            description: 'A 5-year course combining undergraduate and postgraduate studies in software systems.',
-        },
-    ],
-    'Postgraduate': [
-      {
-        icon: <Code className="h-8 w-8 text-blue-500" />,
-        name: 'M.E. Software Engineering',
-        description: 'Advanced studies in software design, development, and project management.',
-      },
-      {
-        icon: <BookOpen className="h-8 w-8 text-purple-500" />,
-        name: 'M.Sc. Artificial Intelligence',
-        description: 'Specialize in AI, machine learning, and neural networks with this postgraduate degree.',
-      },
-    ],
-    'Doctoral': [
-        {
-            icon: <BookOpen className="h-8 w-8 text-purple-500" />,
-            name: 'Ph.D. in Computer Science',
-            description: 'Conduct cutting-edge research in various areas of computer science.',
-        },
-    ],
-    'Fellowship': [],
-    'Certificate': [],
-    'Online Programs': [],
-    'Curriculum': [],
+const coursesByCollege = {
+    "EGS Pillay Engineering College": {
+      "Undergraduate": [
+        "B.E – Mechanical Engineering",
+        "B.E – Electronics and Communication Engineering",
+        "B.E – Electrical & Electronics Engineering",
+        "B.E – Computer Science & Engineering",
+        "B.Tech – Information Technology",
+        "B.E – Civil Engineering",
+        "B.E – Bio-Medical Engineering",
+        "B.Tech – Computer Science & Business Systems",
+        "B.Tech – Artificial Intelligence and Data Science",
+      ],
+      "Postgraduate": [
+        "M.E (Computer Science and Engineering)",
+        "M.E (Communication Systems)",
+        "M.E (Manufacturing Engineering)",
+        "M.E (Power Electronics and Drives)",
+        "M.E (Environmental Engineering)",
+        "MCA – Master of Computer Applications",
+        "MBA – Master of Business Administration",
+      ],
+    },
+    "E.G.S.Pillay Arts and Science College": {
+      "Undergraduate": [
+        "B.A – Tamil",
+        "B.A – English",
+        "B.A – Defence & Strategic Studies",
+        "B.Com",
+        "B.Com – Computer Application",
+        "B.Com – Business Process Service",
+        "B.B.A",
+        "B.C.A",
+        "B.Sc – Computer Science",
+        "B.Sc- Computer Science Cognitive Systems",
+        "B.Sc- Information Technology",
+        "B.Sc – Visual Communication",
+        "B.Sc – Fashion Tech. & Costume Designing",
+        "B.Sc – Physics",
+        "B.Sc – Maths",
+        "B.Sc- Chemistry",
+        "B.Sc – Bio Chemistry",
+        "B.Sc – Bio Technology",
+        "B.Sc – Nutrition & Dietetics",
+        "B.Sc – Hospital Administration",
+        "B.Sc- Artificial Intelligence and Machine Learning",
+        "B.Sc – Data Science",
+        "B.Sc – Microbiology",
+        "B.Com – Professional Accounting",
+      ],
+      "Postgraduate": [
+        "M.Com",
+        "M.B.A",
+        "M.A – English",
+        "M.Sc – Computer Science",
+        "M.Sc – Information Technology",
+        "M.Sc – Physics",
+        "M.Sc – Maths",
+        "M.Sc – Chemistry",
+        "M.Sc – Bio Chemistry",
+        "M.Sc – Bio Technology",
+        "M.Sc – Food Science & Nutrition",
+      ],
+    },
+    "E.G.S.Pillay Polytechnic College": {
+      "Diploma": [
+        "Diploma in Mechanical Engineering",
+        "Diploma in Civil Engineering",
+        "Diploma in Electrical and Electronics Engineering",
+        "Diploma in Electronics and Communication Engineering",
+        "Diploma in Computer Engineering",
+      ],
+    },
+    "E.G.S. Pillay College and School of Nursing": {
+      "Courses": [
+        "B.Sc – Nursing",
+        "DGNM – (Diploma in General Nursing & Midwifery)",
+      ],
+    },
+    "E.G.S.Pillay College of Education": { "Courses": ["All Subjects"] },
+    "E.G.S. Pillay College of Pharmacy": {
+      "Courses": ["D.Pharm", "B.Pharm", "M.Pharm", "Pharm.D"],
+    },
 };
 
+type CollegeName = keyof typeof coursesByCollege;
+
+
+const topNavItems = [
+    'EGS Pillay Engineering College',
+    'E.G.S.Pillay Arts and Science College', 
+    'E.G.S.Pillay Polytechnic College', 
+    'E.G.S. Pillay College of Pharmacy', 
+    'E.G.S. Pillay College and School of Nursing', 
+];
+
+const categoryMap: Record<string, string> = {
+    'Undergraduate': 'UG',
+    'Postgraduate': 'PG',
+    'Diploma': 'Diploma',
+    'Doctoral': 'PhD - Doctoral',
+    'Curriculum': 'Curriculum',
+};
+
+const ProgramIcon = ({ name }: { name: string }) => {
+    const lowerName = name.toLowerCase();
+    if (lowerName.includes('computer') || lowerName.includes('tech') || lowerName.includes('mca')) {
+      return <Code className="h-8 w-8 text-blue-500" />;
+    }
+    if (lowerName.includes('b.a') || lowerName.includes('m.a') || lowerName.includes('b.com')) {
+      return <BookOpen className="h-8 w-8 text-purple-500" />;
+    }
+    if (lowerName.includes('b.b.a') || lowerName.includes('mba')) {
+        return <Briefcase className="h-8 w-8 text-green-500" />;
+    }
+    if (lowerName.includes('b.sc') || lowerName.includes('m.sc')) {
+        return <Landmark className="h-8 w-8 text-red-500" />;
+    }
+    return <BookOpen className="h-8 w-8 text-gray-500" />;
+  };
 
 export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
-  const [activeCategory, setActiveCategory] = React.useState(categories[0]);
-  const [activeTopNav, setActiveTopNav] = React.useState(topNavItems[0]);
+  const [activeTopNav, setActiveTopNav] = React.useState<CollegeName>(topNavItems[0] as CollegeName);
+  const [activeCategory, setActiveCategory] = React.useState('UG');
 
   if (!isOpen) {
     return null;
   }
 
-  const activePrograms = programsByCategory[activeCategory as keyof typeof programsByCategory] || [];
+  const collegePrograms = coursesByCollege[activeTopNav] || {};
+  const availableCategories = Object.keys(collegePrograms)
+    .map(cat => categoryMap[cat] || cat)
+    .filter(Boolean)
+    .sort((a, b) => {
+        const order = ['UG', 'PG', 'Diploma', 'PhD - Doctoral', 'Curriculum', 'Courses'];
+        return order.indexOf(a) - order.indexOf(b);
+    });
+
+  const invertedCategoryMap = Object.entries(categoryMap).reduce((acc, [key, value]) => {
+    acc[value] = key;
+    return acc;
+  }, {} as Record<string, string>);
+
+  const selectedOriginalCategory = invertedCategoryMap[activeCategory] || activeCategory;
+  const activePrograms = (collegePrograms[selectedOriginalCategory as keyof typeof collegePrograms] || []) as string[];
+
+  // Set first available category as active if current is not available
+  React.useEffect(() => {
+    if (availableCategories.length > 0 && !availableCategories.includes(activeCategory)) {
+        setActiveCategory(availableCategories[0]);
+    }
+  }, [activeTopNav, availableCategories, activeCategory]);
 
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 z-40 bg-black/50" onClick={onClose}>
@@ -118,7 +180,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                     {topNavItems.map((item) => (
                         <button
                           key={item}
-                          onClick={() => setActiveTopNav(item)}
+                          onClick={() => setActiveTopNav(item as CollegeName)}
                           className={cn(
                             'whitespace-nowrap pb-1 border-b-2 transition-colors duration-200',
                             activeTopNav === item
@@ -126,7 +188,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                               : 'text-muted-foreground border-transparent hover:text-accent hover:border-accent'
                           )}
                         >
-                          {item}
+                          {item.replace('E.G.S.Pillay ', '').replace('EGS Pillay ', '').replace(' College', '').replace(' and', ' &')}
                         </button>
                     ))}
                 </div>
@@ -146,7 +208,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 <Input placeholder="I'm looking for..." className="pl-9" />
               </div>
               <nav className="flex flex-col space-y-1">
-                {categories.map((category) => (
+                {availableCategories.map((category) => (
                   <button
                     key={category}
                     onClick={() => setActiveCategory(category)}
@@ -161,19 +223,19 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                   </button>
                 ))}
               </nav>
-               <Button className="w-full mt-6">ALL INSTITUTIONS</Button>
+               <Button className="w-full mt-6">ALL PROGRAMS</Button>
             </aside>
             <main className="col-span-9 p-8 bg-gray-50/50 h-[calc(100vh-160px)] overflow-y-auto">
-              <h2 className="text-xl font-semibold mb-6">{activeCategory} Programs</h2>
+              <h2 className="text-xl font-semibold mb-6">{selectedOriginalCategory} Programs in {activeTopNav.replace('E.G.S.Pillay ', '').replace('EGS Pillay ', '')}</h2>
               {activePrograms.length > 0 ? (
                 <div className="grid grid-cols-2 gap-6">
-                  {activePrograms.map((item) => (
-                    <Card key={item.name} className="p-6 flex flex-col items-start gap-4 hover:shadow-lg transition-shadow">
+                  {activePrograms.map((programName) => (
+                    <Card key={programName} className="p-6 flex flex-col items-start gap-4 hover:shadow-lg transition-shadow">
                       <div className="flex items-center gap-3">
-                          {item.icon}
-                          <h3 className="text-lg font-bold">{item.name}</h3>
+                          <ProgramIcon name={programName} />
+                          <h3 className="text-lg font-bold">{programName}</h3>
                       </div>
-                      <p className="text-muted-foreground text-sm flex-grow">{item.description}</p>
+                      <p className="text-muted-foreground text-sm flex-grow">Explore our comprehensive {programName} program, designed to equip you with industry-relevant skills.</p>
                       <Link href="#" className="text-sm font-semibold text-primary flex items-center gap-1">
                           LEARN MORE <ArrowRight className="h-4 w-4" />
                       </Link>
