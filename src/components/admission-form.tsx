@@ -26,6 +26,7 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/card';
 import { cn } from '@/lib/utils';
+import statesAndDistricts from '@/app/assets/docs/states-and-districts.json';
 
 const coursesByCollege = {
   "E.G.S.Pillay Arts and Science College": {
@@ -115,12 +116,13 @@ const coursesByCollege = {
 type CollegeName = keyof typeof coursesByCollege;
 
 const formSchema = z.object({
+  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email.' }),
   phone: z.string().min(10, { message: 'Phone number must be at least 10 digits.' }),
   college: z.string({ required_error: 'Please select a college.' }),
   course: z.string({ required_error: 'Please select a course.' }),
-  state: z.string().min(2, { message: 'State must be at least 2 characters.' }),
-  district: z.string().min(2, { message: 'District must be at least 2 characters.' }),
+  state: z.string({ required_error: 'Please select a state.' }),
+  district: z.string({ required_error: 'Please select a district.' }),
 });
 
 export function AdmissionForm() {
@@ -128,14 +130,14 @@ export function AdmissionForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      name: '',
       email: '',
       phone: '',
-      state: '',
-      district: '',
     },
   });
 
   const selectedCollege = form.watch('college') as CollegeName | undefined;
+  const selectedState = form.watch('state');
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
@@ -146,11 +148,19 @@ export function AdmissionForm() {
     form.reset();
   }
 
-  const collegeNames = Object.keys(
-    coursesByCollege
-  ) as CollegeName[];
-
+  const collegeNames = Object.keys(coursesByCollege) as CollegeName[];
   const availableCourses = selectedCollege ? coursesByCollege[selectedCollege] : {};
+  
+  const sortedStates = React.useMemo(() => {
+    const tn = statesAndDistricts.states.find(s => s.state === 'Tamil Nadu');
+    const otherStates = statesAndDistricts.states.filter(s => s.state !== 'Tamil Nadu');
+    return tn ? [tn, ...otherStates] : otherStates;
+  }, []);
+
+  const availableDistricts = React.useMemo(() => {
+    return statesAndDistricts.states.find(s => s.state === selectedState)?.districts || [];
+  }, [selectedState]);
+
 
   return (
     <Card className="w-full max-w-lg shadow-2xl">
@@ -162,31 +172,46 @@ export function AdmissionForm() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email Address</FormLabel>
-                  <FormControl>
-                    <Input type="email" placeholder="john.doe@example.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Full Name</FormLabel>
+                    <FormControl>
+                        <Input placeholder="John Doe" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                    </FormItem>
+                )}
             />
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Phone/WhatsApp Number</FormLabel>
-                  <FormControl>
-                    <Input type="tel" placeholder="+91 123-456-7890" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email Address</FormLabel>
+                    <FormControl>
+                      <Input type="email" placeholder="john.doe@example.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone/WhatsApp</FormLabel>
+                    <FormControl>
+                      <Input type="tel" placeholder="+91 123-456-7890" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <FormField
               control={form.control}
               name="college"
@@ -220,7 +245,7 @@ export function AdmissionForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Course</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value} disabled={!selectedCollege}>
+                  <Select onValueChange={field.onChange} value={field.value} disabled={!selectedCollege}>
                     <FormControl>
                       <SelectTrigger className={cn(!selectedCollege && "text-muted-foreground")}>
                         <SelectValue placeholder={selectedCollege ? "Select a course" : "Select a college first"} />
@@ -243,32 +268,59 @@ export function AdmissionForm() {
                 </FormItem>
               )}
             />
-             <FormField
-              control={form.control}
-              name="state"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>State / Province</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Tamil Nadu" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="district"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>District / City</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Nagapattinam" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <FormField
+                control={form.control}
+                name="state"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>State</FormLabel>
+                    <Select onValueChange={(value) => {
+                        field.onChange(value);
+                        form.resetField('district');
+                    }} value={field.value}>
+                        <FormControl>
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a state" />
+                        </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                        {sortedStates.map((s) => (
+                            <SelectItem key={s.state} value={s.state}>
+                            {s.state}
+                            </SelectItem>
+                        ))}
+                        </SelectContent>
+                    </Select>
+                    <FormMessage />
+                    </FormItem>
+                )}
+                />
+                <FormField
+                control={form.control}
+                name="district"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>District</FormLabel>
+                    <Select onValueChange={field.onChange} value={field.value} disabled={!selectedState}>
+                        <FormControl>
+                        <SelectTrigger className={cn(!selectedState && "text-muted-foreground")}>
+                            <SelectValue placeholder={selectedState ? "Select a district" : "Select a state first"} />
+                        </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                        {availableDistricts.map(district => (
+                            <SelectItem key={district} value={district}>
+                            {district}
+                            </SelectItem>
+                        ))}
+                        </SelectContent>
+                    </Select>
+                    <FormMessage />
+                    </FormItem>
+                )}
+                />
+            </div>
             <Button type="submit" className="w-full !mt-6" size="lg">
               Apply Now
             </Button>
@@ -278,3 +330,5 @@ export function AdmissionForm() {
     </Card>
   );
 }
+
+    
