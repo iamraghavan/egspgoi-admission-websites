@@ -132,7 +132,7 @@ export function TestimonialSlider() {
           className="flex flex-col items-center justify-center max-w-[540px] mx-auto text-center"
         >
             <h2 className="text-3xl md:text-4xl font-bold font-headline bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text">
-                Voices of EGSpians
+                Voices of EGSP&apos;ians
             </h2>
             <p className="text-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
                 See what our students and faculty have to say about us.
