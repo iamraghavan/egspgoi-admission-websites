@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { GraduationCap } from 'lucide-react';
+import Image from 'next/image';
+import logo from '@/app/assets/logo/egspgoi_svg_white.svg';
 
 const TwitterIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
@@ -12,8 +13,7 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div>
             <Link href="/" className="flex items-center space-x-2">
-              <GraduationCap className="h-8 w-8" />
-              <span className="text-xl font-bold font-headline">EGS Admissions</span>
+               <Image src={logo} alt="EGS GOI Logo" className="h-20 w-auto" />
             </Link>
             <p className="mt-4 max-w-sm text-sm text-primary-foreground/80">
               Building the future, one student at a time.
