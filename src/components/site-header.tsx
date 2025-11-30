@@ -9,8 +9,8 @@ import { cn } from '@/lib/utils';
 import { MegaMenu } from './mega-menu';
 import Image from 'next/image';
 import logo from '@/app/assets/logo/egspgoi_svg.svg';
-import { motion, Transition } from 'framer-motion';
-import { X } from 'lucide-react';
+import { motion, AnimatePresence, Transition } from 'framer-motion';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
 
 const navLinks = [
   { text: 'Academics' },
@@ -126,8 +126,8 @@ const Path = (props: React.ComponentProps<typeof motion.path>) => (
   
   function AnimatedBurgerIcon({ isOpen }: { isOpen: boolean }) {
     return (
-      <motion.div initial={false} animate={isOpen ? 'open' : 'closed'}>
-        <svg width="28" height="28" viewBox="0 0 24 24">
+      <motion.div initial={false} animate={isOpen ? 'open' : 'closed'} className="relative h-10 w-10">
+        <svg width="28" height="28" viewBox="0 0 24 24" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <Path
             variants={{
               closed: { d: 'M 2 4.5 L 22 4.5', transition },
@@ -153,13 +153,56 @@ const Path = (props: React.ComponentProps<typeof motion.path>) => (
     );
   }
 
+const MobileNavLink = ({
+  href,
+  children,
+  onClick,
+}: {
+  href: string;
+  children: React.ReactNode;
+  onClick: () => void;
+}) => {
+  const [isHovered, setIsHovered] = React.useState(false);
+
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative block text-lg font-medium text-muted-foreground py-2 overflow-hidden"
+    >
+      <motion.span
+        animate={{ color: isHovered ? 'hsl(var(--accent))' : 'hsl(var(--muted-foreground))' }}
+        transition={{ duration: 0.3 }}
+        className="flex items-center gap-2"
+      >
+        {children}
+        <AnimatePresence>
+          {isHovered && (
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 10 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ArrowUpRight className="h-5 w-5" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.span>
+    </Link>
+  );
+};
+
+
 function MobileNav() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <button className="md:hidden p-2 h-14 w-14 flex items-center justify-center">
+        <button className="md:hidden p-2 flex items-center justify-center">
           <AnimatedBurgerIcon isOpen={isOpen} />
           <span className="sr-only">Open Menu</span>
         </button>
@@ -189,14 +232,13 @@ function MobileNav() {
             
             <nav className="flex flex-col space-y-2 mt-6 px-4">
                 {navLinks.map((link) => (
-                <Link
+                <MobileNavLink
                     key={link.text}
                     href={link.href || '#'}
                     onClick={() => setIsOpen(false)}
-                    className="text-lg font-medium text-muted-foreground hover:text-foreground py-2"
                 >
                     {link.text}
-                </Link>
+                </MobileNavLink>
                 ))}
             </nav>
             <div className="mt-auto p-4 border-t space-y-4">
