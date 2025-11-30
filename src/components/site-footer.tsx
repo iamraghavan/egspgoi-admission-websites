@@ -101,9 +101,7 @@ export function SiteFooter() {
                                 </li>
                             ))}
                         </ul>
-                    </div>
-                    <div>
-                        <h3 className="font-semibold font-headline text-lg">Media</h3>
+                         <h3 className="font-semibold font-headline text-lg mt-6">Media</h3>
                         <ul className="mt-4 space-y-4 text-sm">
                             {mediaLinks.map(item => (
                                 <li key={item.name}>
@@ -177,3 +175,5 @@ export function SiteFooter() {
     </footer>
   );
 }
+
+    
