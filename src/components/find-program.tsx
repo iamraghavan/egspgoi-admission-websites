@@ -100,16 +100,6 @@ export function FindProgram() {
               { value: 'medicine', label: 'Medicine' },
             ]}
           />
-          <div className="h-10 w-px bg-border/70 mx-4 hidden md:block" />
-          <FilterSelect
-            label="Campus"
-            placeholder="Select Campus"
-            items={[
-              { value: 'amritapuri', label: 'Amritapuri' },
-              { value: 'mysuru', label: 'Mysuru' },
-              { value: 'coimbatore', label: 'Coimbatore' },
-            ]}
-          />
           <div className="flex items-center gap-4 text-muted-foreground mx-4">
             <span className="font-semibold text-sm">OR</span>
           </div>
