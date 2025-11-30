@@ -51,7 +51,7 @@ export function CtaSection() {
               href="#apply"
               className="inline-block px-8 py-3 bg-white text-primary hover:bg-white/90 transition-all rounded-md font-bold uppercase text-sm mt-2"
             >
-              Get The Guide
+              Contact Us
             </a>
           </div>
 
