@@ -31,7 +31,7 @@ const contactInfo = {
 
 export function CtaSection() {
   return (
-    <section className="bg-primary/95 dark:bg-slate-900 w-full">
+    <section className="bg-gradient-to-r from-primary to-accent w-full">
       <div className="container mx-auto px-6 py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="text-white text-center md:text-left">
