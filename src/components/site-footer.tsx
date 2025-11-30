@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import logo from '@/app/assets/logo/egspgoi_svg_white.svg';
-import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Radio, Twitter, Video, View } from 'lucide-react';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
 
@@ -43,6 +43,12 @@ const aboutEgspLinks = [
     { name: 'Governance', href: '#' },
 ];
 
+
+const mediaLinks = [
+    { name: 'Virtual Tour', href: '#', icon: View },
+    { name: 'Videos', href: '#', icon: Video },
+    { name: 'Community Radio', href: '#', icon: Radio },
+]
 
 export function SiteFooter() {
   return (
@@ -90,6 +96,19 @@ export function SiteFooter() {
                             {aboutEgspLinks.map(item => (
                                 <li key={item.name}>
                                     <Link href={item.href} className="text-primary-foreground/80 hover:text-white hover:underline transition-colors">
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="font-semibold font-headline text-lg">Media</h3>
+                        <ul className="mt-4 space-y-4 text-sm">
+                            {mediaLinks.map(item => (
+                                <li key={item.name}>
+                                    <Link href={item.href} className="flex items-center gap-3 text-primary-foreground/80 hover:text-white hover:underline transition-colors">
+                                        <item.icon className="h-5 w-5" />
                                         {item.name}
                                     </Link>
                                 </li>
