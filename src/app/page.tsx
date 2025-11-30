@@ -4,7 +4,7 @@ import { AchievementsSection } from '@/components/achievements-section';
 import { FindProgram } from '@/components/find-program';
 import { HeroSection } from '@/components/hero-section';
 import { PlacementPartners } from '@/components/placement-partners';
-import { ProgramHighlights } from '@/components/program-highlights';
+import { PlacementShowcase } from '@/components/placement-showcase';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { TestimonialSlider } from '@/components/testimonial-slider';
@@ -18,7 +18,7 @@ export default function Home() {
         <AccreditationLogos />
         <AchievementsSection />
         <FindProgram />
-        <ProgramHighlights />
+        <PlacementShowcase />
         <TestimonialSlider />
         <PlacementPartners />
       </main>
