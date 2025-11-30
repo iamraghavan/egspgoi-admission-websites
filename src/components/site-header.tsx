@@ -68,7 +68,7 @@ export function SiteHeader() {
         <div className="container flex h-full max-w-screen-2xl items-center">
           <div className="mr-4 flex items-center">
             <Link href="/" className="mr-6 flex items-center space-x-2">
-              <Image src={logo} alt="EGS GOI Logo" className="h-16 md:h-20 w-auto" />
+              <Image src={logo} alt="EGS GOI Logo" className="h-12 md:h-16 w-auto" />
             </Link>
           </div>
 
@@ -113,8 +113,8 @@ function MobileNav() {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" className="md:hidden" size="icon">
-          <Menu className="h-9 w-9" />
+        <Button variant="ghost" className="md:hidden p-2 h-14 w-14">
+          <Menu className="h-10 w-10" />
           <span className="sr-only">Open Menu</span>
         </Button>
       </SheetTrigger>
