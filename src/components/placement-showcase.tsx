@@ -11,14 +11,17 @@ import {
 import Autoplay from 'embla-carousel-autoplay';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
-const placementPartners = PlaceHolderImages.filter((p) =>
-  p.id.startsWith('partner-')
-);
 const studentPlacements = [
   PlaceHolderImages.find((p) => p.id === 'testimonial-1'),
   PlaceHolderImages.find((p) => p.id === 'testimonial-2'),
   PlaceHolderImages.find((p) => p.id === 'testimonial-3'),
 ].filter(Boolean);
+
+const studentFeatures = [
+    PlaceHolderImages.find((p) => p.id === 'testimonial-3'),
+    PlaceHolderImages.find((p) => p.id === 'testimonial-1'),
+    PlaceHolderImages.find((p) => p.id === 'testimonial-2'),
+  ].filter(Boolean);
 
 export function PlacementShowcase() {
   return (
@@ -38,25 +41,25 @@ export function PlacementShowcase() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-6">
-            <h3 className="text-2xl font-bold font-headline text-primary-foreground mb-4 text-center">Top Recruiters</h3>
-            <Carousel
+            <h3 className="text-2xl font-bold font-headline text-primary-foreground mb-4 text-center">Featured Placements</h3>
+             <Carousel
               opts={{ align: 'start', loop: true }}
-              plugins={[Autoplay({ delay: 3000, stopOnInteraction: true })]}
+              plugins={[Autoplay({ delay: 3500, stopOnInteraction: true })]}
               className="w-full"
             >
               <CarouselContent>
-                {placementPartners.map((partner) => (
-                  <CarouselItem key={partner.id} className="basis-1/2 md:basis-1/3">
+                {studentFeatures.map((student) => (
+                  <CarouselItem key={student!.id}>
                     <div className="p-2">
-                      <div className="bg-white/10 rounded-lg p-4 flex items-center justify-center h-24">
+                      <div className="relative aspect-video rounded-lg overflow-hidden">
                         <Image
-                          src={partner.imageUrl}
-                          alt={partner.description}
-                          width={144}
-                          height={48}
-                          className="object-contain h-12 w-36 filter brightness-0 invert"
-                           data-ai-hint={partner.imageHint}
+                          src={student!.imageUrl}
+                          alt={student!.description}
+                          fill
+                          className="object-cover"
+                          data-ai-hint={student!.imageHint}
                         />
+                         <div className="absolute inset-0 bg-black/30" />
                       </div>
                     </div>
                   </CarouselItem>
@@ -69,7 +72,7 @@ export function PlacementShowcase() {
             <h3 className="text-2xl font-bold font-headline text-primary-foreground mb-4 text-center">Student Success Stories</h3>
              <Carousel
               opts={{ align: 'start', loop: true }}
-              plugins={[Autoplay({ delay: 3500, stopOnInteraction: true })]}
+              plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]}
               className="w-full"
             >
               <CarouselContent>
