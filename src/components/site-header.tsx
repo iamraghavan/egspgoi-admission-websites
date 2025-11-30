@@ -4,12 +4,13 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { MegaMenu } from './mega-menu';
 import Image from 'next/image';
 import logo from '@/app/assets/logo/egspgoi_svg.svg';
 import { motion, Transition } from 'framer-motion';
+import { X } from 'lucide-react';
 
 const navLinks = [
   { text: 'Academics' },
@@ -163,35 +164,46 @@ function MobileNav() {
           <span className="sr-only">Open Menu</span>
         </button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-[300px] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left">
+      <SheetContent side="left" className="w-[300px] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left p-0">
         <SheetTitle className="sr-only">Mobile Navigation</SheetTitle>
         <div className="flex flex-col h-full">
-          <div className="border-b pb-4">
-            <Link
-              href="/"
-              className="flex items-center space-x-2"
-              onClick={() => setIsOpen(false)}
-            >
-              <Image src={logo} alt="EGS GOI Logo" className="h-12 w-auto" />
-            </Link>
-          </div>
-          <nav className="flex flex-col space-y-2 mt-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.text}
-                href={link.href || '#'}
-                onClick={() => setIsOpen(false)}
-                className="text-lg font-medium text-muted-foreground hover:text-foreground py-2"
-              >
-                {link.text}
-              </Link>
-            ))}
-          </nav>
-          <div className="mt-auto pt-6 border-t space-y-4">
-            <Button asChild className="w-full" variant="outline" onClick={() => setIsOpen(false)}>
-              <Link href="#apply">Apply Now</Link>
-            </Button>
-          </div>
+            <div className="flex items-center justify-between border-b p-4 pr-2">
+                <Link
+                    href="/"
+                    className="flex items-center space-x-2"
+                    onClick={() => setIsOpen(false)}
+                >
+                    <Image src={logo} alt="EGS GOI Logo" className="h-12 w-auto" />
+                </Link>
+                <SheetClose asChild>
+                     <motion.button
+                        whileHover={{ scale: 1.1, rotate: 90 }}
+                        whileTap={{ scale: 0.9, rotate: 0 }}
+                        className="p-2 h-14 w-14 flex items-center justify-center"
+                     >
+                        <X className="h-8 w-8" />
+                        <span className="sr-only">Close</span>
+                    </motion.button>
+                </SheetClose>
+            </div>
+            
+            <nav className="flex flex-col space-y-2 mt-6 px-4">
+                {navLinks.map((link) => (
+                <Link
+                    key={link.text}
+                    href={link.href || '#'}
+                    onClick={() => setIsOpen(false)}
+                    className="text-lg font-medium text-muted-foreground hover:text-foreground py-2"
+                >
+                    {link.text}
+                </Link>
+                ))}
+            </nav>
+            <div className="mt-auto p-4 border-t space-y-4">
+                <Button asChild className="w-full" variant="outline" onClick={() => setIsOpen(false)}>
+                <Link href="#apply">Apply Now</Link>
+                </Button>
+            </div>
         </div>
       </SheetContent>
     </Sheet>
