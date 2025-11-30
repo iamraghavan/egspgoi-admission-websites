@@ -1,6 +1,33 @@
+
 'use client';
 
 import { Mail, MapPin, Phone } from 'lucide-react';
+
+const contactInfo = {
+  call: [
+    {
+      label: 'Admissions',
+      number: '(+1) 234 - 4567 - 789',
+    },
+    {
+      label: 'General',
+      number: '(+1) 987 - 6543 - 210',
+    },
+  ],
+  email: [
+    {
+      label: 'Support',
+      address: 'support@egs.edu',
+    },
+    {
+      label: 'Admissions',
+      address: 'admissions@egs.edu',
+    },
+  ],
+  visit: {
+    address: '123 University Ave, Knowledge City',
+  },
+};
 
 export function CtaSection() {
   return (
@@ -28,39 +55,49 @@ export function CtaSection() {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-white">
-            <div className="flex gap-4 items-start">
-                 <div className="bg-accent/80 p-3 rounded-full">
-                    <Phone className="h-6 w-6 text-white" />
+          <div className="space-y-8 text-white">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div className="flex gap-4 items-start">
+                <div className="bg-accent/80 p-3 rounded-full shrink-0">
+                  <Phone className="h-6 w-6 text-white" />
                 </div>
-              <div>
-                <h3 className="text-xl font-bold font-headline">Call Us Directly</h3>
-                <p className="text-primary-foreground/80 mb-2">Available during working hours.</p>
-                <p className="font-semibold">(+1) 234 - 4567 - 789</p>
+                <div>
+                  <h3 className="text-xl font-bold font-headline">Call Us</h3>
+                  <p className="text-primary-foreground/80 mb-2">Available during working hours.</p>
+                  <div className="space-y-1">
+                    {contactInfo.call.map((item) => (
+                      <p key={item.number} className="font-semibold">
+                         {item.label}: {item.number}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+               <div className="flex gap-4 items-start">
+                <div className="bg-accent/80 p-3 rounded-full shrink-0">
+                  <Mail className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold font-headline">Email Us</h3>
+                  <p className="text-primary-foreground/80 mb-2">Our team will get back to you.</p>
+                  <div className="space-y-1">
+                    {contactInfo.email.map((item) => (
+                        <a key={item.address} href={`mailto:${item.address}`} className="block font-semibold hover:underline">
+                            {item.label}: {item.address}
+                        </a>
+                    ))}
+                    </div>
+                </div>
               </div>
             </div>
-            <div className="flex gap-4 items-start">
-                <div className="bg-accent/80 p-3 rounded-full">
-                    <Mail className="h-6 w-6 text-white" />
-                </div>
-              <div>
-                <h3 className="text-xl font-bold font-headline">Email Support</h3>
-                <p className="text-primary-foreground/80 mb-2">Our team can respond in real time.</p>
-                <a href="mailto:support@egs.edu" className="font-semibold hover:underline">
-                  support@egs.edu
-                </a>
-              </div>
-            </div>
-            <div className="flex gap-4 items-start sm:col-span-2 justify-center">
-                <div className="bg-accent/80 p-3 rounded-full">
+             <div className="flex gap-4 items-start justify-center text-center sm:text-left sm:justify-start pt-8 border-t border-primary-foreground/20">
+                <div className="bg-accent/80 p-3 rounded-full shrink-0">
                     <MapPin className="h-6 w-6 text-white" />
                 </div>
               <div>
                 <h3 className="text-xl font-bold font-headline">Visit Our Office</h3>
-                <p className="text-primary-foreground/80 mb-2">Visit our location in real life.</p>
-                <p className="font-semibold">
-                  123 University Ave, Knowledge City
-                </p>
+                <p className="text-primary-foreground/80 mb-2">123 University Ave, Knowledge City</p>
+                <a href="#" className="font-semibold hover:underline text-white">Get Directions</a>
               </div>
             </div>
           </div>
