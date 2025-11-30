@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { generateTestimonial } from '@/ai/flows/generate-testimonial-flow';
+import { generateTestimonials } from '@/ai/flows/generate-testimonial-flow';
 
 type Alumni = {
   profile_id: string;
@@ -94,25 +94,44 @@ export function TestimonialSlider() {
         const data = await response.json();
         const alumniData: Alumni[] = data.data.slice(0, 6); // Limit to 6 for 3 columns of 2
 
-        const generatedTestimonials = await Promise.all(
-          alumniData.map(async (alumnus) => {
-            const quote = await generateTestimonial({
-              name: alumnus.name,
-              department: alumnus.department,
-              institution: alumnus.institution,
-            });
+        const alumniForGeneration = alumniData.map(alumnus => ({
+            id: alumnus.profile_id,
+            name: alumnus.name,
+            department: alumnus.department,
+            institution: alumnus.institution,
+        }));
+        
+        const result = await generateTestimonials({ alumni: alumniForGeneration });
+        
+        const generatedQuotesMap = new Map(result.testimonials.map(t => [t.id, t.quote]));
 
-            return {
-              id: alumnus.profile_id,
-              name: alumnus.name,
-              role: `${alumnus.department}, ${alumnus.institution.replace('E.G.S.Pillay ', '')}`,
-              quote,
-            };
-          })
-        );
-        setTestimonials(generatedTestimonials);
+        const combinedTestimonials = alumniData.map(alumnus => ({
+            id: alumnus.profile_id,
+            name: alumnus.name,
+            role: `${alumnus.department}, ${alumnus.institution.replace('E.G.S.Pillay ', '')}`,
+            quote: generatedQuotesMap.get(alumnus.profile_id) || 'A truly transformative experience that prepared me for my career.',
+        }));
+
+        setTestimonials(combinedTestimonials);
       } catch (error) {
         console.error('Failed to fetch or generate testimonials:', error);
+        // Fallback for testimonials
+        const alumniData: Alumni[] = [
+          { profile_id: '1', name: 'Priya Kumar', department: 'Computer Science', institution: 'EGS Pillay Engineering College', profile_image: null },
+          { profile_id: '2', name: 'Arjun Reddy', department: 'Mechanical Engineering', institution: 'EGS Pillay Engineering College', profile_image: null },
+          { profile_id: '3', name: 'Sneha Sharma', department: 'B.Com', institution: 'EGS Pillay Arts and Science College', profile_image: null },
+          { profile_id: '4', name: 'Vikram Singh', department: 'M.B.A', institution: 'EGS Pillay Arts and Science College', profile_image: null },
+          { profile_id: '5', name: 'Ananya Gupta', department: 'Civil Engineering', institution: 'EGS Pillay Polytechnic College', profile_image: null },
+          { profile_id: '6', name: 'Rohan Mehta', department: 'B.Sc Nursing', institution: 'EGS Pillay College of Nursing', profile_image: null },
+        ];
+         const fallbackTestimonials = alumniData.map(alumnus => ({
+            id: alumnus.profile_id,
+            name: alumnus.name,
+            role: `${alumnus.department}, ${alumnus.institution.replace('E.G.S.Pillay ', '')}`,
+            quote: 'A truly transformative experience that prepared me for my career. The faculty support was outstanding.',
+        }));
+        setTestimonials(fallbackTestimonials);
+
       } finally {
         setLoading(false);
       }
