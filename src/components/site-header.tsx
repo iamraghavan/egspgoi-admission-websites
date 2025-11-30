@@ -113,11 +113,11 @@ function MobileNav() {
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <Button variant="ghost" className="md:hidden" size="icon">
-          <Menu className="h-6 w-6" />
+          <Menu className="h-8 w-8" />
           <span className="sr-only">Open Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left">
+      <SheetContent side="left" className="w-[300px]">
         <div className="flex flex-col h-full">
           <div className="border-b pb-4">
             <Link
