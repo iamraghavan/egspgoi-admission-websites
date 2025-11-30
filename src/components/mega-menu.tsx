@@ -120,10 +120,10 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                           key={item}
                           onClick={() => setActiveTopNav(item)}
                           className={cn(
-                            'whitespace-nowrap pb-1',
+                            'whitespace-nowrap pb-1 border-b-2 transition-colors duration-200',
                             activeTopNav === item
-                              ? 'text-primary border-b-2 border-primary'
-                              : 'text-muted-foreground hover:text-foreground'
+                              ? 'text-primary border-primary'
+                              : 'text-muted-foreground border-transparent hover:text-accent hover:border-accent'
                           )}
                         >
                           {item}
