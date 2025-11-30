@@ -51,7 +51,7 @@ export function CtaSection() {
                 </a>
               </div>
             </div>
-            <div className="flex gap-4 items-start sm:col-span-2">
+            <div className="flex gap-4 items-start sm:col-span-2 justify-center">
                 <div className="bg-accent/80 p-3 rounded-full">
                     <MapPin className="h-6 w-6 text-white" />
                 </div>
