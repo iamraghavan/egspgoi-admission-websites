@@ -22,7 +22,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/card';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -65,8 +65,9 @@ export function AdmissionForm() {
 
   return (
     <Card className="w-full max-w-lg shadow-2xl">
-      <CardHeader>
-        <CardTitle className="font-headline text-2xl text-center">Apply for Admission</CardTitle>
+      <CardHeader className="text-center">
+        <CardTitle className="font-headline text-2xl">Admissions Open 2026 - 2027</CardTitle>
+        <CardDescription>Fill out the form below to start your application.</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
