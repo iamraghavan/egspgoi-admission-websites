@@ -12,7 +12,9 @@ const navLinks = [
   { text: 'Academics' },
   { text: 'Admissions', href: '#apply' },
   { text: 'Placements', href: '#placements' },
+  { text: 'Scholarship', href: '#' },
   { text: 'Institutions', href: '#' },
+  { text: 'FAQ', href: '#' },
   { text: 'About EGS', href: '#' },
 ];
 
