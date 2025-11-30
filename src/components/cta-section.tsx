@@ -90,7 +90,7 @@ export function CtaSection() {
                 </div>
               </div>
             </div>
-             <div className="flex gap-4 items-start justify-center text-center sm:text-left sm:justify-start pt-8 border-t border-primary-foreground/20">
+             <div className="flex gap-4 items-start pt-8 border-t border-primary-foreground/20">
                 <div className="bg-accent/80 p-3 rounded-full shrink-0">
                     <MapPin className="h-6 w-6 text-white" />
                 </div>
