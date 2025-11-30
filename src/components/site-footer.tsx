@@ -121,7 +121,7 @@ export function SiteFooter() {
             </div>
         </div>
       </div>
-       <div className="bg-primary/80">
+       <div style={{ backgroundColor: '#181818' }}>
         <div className="container mx-auto px-6 py-4">
             <div className="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left text-xs text-primary-foreground/70">
                 <p className="mb-2 sm:mb-0">
