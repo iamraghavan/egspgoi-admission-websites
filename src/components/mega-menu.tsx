@@ -106,9 +106,9 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
   const activePrograms = programsByCategory[activeCategory as keyof typeof programsByCategory] || [];
 
   return (
-    <div className="fixed top-16 left-0 right-0 bottom-0 z-40 bg-black/50" onClick={onClose}>
+    <div className="fixed top-0 left-0 right-0 bottom-0 z-40 bg-black/50" onClick={onClose}>
       <div
-        className="fixed top-16 left-0 right-0 z-50 bg-white shadow-md"
+        className="fixed top-24 left-0 right-0 z-50 bg-white shadow-md"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="container mx-auto max-w-screen-2xl">
@@ -163,7 +163,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
               </nav>
                <Button className="w-full mt-6">ALL INSTITUTIONS</Button>
             </aside>
-            <main className="col-span-9 p-8 bg-gray-50/50 h-[calc(100vh-129px)] overflow-y-auto">
+            <main className="col-span-9 p-8 bg-gray-50/50 h-[calc(100vh-160px)] overflow-y-auto">
               <h2 className="text-xl font-semibold mb-6">{activeCategory} Programs</h2>
               {activePrograms.length > 0 ? (
                 <div className="grid grid-cols-2 gap-6">

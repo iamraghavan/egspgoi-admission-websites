@@ -67,7 +67,7 @@ export function SiteHeader() {
         <div className="container flex h-full max-w-screen-2xl items-center">
           <div className="mr-4 flex items-center">
             <Link href="/" className="mr-6 flex items-center space-x-2">
-              <Image src={logo} alt="EGS GOI Logo" className="h-16 w-auto" />
+              <Image src={logo} alt="EGS GOI Logo" className="h-20 w-auto" />
             </Link>
           </div>
 
