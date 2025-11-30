@@ -1,5 +1,3 @@
-
-
 import { AccreditationLogos } from '@/components/accreditation-logos';
 import { AchievementsSection } from '@/components/achievements-section';
 import { CtaSection } from '@/components/cta-section';
