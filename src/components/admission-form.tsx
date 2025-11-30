@@ -5,6 +5,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import React from 'react';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -153,12 +155,12 @@ export function AdmissionForm() {
   
   const sortedStates = React.useMemo(() => {
     const tn = statesAndDistricts.states.find(s => s.state === 'Tamil Nadu');
-    const otherStates = statesAndDistricts.states.filter(s => s.state !== 'Tamil Nadu');
+    const otherStates = statesAndDistricts.states.filter(s => s.state !== 'Tamil Nadu').sort((a, b) => a.state.localeCompare(b.state));
     return tn ? [tn, ...otherStates] : otherStates;
   }, []);
 
   const availableDistricts = React.useMemo(() => {
-    return statesAndDistricts.states.find(s => s.state === selectedState)?.districts || [];
+    return statesAndDistricts.states.find(s => s.state === selectedState)?.districts.sort((a, b) => a.localeCompare(b)) || [];
   }, [selectedState]);
 
 
@@ -205,7 +207,12 @@ export function AdmissionForm() {
                   <FormItem>
                     <FormLabel>Phone/WhatsApp</FormLabel>
                     <FormControl>
-                      <Input type="tel" placeholder="+91 123-456-7890" {...field} />
+                      <PhoneInput
+                        country={'in'}
+                        value={field.value}
+                        onChange={field.onChange}
+                        inputStyle={{ width: '100%' }}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -330,5 +337,3 @@ export function AdmissionForm() {
     </Card>
   );
 }
-
-    
