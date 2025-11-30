@@ -139,10 +139,6 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
   const [activeTopNav, setActiveTopNav] = React.useState<CollegeName>(topNavItems[0] as CollegeName);
   const [activeCategory, setActiveCategory] = React.useState('UG');
 
-  if (!isOpen) {
-    return null;
-  }
-
   const collegePrograms = coursesByCollege[activeTopNav] || {};
   const availableCategories = Object.keys(collegePrograms)
     .map(cat => categoryMap[cat] || cat)
@@ -151,6 +147,18 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
         const order = ['UG', 'PG', 'Diploma', 'PhD - Doctoral', 'Curriculum', 'Courses'];
         return order.indexOf(a) - order.indexOf(b);
     });
+  
+  // Set first available category as active if current is not available
+  React.useEffect(() => {
+    if (isOpen && availableCategories.length > 0 && !availableCategories.includes(activeCategory)) {
+        setActiveCategory(availableCategories[0]);
+    }
+  }, [activeTopNav, availableCategories, activeCategory, isOpen]);
+
+
+  if (!isOpen) {
+    return null;
+  }
 
   const invertedCategoryMap = Object.entries(categoryMap).reduce((acc, [key, value]) => {
     acc[value] = key;
@@ -160,12 +168,6 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
   const selectedOriginalCategory = invertedCategoryMap[activeCategory] || activeCategory;
   const activePrograms = (collegePrograms[selectedOriginalCategory as keyof typeof collegePrograms] || []) as string[];
 
-  // Set first available category as active if current is not available
-  React.useEffect(() => {
-    if (availableCategories.length > 0 && !availableCategories.includes(activeCategory)) {
-        setActiveCategory(availableCategories[0]);
-    }
-  }, [activeTopNav, availableCategories, activeCategory]);
 
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 z-40 bg-black/50" onClick={onClose}>
