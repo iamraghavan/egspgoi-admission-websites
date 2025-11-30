@@ -30,6 +30,16 @@ export function CtaSection() {
 
           <div className="space-y-8 text-white">
             <div className="flex gap-4 items-start">
+                 <div className="bg-accent/80 p-3 rounded-full">
+                    <Phone className="h-6 w-6 text-white" />
+                </div>
+              <div>
+                <h3 className="text-xl font-bold font-headline">Call Us Directly</h3>
+                <p className="text-primary-foreground/80 mb-2">Available during working hours.</p>
+                <p className="font-semibold">(+1) 234 - 4567 - 789</p>
+              </div>
+            </div>
+            <div className="flex gap-4 items-start">
                 <div className="bg-accent/80 p-3 rounded-full">
                     <Mail className="h-6 w-6 text-white" />
                 </div>
@@ -51,16 +61,6 @@ export function CtaSection() {
                 <p className="font-semibold">
                   123 University Ave, Knowledge City
                 </p>
-              </div>
-            </div>
-            <div className="flex gap-4 items-start">
-                 <div className="bg-accent/80 p-3 rounded-full">
-                    <Phone className="h-6 w-6 text-white" />
-                </div>
-              <div>
-                <h3 className="text-xl font-bold font-headline">Call Us Directly</h3>
-                <p className="text-primary-foreground/80 mb-2">Available during working hours.</p>
-                <p className="font-semibold">(+1) 234 - 4567 - 789</p>
               </div>
             </div>
           </div>
