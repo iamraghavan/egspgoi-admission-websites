@@ -2,6 +2,7 @@
 
 import { AccreditationLogos } from '@/components/accreditation-logos';
 import { AchievementsSection } from '@/components/achievements-section';
+import { CtaSection } from '@/components/cta-section';
 import { FindProgram } from '@/components/find-program';
 import { HeroSection } from '@/components/hero-section';
 import { LogoCloud } from '@/components/logo-cloud';
@@ -22,6 +23,7 @@ export default function Home() {
         <PlacementShowcase />
         <LogoCloud />
         <TestimonialSlider />
+        <CtaSection />
       </main>
       <SiteFooter />
     </div>
