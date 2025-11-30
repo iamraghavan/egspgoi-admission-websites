@@ -142,28 +142,31 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const collegePrograms = coursesByCollege[activeTopNav] || {};
+  
   const availableCategories = Object.keys(collegePrograms)
-    .map(cat => categoryMap[cat] || cat)
-    .filter(Boolean)
     .sort((a, b) => {
         const order = ['Undergraduate', 'Postgraduate', 'Diploma', 'PhD - Doctoral', 'Curriculum', 'Courses'];
-        return order.indexOf(a) - order.indexOf(b);
+        const aIndex = order.indexOf(a) !== -1 ? order.indexOf(a) : order.length;
+        const bIndex = order.indexOf(b) !== -1 ? order.indexOf(b) : order.length;
+        return aIndex - bIndex;
     });
-  
+
+  // Set first available category as active if current is not available
   React.useEffect(() => {
     if (isOpen) {
         if (availableCategories.length > 0 && !availableCategories.includes(activeCategory)) {
             setActiveCategory(availableCategories[0]);
+        } else if (availableCategories.length === 0) {
+            setActiveCategory('');
         }
     }
   }, [isOpen, activeTopNav, availableCategories, activeCategory]);
-
 
   if (!isOpen) {
     return null;
   }
 
-  const selectedPrograms = (collegePrograms[activeCategory as keyof typeof collegePrograms] || []) as string[];
+  const selectedPrograms = (activeCategory && collegePrograms[activeCategory as keyof typeof collegePrograms]) ? (collegePrograms[activeCategory as keyof typeof collegePrograms] as string[]) : [];
   
   const filteredPrograms = selectedPrograms.filter(program =>
     program.toLowerCase().includes(searchQuery.toLowerCase())
@@ -183,7 +186,10 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                     {topNavItems.map((item) => (
                         <button
                           key={item}
-                          onClick={() => setActiveTopNav(item as CollegeName)}
+                          onClick={() => {
+                            setActiveTopNav(item as CollegeName);
+                            setSearchQuery('');
+                          }}
                           className={cn(
                             'whitespace-nowrap pb-1 border-b-2 transition-colors duration-200',
                             activeTopNav === item
@@ -198,7 +204,6 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 <div className="flex items-center space-x-4 pl-4">
                     <Link href="#" className="text-sm font-medium text-primary hover:underline whitespace-nowrap">ALL INSTITUTIONS <ArrowRight className="inline h-4 w-4" /></Link>
                     <Button variant="ghost" size="icon" onClick={onClose}>
-                        <X className="h-5 w-5" />
                         <span className="sr-only">Close menu</span>
                     </Button>
                 </div>
