@@ -78,7 +78,7 @@ export function FindProgram() {
               Our comprehensive program finder allows you to tailor your search and discover the perfect academic journey.
             </p>
         </div>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 bg-secondary/30 p-4 rounded-lg shadow-sm">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 bg-secondary/30 p-4 rounded-lg shadow-sm w-full">
           <FilterSelect
             label="Degree"
             placeholder="Select Degree"
