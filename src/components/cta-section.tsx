@@ -28,7 +28,7 @@ export function CtaSection() {
             </a>
           </div>
 
-          <div className="space-y-8 text-white">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-white">
             <div className="flex gap-4 items-start">
                  <div className="bg-accent/80 p-3 rounded-full">
                     <Phone className="h-6 w-6 text-white" />
@@ -51,7 +51,7 @@ export function CtaSection() {
                 </a>
               </div>
             </div>
-            <div className="flex gap-4 items-start">
+            <div className="flex gap-4 items-start sm:col-span-2">
                 <div className="bg-accent/80 p-3 rounded-full">
                     <MapPin className="h-6 w-6 text-white" />
                 </div>
