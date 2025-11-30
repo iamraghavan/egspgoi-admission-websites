@@ -61,7 +61,7 @@ const FilterSelect = ({
       {label}
     </span>
     <Select>
-      <SelectTrigger className="w-full md:w-[200px] bg-transparent border-none text-accent-foreground text-base font-semibold pt-5 focus:ring-0 focus:ring-offset-0">
+      <SelectTrigger className="w-full md:w-[200px] bg-transparent border-none text-primary text-base font-semibold pt-5 focus:ring-0 focus:ring-offset-0">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
