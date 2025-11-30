@@ -114,7 +114,7 @@ const categoryMap: Record<string, string> = {
     'Undergraduate': 'Undergraduate',
     'Postgraduate': 'Postgraduate',
     'Diploma': 'Diploma',
-    'Doctoral': 'PhD - Doctoral',
+    'PhD - Doctoral': 'PhD - Doctoral',
     'Curriculum': 'Curriculum',
     'Courses': 'Courses'
 };
@@ -154,10 +154,9 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
   // Set first available category as active if current is not available
   React.useEffect(() => {
     if (isOpen) {
-        if (availableCategories.length > 0 && !availableCategories.includes(activeCategory)) {
-            setActiveCategory(availableCategories[0]);
-        } else if (availableCategories.length === 0) {
-            setActiveCategory('');
+        const firstCategory = availableCategories.length > 0 ? availableCategories[0] : '';
+        if (!availableCategories.includes(activeCategory)) {
+            setActiveCategory(firstCategory);
         }
     }
   }, [isOpen, activeTopNav, availableCategories, activeCategory]);
@@ -204,6 +203,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 <div className="flex items-center space-x-4 pl-4">
                     <Link href="#" className="text-sm font-medium text-primary hover:underline whitespace-nowrap">ALL INSTITUTIONS <ArrowRight className="inline h-4 w-4" /></Link>
                     <Button variant="ghost" size="icon" onClick={onClose}>
+                        <X className="h-6 w-6" />
                         <span className="sr-only">Close menu</span>
                     </Button>
                 </div>
@@ -232,7 +232,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                         : 'text-muted-foreground hover:bg-gray-100'
                     )}
                   >
-                    {category}
+                    {categoryMap[category] || category}
                   </button>
                 ))}
               </nav>
