@@ -1,23 +1,18 @@
 import Image from 'next/image';
 import { AdmissionForm } from './admission-form';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import heroImage from '@/app/assets/engineering_college.webp';
 
 export function HeroSection() {
-  const heroImage = PlaceHolderImages.find(p => p.id === 'hero-image');
-
   return (
     <section id="apply" className="relative w-full">
       <div className="absolute inset-0">
-        {heroImage && (
-          <Image
-            src={heroImage.imageUrl}
-            alt={heroImage.description}
-            fill
-            className="object-cover"
-            priority
-            data-ai-hint={heroImage.imageHint}
-          />
-        )}
+        <Image
+          src={heroImage}
+          alt="EGS Engineering College Campus"
+          fill
+          className="object-cover"
+          priority
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-accent/80" />
       </div>
       <div className="relative container mx-auto px-6 py-16 md:py-24">
