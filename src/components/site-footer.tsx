@@ -163,7 +163,7 @@ export function SiteFooter() {
         <div className="container mx-auto px-6 py-4">
             <div className="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left text-xs text-primary-foreground/70">
                 <p className="mb-2 sm:mb-0">
-                    Copyright &copy; 2006 - {new Date().getFullYear()} All Rights Reserved by EGS Pillay Group of Institutions
+                    Copyright &copy; {new Date().getFullYear()} All Rights Reserved by EGS Pillay Group of Institutions
                 </p>
                 <p>
                     <span className='mr-2'>Developed By <a href="#" className="font-semibold hover:text-white">Raghavan Jeeva</a></span> | 

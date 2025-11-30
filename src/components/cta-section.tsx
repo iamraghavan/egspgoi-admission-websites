@@ -7,25 +7,25 @@ const contactInfo = {
   call: [
     {
       label: 'Admissions',
-      number: '(+1) 234 - 4567 - 789',
+      number: '+91 99768 88999',
     },
     {
-      label: 'General',
-      number: '(+1) 987 - 6543 - 210',
+      label: 'Admissions',
+      number: '+91 86809 54537',
     },
   ],
   email: [
     {
-      label: 'Support',
-      address: 'support@egs.edu',
+      label: 'Admissions',
+      address: 'admission@egspec.org',
     },
     {
-      label: 'Admissions',
-      address: 'admissions@egs.edu',
+      label: 'Enquiry',
+      address: 'enquiry@egspec.org',
     },
   ],
   visit: {
-    address: '123 University Ave, Knowledge City',
+    address: 'Old, Nagore Main Rd, Thethi village, Nagore, Nagapattinam, Tamil Nadu 611002',
   },
 };
 
@@ -41,10 +41,10 @@ export function CtaSection() {
             <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-lg mx-auto md:mx-0">
               Reach out to us with any questions. Or just reach out manually to{' '}
               <a
-                href="mailto:contact@egs.edu"
+                href="mailto:enquiry@egspec.org"
                 className="font-semibold underline hover:text-white"
               >
-                contact@egs.edu
+                enquiry@egspec.org
               </a>
             </p>
             <a
@@ -66,9 +66,9 @@ export function CtaSection() {
                   <p className="text-primary-foreground/80 mb-2">Available during working hours.</p>
                   <div className="space-y-1">
                     {contactInfo.call.map((item) => (
-                      <p key={item.number} className="font-semibold">
-                         {item.label}: {item.number}
-                      </p>
+                       <a key={item.number} href={`tel:${item.number.replace(/\s/g, '')}`} className="block font-semibold hover:underline">
+                         {item.number}
+                       </a>
                     ))}
                   </div>
                 </div>
@@ -96,7 +96,7 @@ export function CtaSection() {
                 </div>
               <div>
                 <h3 className="text-xl font-bold font-headline">Visit Our Office</h3>
-                <p className="text-primary-foreground/80 mb-2">123 University Ave, Knowledge City</p>
+                <p className="text-primary-foreground/80 mb-2 max-w-xs">{contactInfo.visit.address}</p>
                 <a href="#" className="font-semibold hover:underline text-white">Get Directions</a>
               </div>
             </div>
