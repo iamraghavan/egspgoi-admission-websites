@@ -1,9 +1,9 @@
 
 import { AccreditationLogos } from '@/components/accreditation-logos';
 import { AchievementsSection } from '@/components/achievements-section';
+import { FindProgram } from '@/components/find-program';
 import { HeroSection } from '@/components/hero-section';
 import { PlacementPartners } from '@/components/placement-partners';
-import { ProgramCategories } from '@/components/program-categories';
 import { ProgramHighlights } from '@/components/program-highlights';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
@@ -17,7 +17,7 @@ export default function Home() {
         <HeroSection />
         <AccreditationLogos />
         <AchievementsSection />
-        <ProgramCategories />
+        <FindProgram />
         <ProgramHighlights />
         <TestimonialSlider />
         <PlacementPartners />
@@ -26,6 +26,3 @@ export default function Home() {
     </div>
   );
 }
-
-
-
