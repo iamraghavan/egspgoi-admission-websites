@@ -36,7 +36,6 @@ const quickLinks = [
 ];
 
 const aboutEgspLinks = [
-    { name: 'About EGSPGOI', href: '#' },
     { name: 'Rankings', href: '#' },
     { name: 'Accreditation', href: '#' },
     { name: 'Leadership', href: '#' },
