@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { generateTestimonial } from '@/ai/flows/generate-testimonial-flow';
 
 type Alumni = {
@@ -18,37 +17,21 @@ type Testimonial = {
   name: string;
   role: string;
   quote: string;
-  image: string;
-  imageHint: string;
 };
-
-const imageMap = new Map(PlaceHolderImages.map((p) => [p.id, p]));
 
 const TestimonialCard = ({
   quote,
   name,
   role,
-  image,
-  imageHint,
 }: {
   quote: string;
   name: string;
   role: string;
-  image: string;
-  imageHint: string;
 }) => {
   return (
     <div className="p-10 rounded-3xl border bg-card text-card-foreground shadow-lg shadow-primary/10 max-w-xs w-full">
       <div className="flex-grow">"{quote}"</div>
       <div className="flex items-center gap-2 mt-5">
-        <img
-          width={40}
-          height={40}
-          src={image}
-          alt={name}
-          className="h-10 w-10 rounded-full object-cover"
-          data-ai-hint={imageHint}
-        />
         <div className="flex flex-col">
           <div className="font-medium tracking-tight leading-5 text-foreground">
             {name}
@@ -89,8 +72,6 @@ const TestimonialsColumn = (props: {
                 quote={testimonial.quote}
                 name={testimonial.name}
                 role={testimonial.role}
-                image={testimonial.image}
-                imageHint={testimonial.imageHint}
               />
             ))}
           </React.Fragment>
@@ -111,27 +92,21 @@ export function TestimonialSlider() {
           'https://alumni.egspgroup.in/api/alumni?auth=raghavan&key=1407'
         );
         const data = await response.json();
-        const alumniData: Alumni[] = data.data.slice(0, 9); // Limit to 9 for 3 columns
+        const alumniData: Alumni[] = data.data.slice(0, 6); // Limit to 6 for 3 columns of 2
 
         const generatedTestimonials = await Promise.all(
-          alumniData.map(async (alumnus, index) => {
+          alumniData.map(async (alumnus) => {
             const quote = await generateTestimonial({
               name: alumnus.name,
               department: alumnus.department,
               institution: alumnus.institution,
             });
 
-            // Use placeholder images as profile images are null
-            const placeholderId = `testimonial-${(index % 3) + 1}`;
-            const placeholder = imageMap.get(placeholderId);
-
             return {
               id: alumnus.profile_id,
               name: alumnus.name,
               role: `${alumnus.department}, ${alumnus.institution.replace('E.G.S.Pillay ', '')}`,
               quote,
-              image: placeholder?.imageUrl || 'https://picsum.photos/seed/1/40/40',
-              imageHint: placeholder?.imageHint || 'student avatar'
             };
           })
         );
@@ -146,9 +121,9 @@ export function TestimonialSlider() {
     fetchAlumniAndGenerateTestimonials();
   }, []);
 
-  const firstColumn = testimonials.slice(0, 3);
-  const secondColumn = testimonials.slice(3, 6);
-  const thirdColumn = testimonials.slice(6, 9);
+  const firstColumn = testimonials.slice(0, 2);
+  const secondColumn = testimonials.slice(2, 4);
+  const thirdColumn = testimonials.slice(4, 6);
 
   return (
     <section

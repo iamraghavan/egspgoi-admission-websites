@@ -19,7 +19,7 @@ export type GenerateTestimonialInput = z.infer<typeof GenerateTestimonialInputSc
 const prompt = ai.definePrompt({
     name: 'generateTestimonialPrompt',
     input: { schema: GenerateTestimonialInputSchema },
-    prompt: `You are an AI assistant for a university. Your task is to generate a short, positive, and authentic-sounding testimonial quote (2-3 sentences) for an alumnus named {{{name}}}.
+    prompt: `You are an AI assistant for a university. Your task is to generate a short, positive, and authentic-sounding testimonial quote (1-2 sentences) for an alumnus named {{{name}}}.
   
   The testimonial should reflect their experience based on their department and institution.
   
