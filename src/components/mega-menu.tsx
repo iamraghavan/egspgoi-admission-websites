@@ -111,11 +111,12 @@ const topNavItems = [
 ];
 
 const categoryMap: Record<string, string> = {
-    'Undergraduate': 'UG',
-    'Postgraduate': 'PG',
+    'Undergraduate': 'Undergraduate',
+    'Postgraduate': 'Postgraduate',
     'Diploma': 'Diploma',
     'Doctoral': 'PhD - Doctoral',
     'Curriculum': 'Curriculum',
+    'Courses': 'Courses'
 };
 
 const ProgramIcon = ({ name }: { name: string }) => {
@@ -137,36 +138,36 @@ const ProgramIcon = ({ name }: { name: string }) => {
 
 export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
   const [activeTopNav, setActiveTopNav] = React.useState<CollegeName>(topNavItems[0] as CollegeName);
-  const [activeCategory, setActiveCategory] = React.useState('UG');
+  const [activeCategory, setActiveCategory] = React.useState('Undergraduate');
+  const [searchQuery, setSearchQuery] = React.useState('');
 
   const collegePrograms = coursesByCollege[activeTopNav] || {};
   const availableCategories = Object.keys(collegePrograms)
     .map(cat => categoryMap[cat] || cat)
     .filter(Boolean)
     .sort((a, b) => {
-        const order = ['UG', 'PG', 'Diploma', 'PhD - Doctoral', 'Curriculum', 'Courses'];
+        const order = ['Undergraduate', 'Postgraduate', 'Diploma', 'PhD - Doctoral', 'Curriculum', 'Courses'];
         return order.indexOf(a) - order.indexOf(b);
     });
   
-  // Set first available category as active if current is not available
   React.useEffect(() => {
-    if (isOpen && availableCategories.length > 0 && !availableCategories.includes(activeCategory)) {
-        setActiveCategory(availableCategories[0]);
+    if (isOpen) {
+        if (availableCategories.length > 0 && !availableCategories.includes(activeCategory)) {
+            setActiveCategory(availableCategories[0]);
+        }
     }
-  }, [activeTopNav, availableCategories, activeCategory, isOpen]);
+  }, [isOpen, activeTopNav, availableCategories, activeCategory]);
 
 
   if (!isOpen) {
     return null;
   }
 
-  const invertedCategoryMap = Object.entries(categoryMap).reduce((acc, [key, value]) => {
-    acc[value] = key;
-    return acc;
-  }, {} as Record<string, string>);
-
-  const selectedOriginalCategory = invertedCategoryMap[activeCategory] || activeCategory;
-  const activePrograms = (collegePrograms[selectedOriginalCategory as keyof typeof collegePrograms] || []) as string[];
+  const selectedPrograms = (collegePrograms[activeCategory as keyof typeof collegePrograms] || []) as string[];
+  
+  const filteredPrograms = selectedPrograms.filter(program =>
+    program.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
 
   return (
@@ -207,7 +208,12 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
             <aside className="col-span-3 border-r p-6">
               <div className="relative mb-6">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input placeholder="I'm looking for..." className="pl-9" />
+                <Input 
+                  placeholder="I'm looking for..." 
+                  className="pl-9"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
               </div>
               <nav className="flex flex-col space-y-1">
                 {availableCategories.map((category) => (
@@ -228,10 +234,10 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                <Button className="w-full mt-6">ALL PROGRAMS</Button>
             </aside>
             <main className="col-span-9 p-8 bg-gray-50/50 h-[calc(100vh-160px)] overflow-y-auto">
-              <h2 className="text-xl font-semibold mb-6">{selectedOriginalCategory} Programs in {activeTopNav.replace('E.G.S.Pillay ', '').replace('EGS Pillay ', '')}</h2>
-              {activePrograms.length > 0 ? (
+              <h2 className="text-xl font-semibold mb-6">{activeCategory} Programs in {activeTopNav.replace('E.G.S.Pillay ', '').replace('EGS Pillay ', '')}</h2>
+              {filteredPrograms.length > 0 ? (
                 <div className="grid grid-cols-2 gap-6">
-                  {activePrograms.map((programName) => (
+                  {filteredPrograms.map((programName) => (
                     <Card key={programName} className="p-6 flex flex-col items-start gap-4 hover:shadow-lg transition-shadow">
                       <div className="flex items-center gap-3">
                           <ProgramIcon name={programName} />
@@ -246,7 +252,9 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 </div>
               ) : (
                 <div className="flex items-center justify-center h-full">
-                  <p className="text-muted-foreground">No programs available for this category yet.</p>
+                  <p className="text-muted-foreground">
+                    {searchQuery ? `No programs found for "${searchQuery}".` : 'No programs available for this category yet.'}
+                  </p>
                 </div>
               )}
             </main>
