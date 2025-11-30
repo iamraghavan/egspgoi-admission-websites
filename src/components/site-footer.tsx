@@ -32,6 +32,12 @@ const quickLinks = [
     { name: 'Research', href: '#' },
     { name: 'Student Life', href: '#' },
     { name: 'Alumni', href: '#' },
+    { name: 'About EGSPGOI', href: '#' },
+    { name: 'Rankings', href: '#' },
+    { name: 'Accreditation', href: '#' },
+    { name: 'Leadership', href: '#' },
+    { name: 'Press Media', href: '#' },
+    { name: 'Governance', href: '#' },
 ];
 
 
