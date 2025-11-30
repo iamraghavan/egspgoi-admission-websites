@@ -118,9 +118,9 @@ const coursesByCollege = {
 type CollegeName = keyof typeof coursesByCollege;
 
 const formSchema = z.object({
-  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
-  email: z.string().email({ message: 'Please enter a valid email.' }),
-  phone: z.string().min(10, { message: 'Phone number must be at least 10 digits.' }),
+  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }).max(50, { message: 'Name must not exceed 50 characters.' }),
+  email: z.string().email({ message: 'Please enter a valid email address.' }),
+  phone: z.string().min(10, { message: 'Please enter a valid phone number.' }),
   college: z.string({ required_error: 'Please select a college.' }),
   course: z.string({ required_error: 'Please select a course.' }),
   state: z.string({ required_error: 'Please select a state.' }),
@@ -160,7 +160,9 @@ export function AdmissionForm() {
   }, []);
 
   const availableDistricts = React.useMemo(() => {
-    return statesAndDistricts.states.find(s => s.state === selectedState)?.districts.sort((a, b) => a.localeCompare(b)) || [];
+    if (!selectedState) return [];
+    const stateData = statesAndDistricts.states.find(s => s.state === selectedState);
+    return stateData ? stateData.districts.sort((a, b) => a.localeCompare(b)) : [];
   }, [selectedState]);
 
 
@@ -180,7 +182,7 @@ export function AdmissionForm() {
                     <FormItem>
                     <FormLabel>Full Name</FormLabel>
                     <FormControl>
-                        <Input placeholder="John Doe" {...field} />
+                        <Input placeholder="Enter your full name" {...field} />
                     </FormControl>
                     <FormMessage />
                     </FormItem>
@@ -194,7 +196,7 @@ export function AdmissionForm() {
                   <FormItem>
                     <FormLabel>Email Address</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="john.doe@example.com" {...field} />
+                      <Input type="email" placeholder="Enter your email" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -211,6 +213,10 @@ export function AdmissionForm() {
                         country={'in'}
                         value={field.value}
                         onChange={field.onChange}
+                        inputProps={{
+                          name: 'phone',
+                          required: true,
+                        }}
                         inputStyle={{ width: '100%' }}
                       />
                     </FormControl>
@@ -262,7 +268,7 @@ export function AdmissionForm() {
                       {Object.entries(availableCourses).map(([category, courses]) => (
                         <React.Fragment key={category}>
                           <FormLabel className="px-2 py-1.5 text-sm font-semibold">{category}</FormLabel>
-                          {(courses as string[]).map(course => (
+                          {(courses as string[]).sort((a,b) => a.localeCompare(b)).map(course => (
                             <SelectItem key={course} value={course}>
                               {course}
                             </SelectItem>
