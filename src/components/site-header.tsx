@@ -8,7 +8,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { MegaMenu } from './mega-menu';
 import Image from 'next/image';
-import logo from '@/app/assets/logo/egspgoi_svg.svg?url';
+import logo from '@/app/assets/logo/egspgoi_svg.svg';
 
 const navLinks = [
   { text: 'Academics' },
@@ -20,13 +20,51 @@ const navLinks = [
   { text: 'About EGS', href: '#' },
 ];
 
+const NavLink = ({
+    children,
+    className,
+    ...props
+  }: React.ComponentProps<typeof Button> & { children: React.ReactNode }) => {
+    return (
+      <Button
+        variant="ghost"
+        className={cn(
+          'text-base font-medium relative after:absolute after:bottom-2 after:left-0 after:h-0.5 after:w-full after:origin-center after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100',
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </Button>
+    );
+  };
+  
+  const NavLinkAsChild = ({
+    children,
+    className,
+    ...props
+  }: React.ComponentProps<typeof Button> & { children: React.ReactNode }) => {
+    return (
+      <Button
+        variant="ghost"
+        className={cn(
+          'text-base font-medium relative after:absolute after:bottom-2 after:left-0 after:h-0.5 after:w-full after:origin-center after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100',
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </Button>
+    );
+  };
+
 export function SiteHeader() {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = React.useState(false);
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b bg-background">
-        <div className="container flex h-20 max-w-screen-2xl items-center">
+      <header className="sticky top-0 z-50 w-full border-b bg-background h-24">
+        <div className="container flex h-full max-w-screen-2xl items-center">
           <div className="mr-4 flex items-center">
             <Link href="/" className="mr-6 flex items-center space-x-2">
               <Image src={logo} alt="EGS GOI Logo" className="h-16 w-auto" />
@@ -36,23 +74,21 @@ export function SiteHeader() {
           <nav className="hidden md:flex flex-1 items-center space-x-1">
             {navLinks.map((link) =>
               link.text === 'Academics' ? (
-                <Button
+                <NavLink
                   key={link.text}
-                  variant="ghost"
                   className={cn(
-                    'text-base font-medium',
-                    isMegaMenuOpen && 'bg-accent text-accent-foreground'
+                    isMegaMenuOpen && 'after:scale-x-100'
                   )}
                   onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
                 >
                   {link.text}
-                </Button>
+                </NavLink>
               ) : (
-                <Button key={link.text} variant="ghost" asChild>
-                  <Link href={link.href!} className="text-base font-medium">
+                <NavLinkAsChild key={link.text} asChild>
+                  <Link href={link.href!}>
                     {link.text}
                   </Link>
-                </Button>
+                </NavLinkAsChild>
               )
             )}
           </nav>
