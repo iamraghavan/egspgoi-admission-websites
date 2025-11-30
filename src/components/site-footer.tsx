@@ -66,7 +66,7 @@ export function SiteFooter() {
 
             <div className="lg:col-span-9">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-                     <div className="md:col-span-2 lg:col-span-1">
+                     <div className="md:col-span-2">
                         <h3 className="font-semibold font-headline text-lg">Institutions</h3>
                         <ul className="mt-4 space-y-2 text-sm">
                             {institutions.map(item => (
