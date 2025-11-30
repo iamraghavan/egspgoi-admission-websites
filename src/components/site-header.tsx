@@ -52,6 +52,7 @@ const NavLink = ({
           'text-base font-medium',
           className
         )}
+        asChild
         {...props}
       >
         {children}
@@ -82,7 +83,7 @@ export function SiteHeader() {
                   {link.text}
                 </NavLink>
               ) : (
-                <NavLinkAsChild key={link.text} asChild>
+                <NavLinkAsChild key={link.text}>
                   <Link href={link.href!}>
                     {link.text}
                   </Link>
@@ -113,10 +114,10 @@ function MobileNav() {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" className="md:hidden p-2 h-14 w-14">
+        <button className="md:hidden p-2">
           <Menu className="h-10 w-10" />
           <span className="sr-only">Open Menu</span>
-        </Button>
+        </button>
       </SheetTrigger>
       <SheetContent side="left" className="w-[300px] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left">
         <div className="flex flex-col h-full">
