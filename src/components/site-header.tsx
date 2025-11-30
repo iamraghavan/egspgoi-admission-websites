@@ -2,11 +2,12 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { GraduationCap, Menu, Search } from 'lucide-react';
+import { Menu, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { MegaMenu } from './mega-menu';
+import Logo from '@/app/assets/logo/egspgoi_svg.svg';
 
 const navLinks = [
   { text: 'Academics' },
@@ -27,10 +28,7 @@ export function SiteHeader() {
         <div className="container flex h-16 max-w-screen-2xl items-center">
           <div className="mr-4 flex items-center">
             <Link href="/" className="mr-6 flex items-center space-x-2">
-              <GraduationCap className="h-8 w-8 text-primary" />
-              <span className="font-bold text-lg font-headline sm:inline-block">
-                EGS Admissions
-              </span>
+              <Logo className="h-10 w-auto" />
             </Link>
           </div>
 
@@ -98,8 +96,7 @@ function MobileNav() {
               className="flex items-center space-x-2"
               onClick={() => setIsOpen(false)}
             >
-              <GraduationCap className="h-6 w-6 text-primary" />
-              <span className="font-bold font-headline">EGS Admissions</span>
+              <Logo className="h-8 w-auto" />
             </Link>
           </div>
           <nav className="flex flex-col space-y-2 mt-6">
