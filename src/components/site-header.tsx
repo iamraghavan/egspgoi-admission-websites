@@ -29,7 +29,7 @@ const NavLink = ({
       <Button
         variant="ghost"
         className={cn(
-          'text-base font-medium relative after:absolute after:bottom-2 after:left-0 after:h-0.5 after:w-full after:origin-center after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100',
+          'text-base font-medium',
           className
         )}
         {...props}
@@ -48,7 +48,7 @@ const NavLink = ({
       <Button
         variant="ghost"
         className={cn(
-          'text-base font-medium relative after:absolute after:bottom-2 after:left-0 after:h-0.5 after:w-full after:origin-center after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100',
+          'text-base font-medium',
           className
         )}
         {...props}
@@ -76,9 +76,6 @@ export function SiteHeader() {
               link.text === 'Academics' ? (
                 <NavLink
                   key={link.text}
-                  className={cn(
-                    isMegaMenuOpen && 'after:scale-x-100'
-                  )}
                   onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
                 >
                   {link.text}
