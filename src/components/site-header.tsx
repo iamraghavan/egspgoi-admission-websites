@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Menu, Search } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
@@ -91,11 +91,6 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex flex-1 items-center justify-end space-x-2">
-            <Button variant="ghost" size="icon">
-              <Search className="h-5 w-5" />
-              <span className="sr-only">Search</span>
-            </Button>
-            <Button variant="ghost" className="hidden md:inline-flex">Sign In</Button>
             <Button className="hidden md:inline-flex" asChild>
               <Link href="#apply">Apply Now</Link>
             </Button>
@@ -146,9 +141,6 @@ function MobileNav() {
             ))}
           </nav>
           <div className="mt-auto pt-6 border-t space-y-4">
-            <Button asChild className="w-full" onClick={() => setIsOpen(false)}>
-              <Link href="#">Sign In</Link>
-            </Button>
             <Button asChild className="w-full" variant="outline" onClick={() => setIsOpen(false)}>
               <Link href="#apply">Apply Now</Link>
             </Button>
