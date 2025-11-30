@@ -4,7 +4,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { MegaMenu } from './mega-menu';
 import Image from 'next/image';
@@ -164,6 +164,7 @@ function MobileNav() {
         </button>
       </SheetTrigger>
       <SheetContent side="left" className="w-[300px] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left">
+        <SheetTitle className="sr-only">Mobile Navigation</SheetTitle>
         <div className="flex flex-col h-full">
           <div className="border-b pb-4">
             <Link
