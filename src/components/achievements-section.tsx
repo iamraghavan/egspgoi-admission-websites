@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -12,17 +13,17 @@ const achievements = [
   {
     title: 'NBA - Tier-1',
     description: 'Washington Accord Accredited',
-    icon: <Image src={nbaLogo} alt="NBA Logo" className="h-12 w-auto object-contain" />,
+    icon: <Image src={nbaLogo} alt="NBA Logo" width={48} height={48} className="h-12 w-auto object-contain" />,
   },
   {
     title: 'NIRF Ranking',
     description: 'All India Rank Band 201-300',
-    icon: <Image src={nirfLogo} alt="NIRF Logo" className="h-12 w-auto object-contain" />,
+    icon: <Image src={nirfLogo} alt="NIRF Logo" width={48} height={48} className="h-12 w-auto object-contain" />,
   },
   {
     title: 'NAAC A++',
     description: 'Top-tier institutional accreditation',
-    icon: <Image src={naacLogo} alt="NAAC Logo" className="h-12 w-auto object-contain" />,
+    icon: <Image src={naacLogo} alt="NAAC Logo" width={48} height={48} className="h-12 w-auto object-contain" />,
   },
   {
     title: 'State Level Achievement',

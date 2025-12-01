@@ -70,7 +70,7 @@ export function SiteHeader() {
         <div className="container flex h-full max-w-screen-2xl items-center">
           <div className="mr-4 flex items-center">
             <Link href="/" className="mr-6 flex items-center space-x-2">
-              <Image src={logo} alt="EGS GOI Logo" className="h-12 md:h-16 w-auto" />
+              <Image src={logo} alt="EGS GOI Logo" className="h-12 md:h-16 w-auto" priority width={128} height={40} />
             </Link>
           </div>
 
@@ -216,7 +216,7 @@ function MobileNav() {
                     className="flex items-center space-x-2"
                     onClick={() => setIsOpen(false)}
                 >
-                    <Image src={logo} alt="EGS GOI Logo" className="h-12 w-auto" />
+                    <Image src={logo} alt="EGS GOI Logo" className="h-12 w-auto" width={100} height={32}/>
                 </Link>
                 <SheetClose asChild>
                      <motion.button

@@ -57,7 +57,7 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
             <div className="lg:col-span-3">
                 <Link href="/" className="flex items-center space-x-2">
-                    <Image src={logo} alt="EGS GOI Logo" className="h-20 w-auto" />
+                    <Image src={logo} alt="EGS GOI Logo" width={162} height={38} className="h-20 w-auto" />
                 </Link>
                 <p className="mt-4 max-w-sm text-sm text-primary-foreground/80">
                     Building the future, one student at a time through excellence in education, research, and innovation.

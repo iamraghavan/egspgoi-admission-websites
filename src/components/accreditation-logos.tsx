@@ -49,6 +49,8 @@ export function AccreditationLogos() {
                 <Image
                   src={logo.src}
                   alt={logo.alt}
+                  width={80}
+                  height={80}
                   className="h-20 w-auto object-contain"
                 />
               </div>
