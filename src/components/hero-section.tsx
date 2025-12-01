@@ -89,9 +89,11 @@ export function HeroSection() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 hover:text-white">
-                    Contact Us
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 hover:text-white" asChild>
+                    <Link href="#contact">
+                        Contact Us
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
                 </Button>
               </motion.div>
             </div>
