@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
@@ -26,8 +25,7 @@ export function AnimatedHeading() {
 
   return (
     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline leading-tight">
-      EGSP{' '}
-      <AnimatePresence mode="wait">
+      EGSP<AnimatePresence mode="wait">
         <motion.span
           key={institutions[index]}
           initial={{ y: 20, opacity: 0 }}
