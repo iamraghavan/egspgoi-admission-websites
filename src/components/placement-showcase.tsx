@@ -56,6 +56,7 @@ export function PlacementShowcase() {
                           alt={student!.description}
                           fill
                           className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           data-ai-hint={student!.imageHint}
                         />
                          <div className="absolute inset-0 bg-black/30" />
@@ -83,6 +84,7 @@ export function PlacementShowcase() {
                           alt={student!.description}
                           fill
                           className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           data-ai-hint={student!.imageHint}
                         />
                          <div className="absolute inset-0 bg-black/30" />
