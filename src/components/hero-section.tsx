@@ -6,10 +6,13 @@ import { AdmissionForm } from './admission-form';
 import heroImage from '@/app/assets/engineering_college.webp';
 import { Button } from './ui/button';
 import { ArrowRight, Search } from 'lucide-react';
-import { AnimatedHeading } from './animated-heading';
-import { motion } from 'framer-motion';
+import { AnimatedHeading, type Institution } from './animated-heading';
+import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
 
 export function HeroSection() {
+  const [activeInstitution, setActiveInstitution] = React.useState<Institution | null>(null);
+
   return (
     <section id="apply" className="relative w-full">
       <div className="absolute inset-0">
@@ -26,7 +29,23 @@ export function HeroSection() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="text-white">
             <p className="text-lg md:text-xl text-primary-foreground/90 mb-2">EGS Pillay Group of Institutions</p>
-            <AnimatedHeading />
+            <AnimatedHeading onInstitutionChange={setActiveInstitution} />
+            <div className="h-8">
+              <AnimatePresence mode="wait">
+                {activeInstitution && (
+                   <motion.p
+                    key={activeInstitution.abbr}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
+                    className="text-lg md:text-xl text-primary-foreground/80 font-medium"
+                   >
+                     {activeInstitution.name}
+                   </motion.p>
+                )}
+              </AnimatePresence>
+            </div>
             <p className="text-lg md:text-xl text-primary-foreground/80 my-8 max-w-xl">
               Empower your future with world-class education. Admissions open for undergraduate, postgraduate, and doctoral programs in Engineering, Management, and Science. Apply now to secure your spot!
             </p>
