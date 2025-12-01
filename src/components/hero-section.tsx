@@ -1,7 +1,13 @@
 
+'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { AdmissionForm } from './admission-form';
 import heroImage from '@/app/assets/engineering_college.webp';
+import { Button } from './ui/button';
+import { ArrowRight, Search } from 'lucide-react';
+import { AnimatedHeading } from './animated-heading';
+import { motion } from 'framer-motion';
 
 export function HeroSection() {
   return (
@@ -19,12 +25,32 @@ export function HeroSection() {
       <div className="relative container mx-auto px-6 py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="text-white">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline leading-tight mb-4">
-              Join EGS Pillay Group of Institutions
-            </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/80 mb-8">
+            <AnimatedHeading />
+            <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-xl">
               Empower your future with world-class education. Admissions open for undergraduate, postgraduate, and doctoral programs in Engineering, Management, and Science. Apply now to secure your spot!
             </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+               <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+               >
+                <Button size="lg" asChild className="bg-white text-primary hover:bg-white/90">
+                    <Link href="#programs">
+                        <Search className="mr-2 h-5 w-5" />
+                        Explore Programs
+                    </Link>
+                </Button>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 hover:text-white">
+                    Contact Us
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </motion.div>
+            </div>
           </div>
           <div className="flex justify-center md:justify-end">
             <AdmissionForm />
