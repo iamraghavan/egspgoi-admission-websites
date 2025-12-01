@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { AdmissionForm } from './admission-form';
 import heroImage from '@/app/assets/engineering_college.webp';
@@ -19,10 +20,10 @@ export function HeroSection() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="text-white">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline leading-tight mb-4">
-              Your Future Starts at EGS
+              Join EGS Pillay Group of Institutions
             </h1>
             <p className="text-lg md:text-xl text-primary-foreground/80 mb-8">
-              Discover a world of opportunities with our top-tier programs in Engineering, Arts, and Science. Join a community of innovators and leaders.
+              Empower your future with world-class education. Admissions open for undergraduate, postgraduate, and doctoral programs in Engineering, Management, and Science. Apply now to secure your spot!
             </p>
           </div>
           <div className="flex justify-center md:justify-end">
