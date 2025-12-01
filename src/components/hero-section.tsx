@@ -6,12 +6,38 @@ import { AdmissionForm } from './admission-form';
 import heroImage from '@/app/assets/engineering_college.webp';
 import { Button } from './ui/button';
 import { ArrowRight, Search } from 'lucide-react';
-import { AnimatedHeading, type Institution } from './animated-heading';
+import { AnimatedHeading } from './animated-heading';
 import { motion, AnimatePresence } from 'framer-motion';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+export type Institution = {
+  abbr: string;
+  name: string;
+};
+
+const institutions: Institution[] = [
+    { abbr: 'EC', name: 'EGS Pillay Engineering College' },
+    { abbr: 'ASC', name: 'EGS Pillay Arts & Science College' },
+    { abbr: 'PC', name: 'EGS Pillay Polytechnic College' },
+    { abbr: 'CE', name: 'EGS Pillay College of Education' },
+    { abbr: 'CN', name: 'EGS Pillay College and School of Nursing' },
+    { abbr: 'CP', name: 'EGS Pillay College of Pharmacy' },
+    { abbr: 'NYMC', name: 'EGS Pillay Naturopathy and Yoga Medical College' },
+    { abbr: 'IS', name: 'EGS Pillay International School' },
+];
 
 export function HeroSection() {
-  const [activeInstitution, setActiveInstitution] = React.useState<Institution | null>(null);
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % institutions.length);
+    }, 3500); // Change text every 3.5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const activeInstitution = institutions[index];
 
   return (
     <section id="apply" className="relative w-full">
@@ -29,21 +55,19 @@ export function HeroSection() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="text-white">
             <p className="text-lg md:text-xl text-primary-foreground/90 mb-2">EGS Pillay Group of Institutions</p>
-            <AnimatedHeading onInstitutionChange={setActiveInstitution} />
+            <AnimatedHeading activeAbbr={activeInstitution.abbr} />
             <div className="h-8">
               <AnimatePresence mode="wait">
-                {activeInstitution && (
-                   <motion.p
-                    key={activeInstitution.abbr}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                    className="text-lg md:text-xl text-primary-foreground/80 font-medium"
-                   >
-                     {activeInstitution.name}
-                   </motion.p>
-                )}
+                <motion.p
+                  key={activeInstitution.abbr}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  className="text-lg md:text-xl text-primary-foreground/80 font-medium"
+                >
+                  {activeInstitution.name}
+                </motion.p>
               </AnimatePresence>
             </div>
             <p className="text-lg md:text-xl text-primary-foreground/80 my-8 max-w-xl">
