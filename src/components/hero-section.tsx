@@ -25,8 +25,9 @@ export function HeroSection() {
       <div className="relative container mx-auto px-6 py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="text-white">
+            <p className="text-lg md:text-xl text-primary-foreground/90 mb-2">EGS Pillay Group of Institutions</p>
             <AnimatedHeading />
-            <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-xl">
+            <p className="text-lg md:text-xl text-primary-foreground/80 my-8 max-w-xl">
               Empower your future with world-class education. Admissions open for undergraduate, postgraduate, and doctoral programs in Engineering, Management, and Science. Apply now to secure your spot!
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
