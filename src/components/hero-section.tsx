@@ -27,17 +27,20 @@ const institutions: Institution[] = [
 ];
 
 export function HeroSection() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % institutions.length);
-    }, 3500); // Change text every 3.5 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const activeInstitution = institutions[index];
+    const [index, setIndex] = useState(0);
+    const [activeInstitution, setActiveInstitution] = useState(institutions[0]);
+  
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setIndex((prevIndex) => {
+          const nextIndex = (prevIndex + 1) % institutions.length;
+          setActiveInstitution(institutions[nextIndex]);
+          return nextIndex;
+        });
+      }, 3500); // Change text every 3.5 seconds
+  
+      return () => clearInterval(interval);
+    }, []);
 
   return (
     <section id="apply" className="relative w-full">
@@ -89,7 +92,7 @@ export function HeroSection() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 hover:text-white" asChild>
+                <Button size="lg" className="bg-transparent border border-white text-white hover:bg-white/10 hover:text-white" asChild>
                     <Link href="#contact">
                         Contact Us
                         <ArrowRight className="ml-2 h-5 w-5" />
@@ -106,3 +109,4 @@ export function HeroSection() {
     </section>
   );
 }
+
