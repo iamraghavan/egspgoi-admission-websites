@@ -8,96 +8,12 @@ import { Card } from './ui/card';
 import { ArrowRight, BookOpen, Briefcase, Code, Landmark, Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import coursesByCollege from '@/app/assets/docs/college-courses.json';
 
 interface MegaMenuProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
-const coursesByCollege = {
-    "EGS Pillay Engineering College": {
-      "Undergraduate": [
-        "B.E – Mechanical Engineering",
-        "B.E – Electronics and Communication Engineering",
-        "B.E – Electrical & Electronics Engineering",
-        "B.E – Computer Science & Engineering",
-        "B.Tech – Information Technology",
-        "B.E – Civil Engineering",
-        "B.E – Bio-Medical Engineering",
-        "B.Tech – Computer Science & Business Systems",
-        "B.Tech – Artificial Intelligence and Data Science",
-      ],
-      "Postgraduate": [
-        "M.E (Computer Science and Engineering)",
-        "M.E (Communication Systems)",
-        "M.E (Manufacturing Engineering)",
-        "M.E (Power Electronics and Drives)",
-        "M.E (Environmental Engineering)",
-        "MCA – Master of Computer Applications",
-        "MBA – Master of Business Administration",
-      ],
-    },
-    "E.G.S.Pillay Arts and Science College": {
-      "Undergraduate": [
-        "B.A – Tamil",
-        "B.A – English",
-        "B.A – Defence & Strategic Studies",
-        "B.Com",
-        "B.Com – Computer Application",
-        "B.Com – Business Process Service",
-        "B.B.A",
-        "B.C.A",
-        "B.Sc – Computer Science",
-        "B.Sc- Computer Science Cognitive Systems",
-        "B.Sc- Information Technology",
-        "B.Sc – Visual Communication",
-        "B.Sc – Fashion Tech. & Costume Designing",
-        "B.Sc – Physics",
-        "B.Sc – Maths",
-        "B.Sc- Chemistry",
-        "B.Sc – Bio Chemistry",
-        "B.Sc – Bio Technology",
-        "B.Sc – Nutrition & Dietetics",
-        "B.Sc – Hospital Administration",
-        "B.Sc- Artificial Intelligence and Machine Learning",
-        "B.Sc – Data Science",
-        "B.Sc – Microbiology",
-        "B.Com – Professional Accounting",
-      ],
-      "Postgraduate": [
-        "M.Com",
-        "M.B.A",
-        "M.A – English",
-        "M.Sc – Computer Science",
-        "M.Sc – Information Technology",
-        "M.Sc – Physics",
-        "M.Sc – Maths",
-        "M.Sc – Chemistry",
-        "M.Sc – Bio Chemistry",
-        "M.Sc – Bio Technology",
-        "M.Sc – Food Science & Nutrition",
-      ],
-    },
-    "E.G.S.Pillay Polytechnic College": {
-      "Diploma": [
-        "Diploma in Mechanical Engineering",
-        "Diploma in Civil Engineering",
-        "Diploma in Electrical and Electronics Engineering",
-        "Diploma in Electronics and Communication Engineering",
-        "Diploma in Computer Engineering",
-      ],
-    },
-    "E.G.S. Pillay College and School of Nursing": {
-      "Courses": [
-        "B.Sc – Nursing",
-        "DGNM – (Diploma in General Nursing & Midwifery)",
-      ],
-    },
-    "E.G.S.Pillay College of Education": { "Courses": ["All Subjects"] },
-    "E.G.S. Pillay College of Pharmacy": {
-      "Courses": ["D.Pharm", "B.Pharm", "M.Pharm", "Pharm.D"],
-    },
-};
 
 type CollegeName = keyof typeof coursesByCollege;
 
@@ -107,7 +23,8 @@ const topNavItems = [
     'E.G.S.Pillay Arts and Science College', 
     'E.G.S.Pillay Polytechnic College', 
     'E.G.S. Pillay College of Pharmacy', 
-    'E.G.S. Pillay College and School of Nursing', 
+    'E.G.S. Pillay College and School of Nursing',
+    'E.G.S. Pillay Naturopathy and Yoga Medical College',
 ];
 
 const categoryMap: Record<string, string> = {
@@ -130,7 +47,7 @@ const ProgramIcon = ({ name }: { name: string }) => {
     if (lowerName.includes('b.b.a') || lowerName.includes('mba')) {
         return <Briefcase className="h-8 w-8 text-green-500" />;
     }
-    if (lowerName.includes('b.sc') || lowerName.includes('m.sc')) {
+    if (lowerName.includes('b.sc') || lowerName.includes('m.sc') || lowerName.includes('naturopathy')) {
         return <Landmark className="h-8 w-8 text-red-500" />;
     }
     return <BookOpen className="h-8 w-8 text-gray-500" />;
