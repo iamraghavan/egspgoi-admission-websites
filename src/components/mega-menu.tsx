@@ -19,35 +19,35 @@ type CollegeName = keyof typeof coursesByCollege;
 
 
 const topNavItems = [
-    'EGS Pillay Engineering College',
-    'E.G.S.Pillay Arts and Science College', 
-    'E.G.S.Pillay Polytechnic College', 
-    'E.G.S. Pillay College of Pharmacy', 
-    'E.G.S. Pillay College and School of Nursing',
-    'E.G.S. Pillay Naturopathy and Yoga Medical College',
+    'E.G.S. Pillay Engineering College',
+    'Edayathangudy G. S. Pillay Arts & Science College',
+    'EGS Pillay Polytechnic College',
+    'EGS Pillay College of Pharmacy',
+    'EGS Pillay School & College of Nursing',
+    'EGS Pillay Naturopathy & Yoga Medical College',
 ];
 
 const categoryMap: Record<string, string> = {
-    'Undergraduate': 'Undergraduate',
-    'Postgraduate': 'Postgraduate',
+    'UG': 'Undergraduate',
+    'PG': 'Postgraduate',
     'Diploma': 'Diploma',
-    'PhD - Doctoral': 'PhD - Doctoral',
-    'Curriculum': 'Curriculum',
-    'Courses': 'Courses'
+    'Ph.D': 'Ph.D - Doctoral',
+    'Doctorate': 'Doctorate',
+    'School': 'School',
 };
 
 const ProgramIcon = ({ name }: { name: string }) => {
     const lowerName = name.toLowerCase();
-    if (lowerName.includes('computer') || lowerName.includes('tech') || lowerName.includes('mca')) {
+    if (lowerName.includes('computer') || lowerName.includes('tech') || lowerName.includes('mca') || lowerName.includes('b.c.a') || lowerName.includes('b.sc')) {
       return <Code className="h-8 w-8 text-blue-500" />;
     }
-    if (lowerName.includes('b.a') || lowerName.includes('m.a') || lowerName.includes('b.com')) {
+    if (lowerName.includes('b.a') || lowerName.includes('m.a') || lowerName.includes('b.com') || lowerName.includes('m.com')) {
       return <BookOpen className="h-8 w-8 text-purple-500" />;
     }
     if (lowerName.includes('b.b.a') || lowerName.includes('mba')) {
         return <Briefcase className="h-8 w-8 text-green-500" />;
     }
-    if (lowerName.includes('b.sc') || lowerName.includes('m.sc') || lowerName.includes('naturopathy')) {
+    if (lowerName.includes('naturopathy') || lowerName.includes('nursing') || lowerName.includes('pharmacy') || lowerName.includes('b.ed')) {
         return <Landmark className="h-8 w-8 text-red-500" />;
     }
     return <BookOpen className="h-8 w-8 text-gray-500" />;
@@ -55,14 +55,14 @@ const ProgramIcon = ({ name }: { name: string }) => {
 
 export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
   const [activeTopNav, setActiveTopNav] = React.useState<CollegeName>(topNavItems[0] as CollegeName);
-  const [activeCategory, setActiveCategory] = React.useState('Undergraduate');
+  const [activeCategory, setActiveCategory] = React.useState('UG');
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const collegePrograms = coursesByCollege[activeTopNav] || {};
   
   const availableCategories = Object.keys(collegePrograms)
     .sort((a, b) => {
-        const order = ['Undergraduate', 'Postgraduate', 'Diploma', 'PhD - Doctoral', 'Curriculum', 'Courses'];
+        const order = ['UG', 'PG', 'Diploma', 'Ph.D', 'Doctorate', 'School'];
         const aIndex = order.indexOf(a) !== -1 ? order.indexOf(a) : order.length;
         const bIndex = order.indexOf(b) !== -1 ? order.indexOf(b) : order.length;
         return aIndex - bIndex;
@@ -113,7 +113,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                               : 'text-muted-foreground border-transparent hover:text-accent hover:border-accent'
                           )}
                         >
-                          {item.replace('E.G.S.Pillay ', '').replace('EGS Pillay ', '').replace(' College', '').replace(' and', ' &')}
+                          {item.replace('E.G.S. Pillay ', '').replace('EGS Pillay ', '').replace('Edayathangudy G. S. Pillay ', '').replace(' College', '').replace(' and', ' &').replace('School &', '')}
                         </button>
                     ))}
                 </div>
@@ -156,7 +156,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                <Button className="w-full mt-6">ALL PROGRAMS</Button>
             </aside>
             <main className="col-span-9 p-8 bg-gray-50/50 h-[calc(100vh-160px)] overflow-y-auto">
-              <h2 className="text-xl font-semibold mb-6">{activeCategory} Programs in {activeTopNav.replace('E.G.S.Pillay ', '').replace('EGS Pillay ', '')}</h2>
+              <h2 className="text-xl font-semibold mb-6">{categoryMap[activeCategory] || activeCategory} Programs in {activeTopNav.replace('E.G.S. Pillay ', '').replace('EGS Pillay ', '').replace('Edayathangudy G. S. Pillay ', '')}</h2>
               {filteredPrograms.length > 0 ? (
                 <div className="grid grid-cols-2 gap-6">
                   {filteredPrograms.map((programName) => (

@@ -1,91 +1,125 @@
 {
-  "E.G.S.Pillay Arts and Science College": {
-    "Undergraduate": [
-      "B.A – Tamil",
-      "B.A – English",
-      "B.A – Defence & Strategic Studies",
-      "B.Com",
-      "B.Com – Computer Application",
-      "B.Com – Business Process Service",
-      "B.B.A",
-      "B.C.A",
-      "B.Sc – Computer Science",
-      "B.Sc- Computer Science Cognitive Systems",
-      "B.Sc- Information Technology",
-      "B.Sc – Visual Communication",
-      "B.Sc – Fashion Tech. & Costume Designing",
-      "B.Sc – Physics",
-      "B.Sc – Maths",
-      "B.Sc- Chemistry",
-      "B.Sc – Bio Chemistry",
-      "B.Sc – Bio Technology",
-      "B.Sc – Nutrition & Dietetics",
-      "B.Sc – Hospital Administration",
-      "B.Sc- Artificial Intelligence and Machine Learning",
-      "B.Sc – Data Science",
-      "B.Sc – Microbiology",
-      "B.Com – Professional Accounting"
+  "E.G.S. Pillay Engineering College": {
+    "UG": [
+      "B.E - Biomedical Engineering",
+      "B.E - Civil Engineering",
+      "B.E - Computer Science and Engineering",
+      "B.E - Electronics and Communication Engineering",
+      "B.E - Electrical and Electronics Engineering",
+      "B.E - Mechanical Engineering",
+      "B.Tech - Artificial Intelligence and Data Science",
+      "B.Tech - Computer Science and Business Systems",
+      "B.Tech - Information Technology"
     ],
-    "Postgraduate": [
-      "M.Com",
-      "M.B.A",
-      "M.A – English",
-      "M.Sc – Computer Science",
-      "M.Sc – Information Technology",
-      "M.Sc – Physics",
-      "M.Sc – Maths",
-      "M.Sc – Chemistry",
-      "M.Sc – Bio Chemistry",
-      "M.Sc – Bio Technology",
-      "M.Sc – Food Science & Nutrition"
+    "PG": [
+      "M.E / M.Tech - Communication Systems",
+      "M.E / M.Tech - Computer Science and Engineering",
+      "M.E / M.Tech - Environmental Engineering",
+      "M.E / M.Tech - Power Electronics and Drives",
+      "M.E / M.Tech - Manufacturing Engineering",
+      "MCA - Master of Computer Application",
+      "MBA - Master of Business Administration"
+    ],
+    "Ph.D": [
+      "Ph.D - All Departments"
     ]
   },
-  "E.G.S.Pillay Polytechnic College": {
+  "Edayathangudy G. S. Pillay Arts & Science College": {
+    "UG": [
+      "B.A - Tamil",
+      "B.A - English",
+      "B.A - Defense and Strategic Studies",
+      "B.Com - General",
+      "B.Com - Computer Application",
+      "B.Com - Professional Accounting",
+      "B.Com - Business Process Service",
+      "B.B.A - Business Administration",
+      "B.C.A - Computer Applications",
+      "B.Sc - Computer Science",
+      "B.Sc - Computer Science with Cognitive System",
+      "B.Sc - Information Technology",
+      "B.Sc - Visual Communication",
+      "B.Sc - Fashion Technology & Costume Designing",
+      "B.Sc - Physics",
+      "B.Sc - Maths",
+      "B.Sc - Chemistry",
+      "B.Sc - Biochemistry",
+      "B.Sc - Biotechnology",
+      "B.Sc - Nutrition & Dietetics",
+      "B.Sc - Hospital Administration",
+      "B.Sc - Data Science",
+      "B.Sc - Microbiology",
+      "B.Sc - Artificial Intelligence & Machine Learning"
+    ],
+    "PG": [
+      "M.Com - Commerce",
+      "M.B.A - Business Administration",
+      "M.A - English",
+      "M.Sc - Computer Science",
+      "M.Sc - Information Technology",
+      "M.Sc - Physics",
+      "M.Sc - Maths",
+      "M.Sc - Chemistry",
+      "M.Sc - Biochemistry",
+      "M.Sc - Biotechnology",
+      "M.Sc - Food Science & Nutrition"
+    ],
+    "Ph.D": [
+      "Ph.D - English",
+      "Ph.D - Physics",
+      "Ph.D - Commerce",
+      "Ph.D - Management",
+      "Ph.D - Computer Science",
+      "Ph.D - Biochemistry",
+      "Ph.D - Biotechnology"
+    ]
+  },
+  "EGS Pillay Polytechnic College": {
     "Diploma": [
-      "Diploma in Mechanical Engineering",
-      "Diploma in Civil Engineering",
-      "Diploma in Electrical and Electronics Engineering",
-      "Diploma in Electronics and Communication Engineering",
-      "Diploma in Computer Engineering"
+      "Diploma - Civil Engineering",
+      "Diploma - Computer Science and Engineering",
+      "Diploma - Electronics and Communication Engineering",
+      "Diploma - Electrical and Electronics Engineering",
+      "Diploma - Mechanical Engineering"
     ]
   },
-  "E.G.S. Pillay College and School of Nursing": {
-    "Courses": [
-      "B.Sc – Nursing",
-      "DGNM – (Diploma in General Nursing & Midwifery)"
-    ]
-  },
-  "E.G.S.Pillay College of Education": {
-    "Courses": ["All Subjects"]
-  },
-  "E.G.S. Pillay College of Pharmacy": {
-    "Courses": ["D.Pharm", "B.Pharm", "M.Pharm", "Pharm.D"]
-  },
-  "EGS Pillay Engineering College": {
-    "Undergraduate": [
-      "B.E – Mechanical Engineering",
-      "B.E – Electronics and Communication Engineering",
-      "B.E – Electrical & Electronics Engineering",
-      "B.E – Computer Science & Engineering",
-      "B.Tech – Information Technology",
-      "B.E – Civil Engineering",
-      "B.E – Bio-Medical Engineering",
-      "B.Tech – Computer Science & Business Systems",
-      "B.Tech – Artificial Intelligence and Data Science"
+  "EGS Pillay School & College of Nursing": {
+    "UG": [
+      "B.Sc - Nursing"
     ],
-    "Postgraduate": [
-      "M.E (Computer Science and Engineering)",
-      "M.E (Communication Systems)",
-      "M.E (Manufacturing Engineering)",
-      "M.E (Power Electronics and Drives)",
-      "M.E (Environmental Engineering)",
-      "MCA – Master of Computer Applications",
-      "MBA – Master of Business Administration"
+    "Diploma": [
+      "DGNM - Diploma in General Nursing and Midwifery"
     ]
   },
-  "E.G.S. Pillay Naturopathy and Yoga Medical College": {
-    "Courses": [
-        "Bachelor of Naturopathy and Yogic Sciences"
+  "EGS Pillay College of Pharmacy": {
+    "Diploma": [
+      "D. Pharm - Pharmacy"
+    ],
+    "UG": [
+      "B. Pharm - Pharmacy"
+    ],
+    "Doctorate": [
+      "Pharm. D - Doctor of Pharmacy"
+    ],
+    "PG": [
+      "M. Pharm - Pharmacy"
+    ]
+  },
+  "EGS Pillay Naturopathy & Yoga Medical College": {
+    "UG": [
+      "- - BNYS"
+    ]
+  },
+  "EGS Pillay College of Education": {
+    "UG": [
+      "B.Ed - All Subjects"
+    ]
+  },
+  "EGS Pillay School": {
+    "School": [
+      "- - International School",
+      "- - Matriculation School",
+      "- - Nursery and Primary School"
     ]
   }
 }
