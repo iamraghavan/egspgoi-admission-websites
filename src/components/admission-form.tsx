@@ -86,7 +86,6 @@ export function AdmissionForm() {
             const errorData = await response.json();
             errorMessage = errorData.message || errorMessage;
         } catch (jsonError) {
-            // If the response is not JSON, use the status text.
             errorMessage = `Submission failed: ${response.status} ${response.statusText}`;
         }
         throw new Error(errorMessage);
