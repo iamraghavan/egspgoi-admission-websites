@@ -8,7 +8,7 @@ import { Button } from './ui/button';
 import { ArrowRight, Search } from 'lucide-react';
 import { AnimatedHeading } from './animated-heading';
 import { motion, AnimatePresence } from 'framer-motion';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 
 export type Institution = {
   abbr: string;
@@ -25,6 +25,10 @@ const institutions: Institution[] = [
     { abbr: 'NYMC', name: 'EGS Pillay Naturopathy and Yoga Medical College' },
     { abbr: 'IS', name: 'EGS Pillay International School' },
 ];
+
+function HeroFormComponent() {
+    return <AdmissionForm />;
+}
 
 export function HeroSection() {
     const [index, setIndex] = useState(0);
@@ -98,10 +102,14 @@ export function HeroSection() {
             </div>
           </div>
           <div className="flex justify-center md:justify-end">
-            <AdmissionForm />
+            <Suspense fallback={<div>Loading form...</div>}>
+                <HeroFormComponent />
+            </Suspense>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
+    

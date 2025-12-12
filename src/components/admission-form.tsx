@@ -30,6 +30,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/
 import { cn } from '@/lib/utils';
 import statesAndDistricts from '@/app/assets/docs/states-and-districts.json';
 import coursesByCollege from '@/app/assets/docs/college-courses.json';
+import { useSearchParams } from 'next/navigation';
 
 type CollegeName = keyof typeof coursesByCollege;
 
@@ -45,6 +46,7 @@ const formSchema = z.object({
 
 export function AdmissionForm() {
   const { toast } = useToast();
+  const searchParams = useSearchParams();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,13 +59,45 @@ export function AdmissionForm() {
   const selectedCollege = form.watch('college') as CollegeName | undefined;
   const selectedState = form.watch('state');
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: 'Application Submitted!',
-      description: "We've received your application and will be in touch shortly.",
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const utm_source = searchParams.get('utm_source');
+    const utm_medium = searchParams.get('utm_medium');
+
+    const apiPayload = {
+      ...values,
+      admission_year: "2026",
+      source_website: "egspec.org",
+      ...(utm_source && { utm_source }),
+      ...(utm_medium && { utm_medium }),
+    };
+
+    try {
+      const response = await fetch('https://cms-egspgoi.vercel.app/api/v1/leads/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(apiPayload),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Something went wrong with the submission.');
+      }
+
+      toast({
+        title: 'Application Submitted!',
+        description: "We've received your application and will be in touch shortly.",
+      });
+      form.reset();
+    } catch (error: any) {
+      console.error('Submission failed:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: error.message || 'Could not submit your application. Please try again later.',
+      });
+    }
   }
 
   const collegeNames = Object.keys(coursesByCollege) as CollegeName[];
@@ -250,8 +284,8 @@ export function AdmissionForm() {
                 )}
                 />
             </div>
-            <Button type="submit" className="w-full !mt-6" size="lg">
-              Apply Now
+            <Button type="submit" className="w-full !mt-6" size="lg" disabled={form.formState.isSubmitting}>
+              {form.formState.isSubmitting ? 'Submitting...' : 'Apply Now'}
             </Button>
           </form>
         </Form>
@@ -259,3 +293,5 @@ export function AdmissionForm() {
     </Card>
   );
 }
+
+    
