@@ -37,7 +37,6 @@ export default function RootLayout({
           fontPoppins.variable,
           fontPtSans.variable
         )}
-        suppressHydrationWarning={true}
       >
         {children}
         <Toaster />
