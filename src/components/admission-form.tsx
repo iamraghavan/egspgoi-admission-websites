@@ -81,8 +81,15 @@ export function AdmissionForm() {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Something went wrong with the submission.');
+        let errorMessage = 'Something went wrong with the submission.';
+        try {
+            const errorData = await response.json();
+            errorMessage = errorData.message || errorMessage;
+        } catch (jsonError) {
+            // If the response is not JSON, use the status text.
+            errorMessage = `Submission failed: ${response.status} ${response.statusText}`;
+        }
+        throw new Error(errorMessage);
       }
 
       toast({
@@ -293,5 +300,3 @@ export function AdmissionForm() {
     </Card>
   );
 }
-
-    
