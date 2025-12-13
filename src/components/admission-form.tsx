@@ -47,6 +47,13 @@ const formSchema = z.object({
 export function AdmissionForm() {
   const { toast } = useToast();
   const searchParams = useSearchParams();
+  const [hostname, setHostname] = React.useState('');
+
+  React.useEffect(() => {
+    setHostname(window.location.hostname);
+  }, []);
+
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -73,7 +80,7 @@ export function AdmissionForm() {
       ...values,
       phone: phoneNumber,
       admission_year: "2026",
-      source_website: "egspec.org",
+      source_website: hostname || "unknown",
       ...(utm_source && { utm_source }),
       ...(utm_medium && { utm_medium }),
     };
