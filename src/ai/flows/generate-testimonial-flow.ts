@@ -63,11 +63,17 @@ const generateTestimonialFlow = ai.defineFlow(
     outputSchema: GenerateTestimonialsOutputSchema,
   },
   async (input) => {
-    const { output } = await prompt(input);
-    if (!output) {
+    try {
+      const { output } = await prompt(input);
+      if (!output) {
+        return { testimonials: [] };
+      }
+      return output;
+    } catch (error) {
+      console.error("Error generating testimonials:", error);
+      // Return an empty array on failure to allow frontend to use fallbacks
       return { testimonials: [] };
     }
-    return output;
   }
 );
 
