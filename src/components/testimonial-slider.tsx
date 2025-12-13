@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { generateTestimonials } from '@/ai/flows/generate-testimonial-flow';
 
@@ -92,10 +92,10 @@ const TestimonialsColumn = (props: {
 };
 
 export function TestimonialSlider() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [testimonials, setTestimonials] = React.useState<Testimonial[]>([]);
+  const [loading, setLoading] = React.useState(true);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchAlumniAndGenerateTestimonials = async () => {
       try {
         const response = await fetch(
@@ -116,21 +116,21 @@ export function TestimonialSlider() {
         
         const result = await generateTestimonials({ alumni: alumniForGeneration });
         
-        if (!result || !result.testimonials || result.testimonials.length === 0) {
+        if (result && result.testimonials && result.testimonials.length > 0) {
+            const generatedQuotesMap = new Map(result.testimonials.map(t => [t.id, t.quote]));
+
+            const combinedTestimonials = alumniData.map(alumnus => ({
+                id: alumnus.profile_id,
+                name: alumnus.name,
+                role: `${alumnus.department}, ${alumnus.institution.replace('E.G.S.Pillay ', '')}`,
+                quote: generatedQuotesMap.get(alumnus.profile_id) || 'A truly transformative experience that prepared me for my career.',
+            }));
+
+            setTestimonials(combinedTestimonials);
+        } else {
             // This will be caught by the catch block and fall back to static testimonials
             throw new Error("Testimonial generation returned no results.");
         }
-
-        const generatedQuotesMap = new Map(result.testimonials.map(t => [t.id, t.quote]));
-
-        const combinedTestimonials = alumniData.map(alumnus => ({
-            id: alumnus.profile_id,
-            name: alumnus.name,
-            role: `${alumnus.department}, ${alumnus.institution.replace('E.G.S.Pillay ', '')}`,
-            quote: generatedQuotesMap.get(alumnus.profile_id) || 'A truly transformative experience that prepared me for my career.',
-        }));
-
-        setTestimonials(combinedTestimonials);
       } catch (error) {
         console.error('Failed to fetch or generate testimonials:', error);
         // Fallback for testimonials if API fails or rate limit is exceeded
