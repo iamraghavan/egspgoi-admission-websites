@@ -63,8 +63,15 @@ export function AdmissionForm() {
     const utm_source = searchParams.get('utm_source');
     const utm_medium = searchParams.get('utm_medium');
 
+    // Ensure phone number is 10 digits by stripping country code if present
+    let phoneNumber = values.phone;
+    if (phoneNumber.startsWith('91') && phoneNumber.length > 10) {
+      phoneNumber = phoneNumber.substring(2);
+    }
+
     const apiPayload = {
       ...values,
+      phone: phoneNumber,
       admission_year: "2026",
       source_website: "egspec.org",
       ...(utm_source && { utm_source }),
