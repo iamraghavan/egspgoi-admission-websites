@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -18,6 +19,15 @@ type Testimonial = {
   role: string;
   quote: string;
 };
+
+const fallbackTestimonials: Testimonial[] = [
+    { id: '1', name: 'Priya Kumar', role: 'Computer Science, EGS Pillay Engineering College', quote: 'A truly transformative experience that prepared me for my career. The faculty support was outstanding.' },
+    { id: '2', name: 'Arjun Reddy', role: 'Mechanical Engineering, EGS Pillay Engineering College', quote: 'The hands-on projects and state-of-the-art labs gave me the confidence to excel in the industry.' },
+    { id: '3', name: 'Sneha Sharma', role: 'B.Com, EGS Pillay Arts and Science College', quote: 'I am grateful for the holistic education I received. It was a perfect blend of academics and extracurriculars.' },
+    { id: '4', name: 'Vikram Singh', role: 'M.B.A, EGS Pillay Arts and Science College', quote: 'The MBA program sharpened my leadership skills and provided me with an invaluable network of peers and mentors.' },
+    { id: '5', name: 'Ananya Gupta', role: 'Civil Engineering, EGS Pillay Polytechnic College', quote: 'The practical skills I learned here were instrumental in securing my first job even before I graduated.' },
+    { id: '6', name: 'Rohan Mehta', role: 'B.Sc Nursing, EGS Pillay College of Nursing', quote: 'The clinical exposure and compassionate mentorship from the faculty were second to none. I feel well-prepared for my nursing career.' },
+];
 
 const TestimonialCard = ({
   quote,
@@ -91,6 +101,9 @@ export function TestimonialSlider() {
         const response = await fetch(
           'https://alumni.egspgroup.in/api/alumni?auth=raghavan&key=1407'
         );
+        if (!response.ok) {
+            throw new Error('Failed to fetch alumni data.');
+        }
         const data = await response.json();
         const alumniData: Alumni[] = data.data.slice(0, 6); // Limit to 6 for 3 columns of 2
 
@@ -103,6 +116,10 @@ export function TestimonialSlider() {
         
         const result = await generateTestimonials({ alumni: alumniForGeneration });
         
+        if (!result || !result.testimonials || result.testimonials.length === 0) {
+            throw new Error("Testimonial generation returned no results.");
+        }
+
         const generatedQuotesMap = new Map(result.testimonials.map(t => [t.id, t.quote]));
 
         const combinedTestimonials = alumniData.map(alumnus => ({
@@ -115,23 +132,8 @@ export function TestimonialSlider() {
         setTestimonials(combinedTestimonials);
       } catch (error) {
         console.error('Failed to fetch or generate testimonials:', error);
-        // Fallback for testimonials
-        const alumniData: Alumni[] = [
-          { profile_id: '1', name: 'Priya Kumar', department: 'Computer Science', institution: 'EGS Pillay Engineering College', profile_image: null },
-          { profile_id: '2', name: 'Arjun Reddy', department: 'Mechanical Engineering', institution: 'EGS Pillay Engineering College', profile_image: null },
-          { profile_id: '3', name: 'Sneha Sharma', department: 'B.Com', institution: 'EGS Pillay Arts and Science College', profile_image: null },
-          { profile_id: '4', name: 'Vikram Singh', department: 'M.B.A', institution: 'EGS Pillay Arts and Science College', profile_image: null },
-          { profile_id: '5', name: 'Ananya Gupta', department: 'Civil Engineering', institution: 'EGS Pillay Polytechnic College', profile_image: null },
-          { profile_id: '6', name: 'Rohan Mehta', department: 'B.Sc Nursing', institution: 'EGS Pillay College of Nursing', profile_image: null },
-        ];
-         const fallbackTestimonials = alumniData.map(alumnus => ({
-            id: alumnus.profile_id,
-            name: alumnus.name,
-            role: `${alumnus.department}, ${alumnus.institution.replace('E.G.S.Pillay ', '')}`,
-            quote: 'A truly transformative experience that prepared me for my career. The faculty support was outstanding.',
-        }));
+        // Fallback for testimonials if API fails or rate limit is exceeded
         setTestimonials(fallbackTestimonials);
-
       } finally {
         setLoading(false);
       }
