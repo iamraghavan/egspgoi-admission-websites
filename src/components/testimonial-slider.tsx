@@ -117,6 +117,7 @@ export function TestimonialSlider() {
         const result = await generateTestimonials({ alumni: alumniForGeneration });
         
         if (!result || !result.testimonials || result.testimonials.length === 0) {
+            // This will be caught by the catch block and fall back to static testimonials
             throw new Error("Testimonial generation returned no results.");
         }
 
