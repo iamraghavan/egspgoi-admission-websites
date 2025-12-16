@@ -4,8 +4,7 @@
 import React from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { Card } from './ui/card';
-import { ArrowRight, BookOpen, Briefcase, Code, Landmark, Search, X } from 'lucide-react';
+import { ArrowRight, Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import coursesByCollege from '@/app/assets/docs/college-courses.json';
@@ -35,28 +34,19 @@ const categoryMap: Record<string, string> = {
     'School': 'School',
 };
 
-const ProgramIcon = ({ name }: { name: string }) => {
-    const lowerName = name.toLowerCase();
-    if (lowerName.includes('computer') || lowerName.includes('tech') || lowerName.includes('mca') || lowerName.includes('b.c.a') || lowerName.includes('b.sc')) {
-      return <Code className="h-8 w-8 text-blue-500" />;
-    }
-    if (lowerName.includes('b.a') || lowerName.includes('m.a') || lowerName.includes('b.com') || lowerName.includes('m.com')) {
-      return <BookOpen className="h-8 w-8 text-purple-500" />;
-    }
-    if (lowerName.includes('b.b.a') || lowerName.includes('mba')) {
-        return <Briefcase className="h-8 w-8 text-green-500" />;
-    }
-    if (lowerName.includes('naturopathy') || lowerName.includes('nursing') || lowerName.includes('pharmacy') || lowerName.includes('b.ed')) {
-        return <Landmark className="h-8 w-8 text-red-500" />;
-    }
-    return <BookOpen className="h-8 w-8 text-gray-500" />;
-  };
-
 type SearchResult = {
     college: CollegeName;
     category: string;
     program: string;
 };
+
+const ProgramLink = ({ children }: { children: React.ReactNode }) => (
+    <Link href="#" className="group flex items-center justify-between text-base font-medium text-foreground py-2 border-b border-gray-200 transition-colors duration-200 hover:border-accent hover:text-accent">
+        <span>{children}</span>
+        <ArrowRight className="h-4 w-4 text-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+    </Link>
+);
+
 
 export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
   const [activeTopNav, setActiveTopNav] = React.useState<CollegeName>(topNavItems[0] as CollegeName);
@@ -173,7 +163,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
               <div className="relative mb-6">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input 
-                  placeholder="Search courses or colleges..." 
+                  placeholder="Search courses..." 
                   className="pl-9"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -207,22 +197,12 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                     <div className="space-y-8">
                       {Object.entries(searchResultsByCollege).map(([college, programs]) => (
                         <div key={college}>
-                          <h3 className="text-lg font-bold mb-4 text-primary">{college.replace('E.G.S. Pillay ', '').replace('EGS Pillay ', '').replace('Edayathangudy G. S. Pillay ', '')}</h3>
-                          <div className="grid grid-cols-2 gap-6">
+                           <h3 className="text-lg font-bold mb-4 text-primary">{college.replace('E.G.S. Pillay ', '').replace('EGS Pillay ', '').replace('Edayathangudy G. S. Pillay ', '')}</h3>
+                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2">
                             {programs.map((result) => (
-                              <Card key={`${result.college}-${result.program}`} className="p-6 flex flex-col items-start gap-4 hover:shadow-lg transition-shadow">
-                                <div className="flex items-center gap-3">
-                                    <ProgramIcon name={result.program} />
-                                    <div>
-                                        <h4 className="text-lg font-bold">{result.program}</h4>
-                                        <p className="text-xs text-muted-foreground">{categoryMap[result.category] || result.category}</p>
-                                    </div>
-                                </div>
-                                <p className="text-muted-foreground text-sm flex-grow">Explore our comprehensive {result.program} program, designed to equip you with industry-relevant skills.</p>
-                                <Link href="#" className="text-sm font-semibold text-primary flex items-center gap-1">
-                                    LEARN MORE <ArrowRight className="h-4 w-4" />
-                                </Link>
-                              </Card>
+                                <ProgramLink key={`${result.college}-${result.program}`}>
+                                    {result.program}
+                                </ProgramLink>
                             ))}
                           </div>
                         </div>
@@ -240,18 +220,11 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 <>
                   <h2 className="text-xl font-semibold mb-6">{categoryMap[activeCategory] || activeCategory} Programs in {activeTopNav.replace('E.G.S. Pillay ', '').replace('EGS Pillay ', '').replace('Edayathangudy G. S. Pillay ', '')}</h2>
                   {filteredPrograms.length > 0 ? (
-                    <div className="grid grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2">
                       {filteredPrograms.map((programName) => (
-                        <Card key={programName} className="p-6 flex flex-col items-start gap-4 hover:shadow-lg transition-shadow">
-                          <div className="flex items-center gap-3">
-                              <ProgramIcon name={programName} />
-                              <h3 className="text-lg font-bold">{programName}</h3>
-                          </div>
-                          <p className="text-muted-foreground text-sm flex-grow">Explore our comprehensive {programName} program, designed to equip you with industry-relevant skills.</p>
-                          <Link href="#" className="text-sm font-semibold text-primary flex items-center gap-1">
-                              LEARN MORE <ArrowRight className="h-4 w-4" />
-                          </Link>
-                        </Card>
+                        <ProgramLink key={programName}>
+                            {programName}
+                        </ProgramLink>
                       ))}
                     </div>
                   ) : (
@@ -270,5 +243,3 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
     </div>
   );
 }
-
-    
