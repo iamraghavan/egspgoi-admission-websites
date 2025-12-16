@@ -128,8 +128,8 @@ export function TestimonialSlider() {
 
             setTestimonials(combinedTestimonials);
         } else {
-            // This will be caught by the catch block and fall back to static testimonials
-            throw new Error("Testimonial generation returned no results.");
+            console.warn("Testimonial generation returned no results. Using fallback data.");
+            setTestimonials(fallbackTestimonials);
         }
       } catch (error) {
         console.error('Failed to fetch or generate testimonials:', error);
