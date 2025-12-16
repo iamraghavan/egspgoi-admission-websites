@@ -113,7 +113,7 @@ const ProcedureStep = ({ text }: { text: string }) => (
 );
 
 const CollegeAdmissionCard = ({ collegeData }: { collegeData: typeof collegeAdmissionsData[0] }) => (
-  <Card className="w-full shadow-lg transition-all duration-300 hover:shadow-2xl">
+  <Card className="w-full shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
     <CardHeader>
       <CardTitle className="font-headline text-3xl text-primary">{collegeData.collegeName}</CardTitle>
       <CardDescription>Detailed admission procedures and contact information.</CardDescription>
