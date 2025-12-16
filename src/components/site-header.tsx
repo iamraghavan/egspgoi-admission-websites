@@ -12,7 +12,7 @@ import { MobileNavWrapper } from './mobile-nav-wrapper';
 
 const navLinks = [
   { text: 'Academics', href: '/academics' },
-  { text: 'Admissions', href: '#apply' },
+  { text: 'Admissions', href: '/admissions' },
   { text: 'Placements', href: '#placements' },
   { text: 'Scholarship', href: '#' },
   { text: 'Institutions', href: '#' },
