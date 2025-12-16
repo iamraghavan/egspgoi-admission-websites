@@ -113,45 +113,49 @@ const ProcedureStep = ({ text }: { text: string }) => (
 );
 
 const CollegeAdmissionCard = ({ collegeData }: { collegeData: typeof collegeAdmissionsData[0] }) => (
-  <Card className="w-full shadow-lg">
+  <Card className="w-full shadow-lg transition-all duration-300 hover:shadow-2xl">
     <CardHeader>
-      <CardTitle className="font-headline text-2xl text-primary">{collegeData.collegeName}</CardTitle>
-      <CardDescription>Admission procedures and contact information.</CardDescription>
+      <CardTitle className="font-headline text-3xl text-primary">{collegeData.collegeName}</CardTitle>
+      <CardDescription>Detailed admission procedures and contact information.</CardDescription>
     </CardHeader>
-    <CardContent>
-      <div className="mb-6">
-        <h4 className="font-semibold mb-3 text-lg font-headline">Admissions Contact</h4>
-        <div className="space-y-2">
-          <div className="flex items-center gap-3">
-            <Phone className="h-5 w-5 text-muted-foreground" />
-            <div className="text-sm">
-              {collegeData.contact.phone.map(num => (
-                <a key={num} href={`tel:${num}`} className="block hover:underline">{num}</a>
-              ))}
+    <CardContent className="grid grid-cols-1 md:grid-cols-12 gap-8">
+      <div className="md:col-span-4">
+        <div className="bg-secondary/30 p-6 rounded-lg h-full">
+            <h4 className="font-headline font-semibold mb-4 text-xl text-primary">Admissions Contact</h4>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <Phone className="h-5 w-5 text-muted-foreground mt-1" />
+                <div className="text-sm">
+                  {collegeData.contact.phone.map(num => (
+                    <a key={num} href={`tel:${num.replace(/\s/g, '')}`} className="block hover:underline font-medium text-foreground">{num}</a>
+                  ))}
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Mail className="h-5 w-5 text-muted-foreground mt-1" />
+                <a href={`mailto:${collegeData.contact.email}`} className="text-sm hover:underline font-medium text-foreground">{collegeData.contact.email}</a>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <Mail className="h-5 w-5 text-muted-foreground" />
-             <a href={`mailto:${collegeData.contact.email}`} className="text-sm hover:underline">{collegeData.contact.email}</a>
-          </div>
         </div>
       </div>
-       <Accordion type="single" collapsible className="w-full">
-        {Object.entries(collegeData.procedures).map(([programType, steps], index) => (
-          <AccordionItem key={index} value={`item-${index}`}>
-            <AccordionTrigger className="text-left text-xl font-headline font-semibold text-primary hover:no-underline">
-              {programType}
-            </AccordionTrigger>
-            <AccordionContent className="pt-4">
-              <ul className="space-y-4">
-                {steps.map((step, i) => (
-                  <ProcedureStep key={i} text={step} />
-                ))}
-              </ul>
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+       <div className="md:col-span-8">
+        <Accordion type="single" collapsible className="w-full">
+            {Object.entries(collegeData.procedures).map(([programType, steps], index) => (
+            <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger className="text-left text-xl font-headline font-semibold text-primary hover:no-underline">
+                {programType}
+                </AccordionTrigger>
+                <AccordionContent className="pt-4">
+                <ul className="space-y-4">
+                    {steps.map((step, i) => (
+                    <ProcedureStep key={i} text={step} />
+                    ))}
+                </ul>
+                </AccordionContent>
+            </AccordionItem>
+            ))}
+        </Accordion>
+       </div>
     </CardContent>
   </Card>
 );
@@ -177,7 +181,7 @@ export default function AdmissionsPage() {
                         Select an institution below to view the specific admission process for your desired program category.
                     </p>
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="flex flex-col items-center space-y-12">
                     {collegeAdmissionsData.map(college => (
                         <CollegeAdmissionCard key={college.collegeName} collegeData={college} />
                     ))}
