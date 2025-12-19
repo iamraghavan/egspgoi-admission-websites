@@ -17,6 +17,7 @@ export function PageHeader({ title, description, imageUrl, ...props }: PageHeade
           fill
           className="object-cover"
           priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20" />
       </div>

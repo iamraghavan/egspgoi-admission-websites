@@ -23,6 +23,7 @@ export function PlacementPartners() {
                 alt={partner.description}
                 fill
                 className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                sizes="144px"
                 data-ai-hint={partner.imageHint}
               />
             </div>
