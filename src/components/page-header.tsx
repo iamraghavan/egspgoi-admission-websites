@@ -7,9 +7,9 @@ interface PageHeaderProps {
   imageUrl: string | StaticImageData;
 }
 
-export function PageHeader({ title, description, imageUrl }: PageHeaderProps) {
+export function PageHeader({ title, description, imageUrl, ...props }: PageHeaderProps & React.HTMLAttributes<HTMLElement>) {
   return (
-    <section className="relative h-64 md:h-80 w-full flex items-center justify-center text-center">
+    <section className="relative h-64 md:h-80 w-full flex items-center justify-center text-center" {...props}>
       <div className="absolute inset-0">
         <Image
           src={imageUrl}
