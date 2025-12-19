@@ -6,6 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { CheckCircle, Mail, Phone } from 'lucide-react';
 import React from 'react';
+import admissionImage from '@/app/assets/engineering_college.webp';
 
 const collegeAdmissionsData = [
   {
@@ -168,7 +169,7 @@ export default function AdmissionsPage() {
         <PageHeader
           title="Admission Procedures"
           description="Find detailed information on how to apply for our diverse range of programs."
-          imageUrl="https://picsum.photos/seed/applications/1600/400"
+          imageUrl={admissionImage.src}
           data-ai-hint="students applications"
         />
         <section className="py-16 md:py-24 bg-secondary/30">
