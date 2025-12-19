@@ -168,8 +168,8 @@ export default function AdmissionsPage() {
         <PageHeader
           title="Admission Procedures"
           description="Find detailed information on how to apply for our diverse range of programs."
-          imageUrl="https://picsum.photos/seed/admissions/1600/400"
-          data-ai-hint="library students"
+          imageUrl="https://picsum.photos/seed/applications/1600/400"
+          data-ai-hint="students applications"
         />
         <section className="py-16 md:py-24 bg-secondary/30">
             <div className="container mx-auto px-6 max-w-7xl">
