@@ -51,14 +51,18 @@ function SuccessContent() {
                                         </div>
                                         <div className="space-y-2">
                                             <p className="font-bold text-xl">{assignedUserName}</p>
-                                            <div className="flex items-center gap-3 text-muted-foreground">
-                                                <Mail className="h-4 w-4" />
-                                                <a href={`mailto:${assignedUserEmail}`} className="hover:underline text-foreground">{assignedUserEmail}</a>
-                                            </div>
-                                            <div className="flex items-center gap-3 text-muted-foreground">
-                                                <Phone className="h-4 w-4" />
-                                                <a href={`tel:+91${assignedUserPhone}`} className="hover:underline text-foreground">+91 {assignedUserPhone}</a>
-                                            </div>
+                                            {assignedUserEmail && (
+                                                <div className="flex items-center gap-3 text-muted-foreground">
+                                                    <Mail className="h-4 w-4" />
+                                                    <a href={`mailto:${assignedUserEmail}`} className="hover:underline text-foreground">{assignedUserEmail}</a>
+                                                </div>
+                                            )}
+                                            {assignedUserPhone && (
+                                                <div className="flex items-center gap-3 text-muted-foreground">
+                                                    <Phone className="h-4 w-4" />
+                                                    <a href={`tel:+91${assignedUserPhone}`} className="hover:underline text-foreground">+91 {assignedUserPhone}</a>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 </Card>
@@ -83,5 +87,3 @@ export default function SuccessPage() {
         </Suspense>
     )
 }
-
-    

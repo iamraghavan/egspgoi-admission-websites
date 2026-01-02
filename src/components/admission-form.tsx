@@ -98,7 +98,7 @@ export function AdmissionForm() {
         lead_id: result.data.lead_id,
       });
 
-      if (result.data.assigned_user) {
+      if (result.data && result.data.assigned_user) {
         queryParams.set('assigned_user_name', result.data.assigned_user.name);
         queryParams.set('assigned_user_email', result.data.assigned_user.email);
         queryParams.set('assigned_user_phone', '9363087377');
