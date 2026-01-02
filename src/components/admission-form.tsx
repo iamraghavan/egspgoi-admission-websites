@@ -95,8 +95,11 @@ export function AdmissionForm() {
       
       const queryParams = new URLSearchParams({
         success: 'true',
-        lead_id: result.data.lead_id,
       });
+
+      if (result.data && result.data.lead_id) {
+        queryParams.set('lead_id', result.data.lead_id);
+      }
 
       if (result.data && result.data.assigned_user) {
         queryParams.set('assigned_user_name', result.data.assigned_user.name);
