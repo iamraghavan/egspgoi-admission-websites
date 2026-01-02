@@ -96,10 +96,13 @@ export function AdmissionForm() {
       const queryParams = new URLSearchParams({
         success: 'true',
         lead_id: result.data.lead_id,
-        assigned_user_name: result.data.assigned_user.name,
-        assigned_user_email: result.data.assigned_user.email,
-        assigned_user_phone: '9363087377',
       });
+
+      if (result.data.assigned_user) {
+        queryParams.set('assigned_user_name', result.data.assigned_user.name);
+        queryParams.set('assigned_user_email', result.data.assigned_user.email);
+        queryParams.set('assigned_user_phone', '9363087377');
+      }
 
       router.push(`/admission/enquiry/2026-2027?${queryParams.toString()}`);
 
