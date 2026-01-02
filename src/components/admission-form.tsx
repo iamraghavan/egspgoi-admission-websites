@@ -7,7 +7,7 @@ import { z } from 'zod';
 import React from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -31,7 +31,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/
 import { cn } from '@/lib/utils';
 import statesAndDistricts from '@/app/assets/docs/states-and-districts.json';
 import coursesByCollege from '@/app/assets/docs/college-courses.json';
-import { useSearchParams } from 'next/navigation';
+import { submitLead } from '@/app/actions/submit-lead';
 
 type CollegeName = keyof typeof coursesByCollege;
 
@@ -72,7 +72,6 @@ export function AdmissionForm() {
     const utm_source = searchParams.get('utm_source') || 'organic';
     const utm_medium = searchParams.get('utm_medium') || 'organic';
 
-    // Ensure phone number is 10 digits by stripping country code if present
     let phoneNumber = values.phone;
     if (phoneNumber.startsWith('91') && phoneNumber.length > 10) {
       phoneNumber = phoneNumber.substring(2);
@@ -88,17 +87,9 @@ export function AdmissionForm() {
     };
 
     try {
-      const response = await fetch('https://cms-egspgoi.vercel.app/api/v1/leads/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(apiPayload),
-      });
+      const result = await submitLead(apiPayload);
 
-        const result = await response.json();
-
-      if (!response.ok || !result.success) {
+      if (!result.success) {
         throw new Error(result.message || 'Something went wrong with the submission.');
       }
       
@@ -107,7 +98,7 @@ export function AdmissionForm() {
         lead_id: result.data.lead_id,
         assigned_user_name: result.data.assigned_user.name,
         assigned_user_email: result.data.assigned_user.email,
-        assigned_user_phone: '9363087377', // As provided in prompt
+        assigned_user_phone: '9363087377',
       });
 
       router.push(`/admission/enquiry/2026-2027?${queryParams.toString()}`);
@@ -315,5 +306,3 @@ export function AdmissionForm() {
     </Card>
   );
 }
-
-    
