@@ -7,6 +7,7 @@ import { z } from 'zod';
 import React from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -47,6 +48,7 @@ const formSchema = z.object({
 export function AdmissionForm() {
   const { toast } = useToast();
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [hostname, setHostname] = React.useState('');
 
   React.useEffect(() => {
@@ -67,8 +69,8 @@ export function AdmissionForm() {
   const selectedState = form.watch('state');
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const utm_source = searchParams.get('utm_source');
-    const utm_medium = searchParams.get('utm_medium');
+    const utm_source = searchParams.get('utm_source') || 'organic';
+    const utm_medium = searchParams.get('utm_medium') || 'organic';
 
     // Ensure phone number is 10 digits by stripping country code if present
     let phoneNumber = values.phone;
@@ -81,8 +83,8 @@ export function AdmissionForm() {
       phone: phoneNumber,
       admission_year: "2026",
       source_website: hostname || "unknown",
-      ...(utm_source && { utm_source }),
-      ...(utm_medium && { utm_medium }),
+      utm_source,
+      utm_medium,
     };
 
     try {
@@ -94,22 +96,22 @@ export function AdmissionForm() {
         body: JSON.stringify(apiPayload),
       });
 
-      if (!response.ok) {
-        let errorMessage = 'Something went wrong with the submission.';
-        try {
-            const errorData = await response.json();
-            errorMessage = errorData.message || errorMessage;
-        } catch (jsonError) {
-            errorMessage = `Submission failed: ${response.status} ${response.statusText}`;
-        }
-        throw new Error(errorMessage);
-      }
+        const result = await response.json();
 
-      toast({
-        title: 'Application Submitted!',
-        description: "We've received your application and will be in touch shortly.",
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Something went wrong with the submission.');
+      }
+      
+      const queryParams = new URLSearchParams({
+        success: 'true',
+        lead_id: result.data.lead_id,
+        assigned_user_name: result.data.assigned_user.name,
+        assigned_user_email: result.data.assigned_user.email,
+        assigned_user_phone: '9363087377', // As provided in prompt
       });
-      form.reset();
+
+      router.push(`/admission/enquiry/2026-2027?${queryParams.toString()}`);
+
     } catch (error: any) {
       console.error('Submission failed:', error);
       toast({
@@ -313,3 +315,5 @@ export function AdmissionForm() {
     </Card>
   );
 }
+
+    
