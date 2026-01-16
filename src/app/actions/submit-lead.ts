@@ -24,6 +24,7 @@ export async function submitLead(payload: LeadPayload) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'x-submission-secret': 'haays9EdtthBnIsVJfLKiSEf6ZqKYvfKTaEe08HDnOVqWmpyXEO5znkR4fPC1LsBjzHZ960xjZtAYHobJTsi5I'
       },
       body: JSON.stringify(payload),
     });
