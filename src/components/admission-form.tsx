@@ -89,25 +89,25 @@ export function AdmissionForm() {
     try {
       const result = await submitLead(apiPayload);
 
-      if (!result.success) {
-        throw new Error(result.message || 'Something went wrong with the submission.');
+      if (result && result.success) {
+        const queryParams = new URLSearchParams();
+        queryParams.set('success', 'true');
+
+        if (result.data && result.data.lead_id) {
+          queryParams.set('lead_id', result.data.lead_id);
+        }
+
+        if (result.data && result.data.assigned_user) {
+          queryParams.set('assigned_user_name', result.data.assigned_user.name);
+          queryParams.set('assigned_user_email', result.data.assigned_user.email);
+          queryParams.set('assigned_user_phone', '9363087377');
+        }
+
+        router.push(`/admission/enquiry/2026-2027?${queryParams.toString()}`);
+
+      } else {
+        throw new Error(result.message || 'An unknown error occurred during submission.');
       }
-      
-      const queryParams = new URLSearchParams();
-      queryParams.set('success', 'true');
-
-      if (result.data && result.data.lead_id) {
-        queryParams.set('lead_id', result.data.lead_id);
-      }
-
-      if (result.data && result.data.assigned_user) {
-        queryParams.set('assigned_user_name', result.data.assigned_user.name);
-        queryParams.set('assigned_user_email', result.data.assigned_user.email);
-        queryParams.set('assigned_user_phone', '9363087377');
-      }
-
-      router.push(`/admission/enquiry/2026-2027?${queryParams.toString()}`);
-
     } catch (error: any) {
       console.error('Submission failed:', error);
       toast({
