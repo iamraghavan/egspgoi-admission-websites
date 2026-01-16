@@ -40,7 +40,7 @@ export async function submitLead(payload: LeadPayload) {
 
   } catch (error: any) {
     console.error('Server action error:', error);
-    // Re-throw a generic error or the specific error to be handled by the client
+    // Return a structured error so the client can handle it gracefully
     return {
         success: false,
         message: error.message || 'An unexpected error occurred.',

@@ -93,9 +93,8 @@ export function AdmissionForm() {
         throw new Error(result.message || 'Something went wrong with the submission.');
       }
       
-      const queryParams = new URLSearchParams({
-        success: 'true',
-      });
+      const queryParams = new URLSearchParams();
+      queryParams.set('success', 'true');
 
       if (result.data && result.data.lead_id) {
         queryParams.set('lead_id', result.data.lead_id);

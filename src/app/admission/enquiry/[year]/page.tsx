@@ -33,7 +33,9 @@ function SuccessContent() {
                     </CardHeader>
                     <CardContent>
                         <div className="text-left mt-6">
-                            <p className="text-muted-foreground">Your Enquiry ID is: <strong className="font-mono text-foreground">{leadId}</strong>. Please save this for future reference.</p>
+                            {leadId && (
+                                <p className="text-muted-foreground">Your Enquiry ID is: <strong className="font-mono text-foreground">{leadId}</strong>. Please save this for future reference.</p>
+                            )}
                             <p className="text-muted-foreground mt-2">
                                 One of our admission executives will contact you shortly to guide you through the next steps.
                             </p>
@@ -60,7 +62,7 @@ function SuccessContent() {
                                             {assignedUserPhone && (
                                                 <div className="flex items-center gap-3 text-muted-foreground">
                                                     <Phone className="h-4 w-4" />
-                                                    <a href={`tel:+91${assignedUserPhone}`} className="hover:underline text-foreground">+91 {assignedUserPhone}</a>
+                                                    <a href={`tel:+91${assignedUserPhone.replace(/\s/g, '')}`} className="hover:underline text-foreground">+91 {assignedUserPhone}</a>
                                                 </div>
                                             )}
                                         </div>
