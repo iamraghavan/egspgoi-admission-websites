@@ -7,8 +7,14 @@ import { CheckCircle, Mail, Phone } from 'lucide-react';
 import React from 'react';
 import admissionImage from '@/app/assets/engineering_college.webp';
 import dynamic from 'next/dynamic';
+import type { Metadata } from 'next';
 
 const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
+
+export const metadata: Metadata = {
+    title: 'Admission Procedures',
+    description: "Find detailed information on how to apply for our diverse range of programs. Get insights into eligibility, application steps, and contact details for our admissions team.",
+};
 
 
 const collegeAdmissionsData = [
@@ -172,7 +178,7 @@ export default function AdmissionsPage() {
         <PageHeader
           title="Admission Procedures"
           description="Find detailed information on how to apply for our diverse range of programs."
-          imageUrl={admissionImage.src}
+          imageUrl={admissionImage}
           data-ai-hint="students applications"
         />
         <section className="py-16 md:py-24 bg-secondary/30">
