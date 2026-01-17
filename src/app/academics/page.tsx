@@ -1,8 +1,11 @@
 
-import { FindProgram } from '@/components/find-program';
 import { PageHeader } from '@/components/page-header';
-import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+import dynamic from 'next/dynamic';
+
+const FindProgram = dynamic(() => import('@/components/find-program').then(mod => mod.FindProgram));
+const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
+
 
 export default function AcademicsPage() {
   return (

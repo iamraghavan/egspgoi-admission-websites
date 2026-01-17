@@ -5,10 +5,12 @@ import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { CheckCircle, Mail, Phone, User } from 'lucide-react';
-import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import dynamic from 'next/dynamic';
+
+const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
 
 function SuccessContent() {
     const searchParams = useSearchParams();

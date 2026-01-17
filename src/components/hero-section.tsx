@@ -2,13 +2,19 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { AdmissionForm } from './admission-form';
 import heroImage from '@/app/assets/engineering_college.webp';
 import { Button } from './ui/button';
 import { ArrowRight, Search } from 'lucide-react';
 import { AnimatedHeading } from './animated-heading';
 import { motion, AnimatePresence } from 'framer-motion';
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+
+const AdmissionForm = dynamic(() => import('./admission-form').then(mod => mod.AdmissionForm), {
+  loading: () => <div className="w-full max-w-lg h-[680px] bg-white rounded-lg flex items-center justify-center shadow-2xl"><p>Loading form...</p></div>,
+  ssr: false,
+});
+
 
 export type Institution = {
   abbr: string;
@@ -25,10 +31,6 @@ const institutions: Institution[] = [
     { abbr: 'NYMC', name: 'EGS Pillay Naturopathy and Yoga Medical College' },
     { abbr: 'IS', name: 'EGS Pillay International School' },
 ];
-
-function HeroFormComponent() {
-    return <AdmissionForm />;
-}
 
 export function HeroSection() {
     const [index, setIndex] = useState(0);
@@ -51,6 +53,7 @@ export function HeroSection() {
           fill
           className="object-cover"
           priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-accent/80" />
       </div>
@@ -102,9 +105,7 @@ export function HeroSection() {
             </div>
           </div>
           <div className="flex justify-center md:justify-end">
-            <Suspense fallback={<div>Loading form...</div>}>
-                <HeroFormComponent />
-            </Suspense>
+            <AdmissionForm />
           </div>
         </div>
       </div>

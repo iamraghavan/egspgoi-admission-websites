@@ -40,12 +40,14 @@ type SearchResult = {
     program: string;
 };
 
-const ProgramLink = ({ children }: { children: React.ReactNode }) => (
-    <Link href="#" className="group flex items-center justify-between text-base font-medium text-foreground py-2 border-b border-gray-200 transition-colors duration-200 hover:border-accent hover:text-accent">
-        <span>{children}</span>
-        <ArrowRight className="h-4 w-4 text-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-    </Link>
-);
+const ProgramLink = React.memo(function ProgramLink({ children }: { children: React.ReactNode }) {
+    return (
+        <Link href="#" className="group flex items-center justify-between text-base font-medium text-foreground py-2 border-b border-gray-200 transition-colors duration-200 hover:border-accent hover:text-accent">
+            <span>{children}</span>
+            <ArrowRight className="h-4 w-4 text-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+        </Link>
+    );
+});
 
 
 export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {

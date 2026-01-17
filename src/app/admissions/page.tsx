@@ -1,12 +1,15 @@
 
 import { PageHeader } from '@/components/page-header';
-import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { CheckCircle, Mail, Phone } from 'lucide-react';
 import React from 'react';
 import admissionImage from '@/app/assets/engineering_college.webp';
+import dynamic from 'next/dynamic';
+
+const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
+
 
 const collegeAdmissionsData = [
   {

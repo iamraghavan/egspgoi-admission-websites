@@ -1,14 +1,17 @@
 import { AccreditationLogos } from '@/components/accreditation-logos';
 import { AchievementsSection } from '@/components/achievements-section';
-import { CtaSection } from '@/components/cta-section';
-import { FaqSection } from '@/components/faq-section';
-import { FindProgram } from '@/components/find-program';
 import { HeroSection } from '@/components/hero-section';
 import { LogoCloud } from '@/components/logo-cloud';
-import { PlacementShowcase } from '@/components/placement-showcase';
-import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
-import { TestimonialSlider } from '@/components/testimonial-slider';
+import dynamic from 'next/dynamic';
+
+const CtaSection = dynamic(() => import('@/components/cta-section').then(mod => mod.CtaSection));
+const FaqSection = dynamic(() => import('@/components/faq-section').then(mod => mod.FaqSection));
+const FindProgram = dynamic(() => import('@/components/find-program').then(mod => mod.FindProgram));
+const PlacementShowcase = dynamic(() => import('@/components/placement-showcase').then(mod => mod.PlacementShowcase));
+const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
+const TestimonialSlider = dynamic(() => import('@/components/testimonial-slider').then(mod => mod.TestimonialSlider));
+
 
 const faqsLeft = [
   {
