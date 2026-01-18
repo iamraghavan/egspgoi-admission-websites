@@ -1,7 +1,7 @@
 
 import { PageHeader } from '@/components/page-header';
 import { SiteHeader } from '@/components/site-header';
-import dynamic from 'next/dynamic';
+import dynamicImport from 'next/dynamic';
 import type { Metadata } from 'next';
 import { Breadcrumb, generateBreadcrumbs } from '@/components/breadcrumb';
 import Script from 'next/script';
@@ -9,8 +9,8 @@ import { siteConfig } from '@/lib/config';
 
 export const dynamic = 'force-dynamic';
 
-const FindProgram = dynamic(() => import('@/components/find-program').then(mod => mod.FindProgram));
-const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
+const FindProgram = dynamicImport(() => import('@/components/find-program').then(mod => mod.FindProgram));
+const SiteFooter = dynamicImport(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
 
 export const metadata: Metadata = {
     title: 'Academic Programs',

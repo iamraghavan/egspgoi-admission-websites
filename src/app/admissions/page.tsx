@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { CheckCircle, Mail, Phone } from 'lucide-react';
 import React from 'react';
 import admissionImage from '@/app/assets/engineering_college.webp';
-import dynamic from 'next/dynamic';
+import dynamicImport from 'next/dynamic';
 import type { Metadata } from 'next';
 import { Breadcrumb, generateBreadcrumbs } from '@/components/breadcrumb';
 import Script from 'next/script';
@@ -14,7 +14,7 @@ import { siteConfig } from '@/lib/config';
 
 export const dynamic = 'force-dynamic';
 
-const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
+const SiteFooter = dynamicImport(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
 
 export const metadata: Metadata = {
     title: 'Admission Procedures',
