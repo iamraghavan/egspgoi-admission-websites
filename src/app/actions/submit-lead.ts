@@ -14,6 +14,7 @@ const formSchema = z.object({
   source_website: z.string(),
   utm_source: z.string(),
   utm_medium: z.string(),
+  g_recaptcha_response: z.string(),
 });
 
 type LeadPayload = z.infer<typeof formSchema>;

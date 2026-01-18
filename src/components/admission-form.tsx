@@ -8,6 +8,7 @@ import React from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { useRouter, useSearchParams } from 'next/navigation';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -43,6 +44,7 @@ const formSchema = z.object({
   course: z.string({ required_error: 'Please select a course.' }),
   state: z.string({ required_error: 'Please select a state.' }),
   district: z.string({ required_error: 'Please select a district.' }),
+  g_recaptcha_response: z.string().min(1, { message: 'Please complete the reCAPTCHA verification.' }),
 });
 
 export function AdmissionForm() {
@@ -50,6 +52,8 @@ export function AdmissionForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [hostname, setHostname] = React.useState('');
+  const recaptchaRef = React.useRef<ReCAPTCHA>(null);
+
 
   React.useEffect(() => {
     setHostname(window.location.hostname);
@@ -62,6 +66,7 @@ export function AdmissionForm() {
       name: '',
       email: '',
       phone: '',
+      g_recaptcha_response: '',
     },
   });
 
@@ -110,6 +115,7 @@ export function AdmissionForm() {
       }
     } catch (error: any) {
       console.error('Submission failed:', error);
+      recaptchaRef.current?.reset();
       toast({
         variant: 'destructive',
         title: 'Uh oh! Something went wrong.',
@@ -302,6 +308,22 @@ export function AdmissionForm() {
                 )}
                 />
             </div>
+            <FormField
+              control={form.control}
+              name="g_recaptcha_response"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+                      onChange={field.onChange}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <Button type="submit" className="w-full !mt-6" size="lg" disabled={form.formState.isSubmitting}>
               {form.formState.isSubmitting ? 'Submitting...' : 'Apply Now'}
             </Button>
