@@ -13,17 +13,17 @@ const achievements = [
   {
     title: 'NBA - Tier-1',
     description: 'Washington Accord Accredited',
-    icon: <Image src={nbaLogo} alt="NBA Logo" width={48} height={48} className="h-12 object-contain" style={{ width: 'auto' }} />,
+    icon: <Image src={nbaLogo} alt="NBA Logo" width={nbaLogo.width} height={nbaLogo.height} className="h-12 w-auto object-contain" />,
   },
   {
     title: 'NIRF Ranking',
     description: 'All India Rank Band 201-300',
-    icon: <Image src={nirfLogo} alt="NIRF Logo" width={48} height={48} className="h-12 object-contain" style={{ width: 'auto' }} />,
+    icon: <Image src={nirfLogo} alt="NIRF Logo" width={nirfLogo.width} height={nirfLogo.height} className="h-12 w-auto object-contain" />,
   },
   {
     title: 'NAAC A++',
     description: 'Top-tier institutional accreditation',
-    icon: <Image src={naacLogo} alt="NAAC Logo" width={48} height={48} className="h-12 object-contain" style={{ width: 'auto' }} />,
+    icon: <Image src={naacLogo} alt="NAAC Logo" width={naacLogo.width} height={naacLogo.height} className="h-12 w-auto object-contain" />,
   },
   {
     title: 'State Level Achievement',
