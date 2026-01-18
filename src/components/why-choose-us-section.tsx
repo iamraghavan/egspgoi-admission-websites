@@ -29,13 +29,13 @@ export function WhyChooseUsSection() {
             <div className="container mx-auto px-6">
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
                     <div className="lg:col-span-5">
-                        <h2 className="text-3xl md:text-4xl font-bold font-headline leading-tight">
-                            <span className="text-primary">EXCELLENCE IN EDUCATION.</span><br/>
-                            <span className="text-primary">PIONEERING IN RESEARCH.</span><br/>
-                            <span className="text-accent">A LEGACY OF SUCCESS.</span>
+                        <h2 className="text-3xl md:text-4xl font-bold font-headline leading-tight bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text">
+                            EXCELLENCE IN EDUCATION.<br/>
+                            PIONEERING IN RESEARCH.<br/>
+                            A LEGACY OF SUCCESS.
                         </h2>
                         <div className="w-20 h-1.5 bg-accent my-6 rounded-full"></div>
-                        <p className="text-muted-foreground leading-relaxed">
+                        <p className="text-muted-foreground leading-relaxed font-body">
                             The EGS Pillay Group of Institutions stands as a beacon of academic excellence in Tamil Nadu. Renowned for our NAAC A++ and NBA accredited programs, we offer a transformative educational experience. With a strong emphasis on research, innovation, and holistic development, we prepare our students to become future leaders. Our consistent high-ranking placement record is a testament to our commitment.
                         </p>
                         <Button variant="outline" className="mt-8 group border-primary/20 text-primary hover:bg-primary/5 hover:text-primary font-semibold">
@@ -50,13 +50,13 @@ export function WhyChooseUsSection() {
                         <div className="grid grid-cols-3 gap-4 auto-rows-fr">
                             <StatCard className="bg-accent text-accent-foreground">
                                 <p className="text-4xl font-bold font-headline">A++</p>
-                                <p className="font-semibold mt-1">NAAC ACCREDITATION</p>
+                                <p className="font-semibold font-headline mt-1">NAAC ACCREDITATION</p>
                                 <p className="text-sm font-medium">Highest Grade</p>
                             </StatCard>
                             <StatCard className="bg-primary col-span-2">
                                 <p className="text-sm">RANKED IN</p>
                                 <p className="text-3xl font-bold font-headline">NIRF 2025</p>
-                                <p className="font-semibold">201 - 300 BAND</p>
+                                <p className="font-semibold font-headline">201 - 300 BAND</p>
                                 <p className="text-xs">UNDER ENGINEERING CATEGORY</p>
                             </StatCard>
 
@@ -66,18 +66,18 @@ export function WhyChooseUsSection() {
                             
                             <StatCard className="bg-primary">
                                 <p className="text-4xl font-bold font-headline">Tier-1</p>
-                                <p className="font-semibold mt-1">NBA ACCREDITATION</p>
+                                <p className="font-semibold font-headline mt-1">NBA ACCREDITATION</p>
                                 <p className="text-sm font-medium">Washington Accord</p>
                             </StatCard>
                              <StatCard className="bg-accent text-accent-foreground">
                                 <p className="text-4xl font-bold font-headline">150+</p>
-                                <p className="font-semibold mt-1">INDUSTRY MoU's</p>
+                                <p className="font-semibold font-headline mt-1">INDUSTRY MoU's</p>
                             </StatCard>
 
                             <ImageCard id="why-choose-us-4" alt="Students in a lab" className="aspect-[4/3]" hint="students lab" />
                             <StatCard className="bg-primary col-span-2">
                                 <p className="text-3xl font-bold font-headline">95%+ </p>
-                                <p className="font-semibold mt-1">PLACEMENT RECORD</p>
+                                <p className="font-semibold font-headline mt-1">PLACEMENT RECORD</p>
                             </StatCard>
                         </div>
                     </div>
