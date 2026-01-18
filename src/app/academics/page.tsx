@@ -3,6 +3,7 @@ import { PageHeader } from '@/components/page-header';
 import { SiteHeader } from '@/components/site-header';
 import dynamic from 'next/dynamic';
 import type { Metadata } from 'next';
+import { Breadcrumb } from '@/components/breadcrumb';
 
 const FindProgram = dynamic(() => import('@/components/find-program').then(mod => mod.FindProgram));
 const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
@@ -23,6 +24,7 @@ export default function AcademicsPage() {
                 imageUrl="https://picsum.photos/seed/academics/1600/400"
                 data-ai-hint="students library"
             />
+            <Breadcrumb />
             <div className="container mx-auto px-6 py-16">
                 <FindProgram />
             </div>

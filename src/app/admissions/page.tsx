@@ -8,6 +8,7 @@ import React from 'react';
 import admissionImage from '@/app/assets/engineering_college.webp';
 import dynamic from 'next/dynamic';
 import type { Metadata } from 'next';
+import { Breadcrumb } from '@/components/breadcrumb';
 
 const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
 
@@ -181,6 +182,7 @@ export default function AdmissionsPage() {
           imageUrl={admissionImage}
           data-ai-hint="students applications"
         />
+        <Breadcrumb />
         <section className="py-16 md:py-24 bg-secondary/30">
             <div className="container mx-auto px-6 max-w-7xl">
                  <div className="text-center mb-12">

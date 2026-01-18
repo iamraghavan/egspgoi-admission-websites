@@ -144,8 +144,8 @@ npm run dev`
 ## Contact
 
 **EGS Pillay Group of Institutions**  
-🌐 Website: https://egspgroup.in  
-📧 Email: raghavan@egspec.org
+ Website: https://egspgroup.in  
+Email: raghavan@egspec.org
 
 ----------
 
@@ -195,7 +195,7 @@ Once licensed, usage is governed by the **Apache License, Version 2.0**, subject
 - Clear documentation of modifications
 - No sublicensing or resale without permission
 
-📄 Apache License Version 2.0:  
+Apache License Version 2.0:  
 http://www.apache.org/licenses/LICENSE-2.0
 
 ---
