@@ -99,30 +99,8 @@ export default function RootLayout({
         "@type": "ContactPoint",
         "telephone": "+91-99768-88999",
         "contactType": "Admissions"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Old Nagore Main Rd, Thethi",
-      "addressLocality": "Nagapattinam",
-      "addressRegion": "Tamil Nadu",
-      "postalCode": "611002",
-      "addressCountry": "IN"
     }
-  };
-
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "url": siteUrl,
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": `${siteUrl}/?q={search_term_string}`
-      },
-      "query-input": "required name=search_term_string"
-    }
-  };
+};
 
 
   return (
@@ -133,13 +111,6 @@ export default function RootLayout({
             type="application/ld+json"
             dangerouslySetInnerHTML={{
                 __html: JSON.stringify(organizationSchema),
-            }}
-        />
-        <Script
-            id="website-schema"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-                __html: JSON.stringify(websiteSchema),
             }}
         />
       </head>

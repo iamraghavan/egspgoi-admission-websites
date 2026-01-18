@@ -1,23 +1,25 @@
 
 import { HeroSection } from '@/components/hero-section';
 import { SiteHeader } from '@/components/site-header';
-import dynamic from 'next/dynamic';
+import dynamicImport from 'next/dynamic';
 import Script from 'next/script';
 import type { Metadata } from 'next';
 import { generateSeoMetadata } from '@/ai/flows/generate-seo-metadata-flow';
 import { siteConfig } from '@/lib/config';
 
-const AccreditationLogos = dynamic(() => import('@/components/accreditation-logos').then(mod => mod.AccreditationLogos));
-const AchievementsSection = dynamic(() => import('@/components/achievements-section').then(mod => mod.AchievementsSection));
-const WhyChooseUsSection = dynamic(() => import('@/components/why-choose-us-section').then(mod => mod.WhyChooseUsSection));
-const CtaSection = dynamic(() => import('@/components/cta-section').then(mod => mod.CtaSection));
-const FaqSection = dynamic(() => import('@/components/faq-section').then(mod => mod.FaqSection));
-const FindProgram = dynamic(() => import('@/components/find-program').then(mod => mod.FindProgram));
-const PlacementShowcase = dynamic(() => import('@/components/placement-showcase').then(mod => mod.PlacementShowcase));
-const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
-const TestimonialSlider = dynamic(() => import('@/components/testimonial-slider').then(mod => mod.TestimonialSlider));
-const LifeAtEgspSection = dynamic(() => import('@/components/life-at-egsp-section').then(mod => mod.LifeAtEgspSection));
-const LogoCloud = dynamic(() => import('@/components/logo-cloud').then(mod => mod.LogoCloud));
+export const dynamic = 'force-dynamic';
+
+const AccreditationLogos = dynamicImport(() => import('@/components/accreditation-logos').then(mod => mod.AccreditationLogos));
+const AchievementsSection = dynamicImport(() => import('@/components/achievements-section').then(mod => mod.AchievementsSection));
+const WhyChooseUsSection = dynamicImport(() => import('@/components/why-choose-us-section').then(mod => mod.WhyChooseUsSection));
+const CtaSection = dynamicImport(() => import('@/components/cta-section').then(mod => mod.CtaSection));
+const FaqSection = dynamicImport(() => import('@/components/faq-section').then(mod => mod.FaqSection));
+const FindProgram = dynamicImport(() => import('@/components/find-program').then(mod => mod.FindProgram));
+const PlacementShowcase = dynamicImport(() => import('@/components/placement-showcase').then(mod => mod.PlacementShowcase));
+const SiteFooter = dynamicImport(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
+const TestimonialSlider = dynamicImport(() => import('@/components/testimonial-slider').then(mod => mod.TestimonialSlider));
+const LifeAtEgspSection = dynamicImport(() => import('@/components/life-at-egsp-section').then(mod => mod.LifeAtEgspSection));
+const LogoCloud = dynamicImport(() => import('@/components/logo-cloud').then(mod => mod.LogoCloud));
 
 
 const faqsLeft = [

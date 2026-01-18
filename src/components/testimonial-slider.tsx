@@ -4,6 +4,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { generateTestimonials } from '@/ai/flows/generate-testimonial-flow';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 type Alumni = {
   profile_id: string;
@@ -18,30 +20,37 @@ type Testimonial = {
   name: string;
   role: string;
   quote: string;
+  imageUrl?: string | null;
 };
 
 const fallbackTestimonials: Testimonial[] = [
-    { id: '1', name: 'Priya Kumar', role: 'Computer Science, EGS Pillay Engineering College', quote: 'A truly transformative experience that prepared me for my career. The faculty support was outstanding.' },
-    { id: '2', name: 'Arjun Reddy', role: 'Mechanical Engineering, EGS Pillay Engineering College', quote: 'The hands-on projects and state-of-the-art labs gave me the confidence to excel in the industry.' },
-    { id: '3', name: 'Sneha Sharma', role: 'B.Com, EGS Pillay Arts and Science College', quote: 'I am grateful for the holistic education I received. It was a perfect blend of academics and extracurriculars.' },
-    { id: '4', name: 'Vikram Singh', role: 'M.B.A, EGS Pillay Arts and Science College', quote: 'The MBA program sharpened my leadership skills and provided me with an invaluable network of peers and mentors.' },
-    { id: '5', name: 'Ananya Gupta', role: 'Civil Engineering, EGS Pillay Polytechnic College', quote: 'The practical skills I learned here were instrumental in securing my first job even before I graduated.' },
-    { id: '6', name: 'Rohan Mehta', role: 'B.Sc Nursing, EGS Pillay College of Nursing', quote: 'The clinical exposure and compassionate mentorship from the faculty were second to none. I feel well-prepared for my nursing career.' },
+    { id: '1', name: 'Priya Kumar', role: 'Computer Science, EGS Pillay Engineering College', quote: 'A truly transformative experience that prepared me for my career. The faculty support was outstanding.', imageUrl: PlaceHolderImages.find(p => p.id === 'testimonial-1')?.imageUrl as string },
+    { id: '2', name: 'Arjun Reddy', role: 'Mechanical Engineering, EGS Pillay Engineering College', quote: 'The hands-on projects and state-of-the-art labs gave me the confidence to excel in the industry.', imageUrl: PlaceHolderImages.find(p => p.id === 'testimonial-2')?.imageUrl as string },
+    { id: '3', name: 'Sneha Sharma', role: 'B.Com, EGS Pillay Arts and Science College', quote: 'I am grateful for the holistic education I received. It was a perfect blend of academics and extracurriculars.', imageUrl: PlaceHolderImages.find(p => p.id === 'testimonial-1')?.imageUrl as string },
+    { id: '4', name: 'Vikram Singh', role: 'M.B.A, EGS Pillay Arts and Science College', quote: 'The MBA program sharpened my leadership skills and provided me with an invaluable network of peers and mentors.', imageUrl: PlaceHolderImages.find(p => p.id === 'testimonial-3')?.imageUrl as string },
+    { id: '5', name: 'Ananya Gupta', role: 'Civil Engineering, EGS Pillay Polytechnic College', quote: 'The practical skills I learned here were instrumental in securing my first job even before I graduated.', imageUrl: PlaceHolderImages.find(p => p.id === 'testimonial-1')?.imageUrl as string },
+    { id: '6', name: 'Rohan Mehta', role: 'B.Sc Nursing, EGS Pillay College of Nursing', quote: 'The clinical exposure and compassionate mentorship from the faculty were second to none. I feel well-prepared for my nursing career.', imageUrl: PlaceHolderImages.find(p => p.id === 'testimonial-2')?.imageUrl as string },
 ];
 
 const TestimonialCard = ({
   quote,
   name,
   role,
+  imageUrl,
 }: {
   quote: string;
   name: string;
   role: string;
+  imageUrl?: string | null;
 }) => {
   return (
     <div className="p-10 rounded-3xl border bg-card text-card-foreground shadow-lg shadow-primary/10 max-w-xs w-full">
       <div className="flex-grow">"{quote}"</div>
-      <div className="flex items-center gap-2 mt-5">
+      <div className="flex items-center gap-4 mt-5">
+        <Avatar>
+            {imageUrl && <AvatarImage src={imageUrl} alt={name} />}
+            <AvatarFallback>{name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+        </Avatar>
         <div className="flex flex-col">
           <div className="font-medium tracking-tight leading-5 text-foreground">
             {name}
@@ -82,6 +91,7 @@ const TestimonialsColumn = (props: {
                 quote={testimonial.quote}
                 name={testimonial.name}
                 role={testimonial.role}
+                imageUrl={testimonial.imageUrl}
               />
             ))}
           </React.Fragment>
@@ -124,6 +134,7 @@ export function TestimonialSlider() {
                 name: alumnus.name,
                 role: `${alumnus.department}, ${alumnus.institution.replace('E.G.S.Pillay ', '')}`,
                 quote: generatedQuotesMap.get(alumnus.profile_id) || 'A truly transformative experience that prepared me for my career.',
+                imageUrl: alumnus.profile_image,
             }));
 
             setTestimonials(combinedTestimonials);
