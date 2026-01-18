@@ -3,6 +3,9 @@ import { HeroSection } from '@/components/hero-section';
 import { SiteHeader } from '@/components/site-header';
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
+import type { Metadata } from 'next';
+import { generateSeoMetadata } from '@/ai/flows/generate-seo-metadata-flow';
+import { siteConfig } from '@/lib/config';
 
 const AccreditationLogos = dynamic(() => import('@/components/accreditation-logos').then(mod => mod.AccreditationLogos));
 const AchievementsSection = dynamic(() => import('@/components/achievements-section').then(mod => mod.AchievementsSection));
@@ -63,7 +66,78 @@ const faqsRight = [
   }
 ];
 
-export default function Home() {
+export async function generateMetadata({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }): Promise<Metadata> {
+    const query = searchParams?.q as string;
+    const siteUrl = siteConfig.baseUrl;
+  
+    const defaultTitle = 'Admissions 2026–27 | EGS Pillay Group of Institutions, Nagapattinam';
+    const defaultDescription = 'Apply for Admissions 2026–27 at EGS Pillay Group of Institutions, Nagapattinam. Engineering, Arts & Science, Polytechnic, Nursing, Pharmacy, Education, Yoga & School courses available.';
+    const defaultOgImage = `${siteUrl}/og-image.png`;
+  
+    if (!query) {
+      return {
+        title: defaultTitle,
+        description: defaultDescription,
+        openGraph: {
+          title: defaultTitle,
+          description: defaultDescription,
+          url: siteUrl,
+          images: [{ url: defaultOgImage, width: 1200, height: 630 }],
+        },
+        twitter: {
+          title: defaultTitle,
+          description: defaultDescription,
+          images: [defaultOgImage],
+        },
+      };
+    }
+  
+    try {
+      const seoData = await generateSeoMetadata({ query });
+      const pageUrl = `${siteUrl}?q=${encodeURIComponent(query)}`;
+  
+      return {
+        title: seoData.title,
+        description: seoData.description,
+        keywords: seoData.keywords,
+        openGraph: {
+          title: seoData.title,
+          description: seoData.description,
+          url: pageUrl,
+          images: [{ url: defaultOgImage, width: 1200, height: 630 }],
+        },
+        twitter: {
+          title: seoData.title,
+          description: seoData.description,
+          images: [defaultOgImage],
+        },
+        alternates: {
+          canonical: pageUrl,
+        },
+      };
+    } catch (error) {
+      console.error('Failed to generate SEO metadata:', error);
+      // Fallback to default metadata on error
+      return {
+        title: defaultTitle,
+        description: defaultDescription,
+        openGraph: {
+          title: defaultTitle,
+          description: defaultDescription,
+          url: siteUrl,
+          images: [{ url: defaultOgImage, width: 1200, height: 630 }],
+        },
+        twitter: {
+          title: defaultTitle,
+          description: defaultDescription,
+          images: [defaultOgImage],
+        },
+      };
+    }
+  }
+
+export default function Home({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+    const query = searchParams?.q as string;
     const allFaqs = [...faqsLeft, ...faqsRight];
     const faqSchema = {
         "@context": "https://schema.org",
@@ -90,6 +164,15 @@ export default function Home() {
         <div className="flex min-h-screen flex-col bg-background">
         <SiteHeader />
         <main className="flex-1">
+            {query && (
+                <div className="bg-secondary/30 py-3 text-center border-b">
+                    <div className="container mx-auto">
+                        <p className="text-sm text-muted-foreground">
+                            Displaying results for: <span className="font-semibold text-primary">"{query}"</span>
+                        </p>
+                    </div>
+                </div>
+            )}
             <HeroSection />
             <AccreditationLogos />
             <AchievementsSection />
