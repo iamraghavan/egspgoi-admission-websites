@@ -33,6 +33,7 @@ import { cn } from '@/lib/utils';
 import statesAndDistricts from '@/app/assets/docs/states-and-districts.json';
 import coursesByCollege from '@/app/assets/docs/college-courses.json';
 import { submitLead } from '@/app/actions/submit-lead';
+import * as gtag from '@/lib/gtag';
 
 type CollegeName = keyof typeof coursesByCollege;
 
@@ -95,6 +96,12 @@ export function AdmissionForm() {
       const result = await submitLead(apiPayload);
 
       if (result && result.success) {
+        gtag.event({
+          action: 'form_submit',
+          category: 'Admissions',
+          label: 'Admission Form Submitted',
+        });
+
         const queryParams = new URLSearchParams();
         queryParams.set('success', 'true');
 

@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { Poppins, PT_Sans } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import Script from 'next/script';
+import GoogleAnalytics from '@/components/google-analytics';
+import { GA_MEASUREMENT_ID } from '@/lib/gtag';
 
 const fontPoppins = Poppins({
   subsets: ['latin'],
@@ -109,6 +111,7 @@ export default function RootLayout({
           fontPtSans.variable
         )}
       >
+        {GA_MEASUREMENT_ID && <GoogleAnalytics />}
         {children}
         <Toaster />
       </body>

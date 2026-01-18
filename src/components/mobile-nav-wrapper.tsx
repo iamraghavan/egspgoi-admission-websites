@@ -9,6 +9,7 @@ import Image from 'next/image';
 import logo from '@/app/assets/logo/egspgoi_svg.svg';
 import { motion, AnimatePresence, Transition } from 'framer-motion';
 import { ArrowUpRight, X } from 'lucide-react';
+import * as gtag from '@/lib/gtag';
 
 const navLinks = [
   { text: 'Academics', href: '/academics' },
@@ -67,18 +68,29 @@ const Path = (props: React.ComponentProps<typeof motion.path>) => (
 const MobileNavLink = ({
   href,
   children,
+  label,
   onClick,
 }: {
   href: string;
   children: React.ReactNode;
+  label: string;
   onClick: () => void;
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
 
+  const handleClick = () => {
+    gtag.event({
+      action: 'navigation_click',
+      category: 'Mobile Menu',
+      label: label,
+    });
+    onClick();
+  };
+
   return (
     <Link
       href={href}
-      onClick={onClick}
+      onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="relative block text-lg font-medium text-muted-foreground py-2 overflow-hidden"
@@ -146,6 +158,7 @@ function MobileNav() {
                 <MobileNavLink
                     key={link.text}
                     href={link.href || '#'}
+                    label={link.text}
                     onClick={() => setIsOpen(false)}
                 >
                     {link.text}

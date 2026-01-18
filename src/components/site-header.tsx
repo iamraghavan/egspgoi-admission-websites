@@ -10,6 +10,7 @@ import Image from 'next/image';
 import logo from '@/app/assets/logo/egspgoi_svg.svg';
 import { MobileNavWrapper } from './mobile-nav-wrapper';
 import { Calendar, Search } from 'lucide-react';
+import * as gtag from '@/lib/gtag';
 
 const navLinks = [
   { text: 'Academics', href: '/academics' },
@@ -78,13 +79,29 @@ export function SiteHeader() {
               link.text === 'Academics' ? (
                 <NavLink
                   key={link.text}
-                  onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
+                  onClick={() => {
+                    setIsMegaMenuOpen(!isMegaMenuOpen);
+                    gtag.event({
+                      action: 'navigation_click',
+                      category: 'Header',
+                      label: link.text,
+                    });
+                  }}
                 >
                   {link.text}
                 </NavLink>
               ) : (
                 <NavLinkAsChild key={link.text}>
-                  <Link href={link.href!}>
+                  <Link
+                    href={link.href!}
+                    onClick={() => {
+                      gtag.event({
+                        action: 'navigation_click',
+                        category: 'Header',
+                        label: link.text,
+                      });
+                    }}
+                  >
                     {link.text}
                   </Link>
                 </NavLinkAsChild>
@@ -93,11 +110,11 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex flex-1 items-center justify-end space-x-2">
-            <Button variant="ghost" size="icon" className="hidden md:inline-flex">
+            <Button variant="ghost" size="icon" className="hidden md:inline-flex" onClick={() => gtag.event({ action: 'search_click', category: 'Header', label: 'Search Icon' })}>
               <Search className="h-5 w-5" />
               <span className="sr-only">Search</span>
             </Button>
-            <Button variant="ghost" size="icon" className="hidden md:inline-flex">
+            <Button variant="ghost" size="icon" className="hidden md:inline-flex" onClick={() => gtag.event({ action: 'events_click', category: 'Header', label: 'Events Icon' })}>
               <Calendar className="h-5 w-5" />
               <span className="sr-only">Events</span>
             </Button>
