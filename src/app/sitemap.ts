@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next';
-
-const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://egs-admissions-hub.vercel.app';
+import { siteConfig } from '@/lib/config';
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const siteUrl = siteConfig.baseUrl;
+
   const staticRoutes = [
     '',
     '/academics',

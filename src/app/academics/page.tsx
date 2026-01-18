@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import type { Metadata } from 'next';
 import { Breadcrumb, generateBreadcrumbs } from '@/components/breadcrumb';
 import Script from 'next/script';
+import { siteConfig } from '@/lib/config';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 export default function AcademicsPage() {
-    const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://egs-admissions-hub.vercel.app';
+    const siteUrl = siteConfig.baseUrl;
     const pathname = '/academics';
 
     const breadcrumbItems = generateBreadcrumbs(pathname);

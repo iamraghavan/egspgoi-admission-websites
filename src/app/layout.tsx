@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import Script from 'next/script';
 import GoogleAnalytics from '@/components/google-analytics';
 import { GA_MEASUREMENT_ID } from '@/lib/gtag';
+import { siteConfig } from '@/lib/config';
 
 export const dynamic = 'force-dynamic';
 
@@ -24,7 +25,7 @@ const fontPtSans = PT_Sans({
   weight: ['400', '700'],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://egs-admissions-hub.vercel.app';
+const siteUrl = siteConfig.baseUrl;
 
 export function generateMetadata(): Metadata {
   return {
