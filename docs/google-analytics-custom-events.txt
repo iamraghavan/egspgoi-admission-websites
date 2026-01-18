@@ -9,10 +9,11 @@ This document explains what custom events are in Google Analytics (GA4), how to 
 While Google Analytics automatically tracks basic events like `page_view` and `scroll`, **custom events** allow you to measure specific interactions that are unique and important to your business goals.
 
 For your admissions website, these could be actions like:
--   Submitting the enquiry form (`form_submit`)
--   Clicking the "Explore Programs" button (`explore_programs_click`)
--   Starting a search in the mega menu (`program_search`)
--   Clicking a specific college link (`college_link_click`)
+-   **`form_submit`**: A user successfully submits an enquiry form. (This is your most important event!)
+-   **`explore_programs_click`**: A user clicks the "Explore Programs" button in the hero section.
+-   **`program_search`**: A user starts a search in the mega menu.
+-   **`college_link_click`**: A user clicks a specific college link from the navigation or footer.
+-   **`contact_click`**: A user clicks on a phone number or email address.
 
 By tracking these, you can understand exactly how users are interacting with your site's key features and build detailed reports on user behavior.
 
@@ -33,7 +34,7 @@ For your website, the most important key event is a successful form submission. 
 
 ## 3. How to Create and Install Events
 
-There are two primary ways to create events: without code (in the GA UI) or with code (on your website).
+There are two primary ways to create events: without code (in the GA UI) or with code (on your website). For a custom application like yours, the "Create with code" method is the most reliable and powerful.
 
 ### Method 1: Create Without Code (In the GA UI)
 
@@ -44,7 +45,7 @@ This method is useful for creating a new event based on an *existing* event. For
 
 ### Method 2: Create With Code (Recommended for Your App)
 
-This is the most powerful and reliable method. You add a small snippet of JavaScript to your website to send an event to Google Analytics whenever a specific action occurs.
+This is the recommended approach for your application. You add a small snippet of JavaScript to your website to send an event to Google Analytics whenever a specific action occurs.
 
 Your application is already set up with a helper function to make this easy.
 
@@ -64,13 +65,13 @@ export const event = ({ action, category, label, value }) => {
 };
 ```
 
-#### **How to Use It in Your Website (Code Example)**
+#### **How to Use It in Your Website (Code Examples)**
 
-Let's look at how the successful form submission event is already implemented in your `AdmissionForm` component.
+**Example 1: Tracking a Form Submission (Already Implemented)**
+
+Let's look at how the successful form submission event is implemented in your `AdmissionForm` component.
 
 **File:** `src/components/admission-form.tsx`
-
-Inside the `onSubmit` function, after the form is successfully submitted to your backend, we call the `gtag.event` function:
 
 ```typescript
 'use client';
@@ -111,9 +112,47 @@ export function AdmissionForm() {
 }
 ```
 
-**Breakdown of the Code:**
-1.  We import the `gtag` helper functions.
-2.  After a successful API response (`result.success`), we trigger the custom event.
-3.  The `action` property (`'form_submit'`) is the **event name** that will appear in your Google Analytics reports.
+**Example 2: Tracking a Button Click (New Implementation)**
 
-You can use this same pattern anywhere in your application to track other important user interactions. For instance, you could add an event for when a user clicks the "Explore Programs" button in the hero section.
+Here is how we can track clicks on the header icons.
+
+**File:** `src/components/site-header.tsx`
+
+```typescript
+'use client';
+
+// ... other imports
+import { Search, Calendar } from 'lucide-react';
+import * as gtag from '@/lib/gtag'; // 1. Import the gtag helper
+
+export function SiteHeader() {
+  // ...
+  return (
+    // ...
+    <div className="flex flex-1 items-center justify-end space-x-2">
+        <Button variant="ghost" size="icon" className="hidden md:inline-flex" 
+            onClick={() => gtag.event({ // 2. Add the onClick handler
+                action: 'search_click', 
+                category: 'Header', 
+                label: 'Search Icon' 
+            })}>
+            <Search className="h-5 w-5" />
+            <span className="sr-only">Search</span>
+        </Button>
+        <Button variant="ghost" size="icon" className="hidden md:inline-flex"
+            onClick={() => gtag.event({ // 3. Add another for the calendar
+                action: 'events_click', 
+                category: 'Header', 
+                label: 'Events Icon' 
+            })}>
+            <Calendar className="h-5 w-5" />
+            <span className="sr-only">Events</span>
+        </Button>
+        {/* ... more buttons */}
+    </div>
+    // ...
+  );
+}
+```
+
+By following this pattern, you can add custom event tracking to any user interaction across your website.
