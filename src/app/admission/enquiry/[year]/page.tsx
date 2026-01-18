@@ -28,7 +28,7 @@ function SuccessContent() {
                         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
                             <CheckCircle className="h-10 w-10 text-green-600" />
                         </div>
-                        <CardTitle className="mt-6 text-3xl font-bold font-headline text-primary">Application Submitted Successfully!</CardTitle>
+                        <h1 className="mt-6 text-3xl font-bold font-headline text-primary leading-none tracking-tight">Application Submitted Successfully!</h1>
                         <CardDescription className="mt-2 text-lg text-muted-foreground">
                             Thank you for your interest. Your enquiry has been received.
                         </CardDescription>

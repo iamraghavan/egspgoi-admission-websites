@@ -126,7 +126,7 @@ const ProcedureStep = ({ text }: { text: string }) => (
 const CollegeAdmissionCard = ({ collegeData }: { collegeData: typeof collegeAdmissionsData[0] }) => (
   <Card className="w-full shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
     <CardHeader>
-      <CardTitle className="font-headline text-3xl text-primary">{collegeData.collegeName}</CardTitle>
+      <h2 className="font-headline text-3xl text-primary font-semibold leading-none tracking-tight">{collegeData.collegeName}</h2>
       <CardDescription>Detailed admission procedures and contact information.</CardDescription>
     </CardHeader>
     <CardContent className="grid grid-cols-1 md:grid-cols-12 gap-8">

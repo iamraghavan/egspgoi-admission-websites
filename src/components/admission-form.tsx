@@ -150,7 +150,7 @@ export function AdmissionForm() {
   return (
     <Card className="w-full max-w-lg shadow-2xl">
       <CardHeader className="text-center">
-        <CardTitle className="font-headline text-2xl">Admissions Open 2026 - 2027</CardTitle>
+        <h2 className="font-headline text-2xl font-semibold leading-none tracking-tight">Admissions Open 2026 - 2027</h2>
         <CardDescription>Fill out the form below to start your application.</CardDescription>
       </CardHeader>
       <CardContent>
