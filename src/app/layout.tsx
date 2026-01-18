@@ -29,10 +29,10 @@ const siteUrl = 'https://egs-admissions-hub.vercel.app';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'EGS Admissions Hub - EGS Pillay Group of Institutions',
+    default: 'Admissions 2026–27 | EGS Pillay Group of Institutions, Nagapattinam',
     template: '%s | EGS Admissions Hub',
   },
-  description: 'Your gateway to a premier education at EGS Pillay Group of Institutions. Explore and apply to our top-tier Engineering, Arts, Science, and Management programs.',
+  description: 'Apply for Admissions 2026–27 at EGS Pillay Group of Institutions, Nagapattinam. Engineering, Arts & Science, Polytechnic, Nursing, Pharmacy, Education, Yoga & School courses available.',
   manifest: '/manifest.json',
   icons: {
     icon: [
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
     apple: '/apple-icon.png',
   },
   openGraph: {
-    title: 'EGS Admissions Hub',
-    description: 'Your gateway to a premier education at EGS Pillay Group of Institutions.',
+    title: 'Admissions 2026–27 | EGS Pillay Group of Institutions, Nagapattinam',
+    description: 'Apply for Admissions 2026–27 at EGS Pillay Group of Institutions, Nagapattinam. Engineering, Arts & Science, Polytechnic, Nursing, Pharmacy, Education, Yoga & School courses available.',
     url: siteUrl,
     siteName: 'EGS Admissions Hub',
     images: [
@@ -69,8 +69,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'EGS Admissions Hub',
-    description: 'Explore and apply to our top-tier Engineering, Arts, Science, and Management programs.',
+    title: 'Admissions 2026–27 | EGS Pillay Group of Institutions, Nagapattinam',
+    description: 'Apply for Admissions 2026–27 at EGS Pillay Group of Institutions, Nagapattinam. Engineering, Arts & Science, Polytechnic, Nursing, Pharmacy, Education, Yoga & School courses available.',
     // TODO: add twitter user handle
     // creator: '@handle', 
     images: [`${siteUrl}/og-image.png`], // Must be an absolute URL
