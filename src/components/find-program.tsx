@@ -61,7 +61,10 @@ const FilterSelect = ({
       {label}
     </span>
     <Select>
-      <SelectTrigger className="w-full md:w-[200px] bg-transparent border-none text-primary text-base font-semibold pt-5 focus:ring-0 focus:ring-offset-0">
+      <SelectTrigger
+        aria-label={label}
+        className="w-full md:w-[200px] bg-transparent border-none text-primary text-base font-semibold pt-5 focus:ring-0 focus:ring-offset-0"
+      >
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
@@ -90,7 +93,7 @@ export function FindProgram() {
         <div className="bg-secondary/30 p-4 rounded-lg shadow-sm w-full">
             <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 w-full">
             <FilterSelect
-                label="Degree"
+                label="Select Degree"
                 placeholder="Select Degree"
                 items={[
                 { value: 'ug', label: 'Undergraduate' },
@@ -101,7 +104,7 @@ export function FindProgram() {
             />
             <div className="h-10 w-px bg-border/70 mx-4 hidden md:block" />
             <FilterSelect
-                label="Interest"
+                label="Select Interest"
                 placeholder="Select Interest"
                 items={[
                 { value: 'engineering', label: 'Engineering' },
@@ -146,7 +149,7 @@ export function FindProgram() {
                       {program.campuses.map((campus) => (
                         <span
                           key={campus}
-                          className="bg-muted text-muted-foreground text-xs font-medium px-2.5 py-1 rounded-full"
+                          className="bg-primary/10 text-primary text-xs font-medium px-2.5 py-1 rounded-full"
                         >
                           {campus}
                         </span>

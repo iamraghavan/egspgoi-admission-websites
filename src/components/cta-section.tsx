@@ -48,7 +48,7 @@ export function CtaSection() {
               </a>
             </p>
             <a
-              href="#apply"
+              href="#contact"
               className="inline-block px-8 py-3 bg-white text-primary hover:bg-white/90 transition-all rounded-md font-bold uppercase text-sm mt-2"
             >
               Contact Us
