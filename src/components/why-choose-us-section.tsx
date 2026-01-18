@@ -29,13 +29,13 @@ export function WhyChooseUsSection() {
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
                     <div className="lg:col-span-5">
                         <h2 className="text-3xl md:text-4xl font-bold font-headline leading-tight">
-                            <span className="text-primary">TOPPERS' TOP CHOICE.</span><br/>
-                            <span className="text-primary">EXPERIENTIAL LEARNING.</span><br/>
-                            <span style={{color: '#f5b916'}}>FANTABULOUS CAMPUS.</span>
+                            <span className="text-primary">EXCELLENCE IN EDUCATION.</span><br/>
+                            <span className="text-primary">PIONEERING IN RESEARCH.</span><br/>
+                            <span className="text-accent">A LEGACY OF SUCCESS.</span>
                         </h2>
-                        <div className="w-20 h-1.5 bg-yellow-400 my-6 rounded-full"></div>
+                        <div className="w-20 h-1.5 bg-accent my-6 rounded-full"></div>
                         <p className="text-muted-foreground leading-relaxed">
-                            Sri Eshwar is the most preferred institution for high ranking students. With industry-relevant curriculum, project based learning, high energy faculty, corporate-like facilities, best amenities and vibrant activities, Sri Eshwar is the most sought after institution for high quality and holistic education. What’s more? We are proud to emerge, every year, as a <strong className="text-foreground font-semibold">TOP PLACEMENTS COLLEGE!</strong>
+                            The EGS Pillay Group of Institutions stands as a beacon of academic excellence in Tamil Nadu. Renowned for our NAAC A++ and NBA accredited programs, we offer a transformative educational experience. With a strong emphasis on research, innovation, and holistic development, we prepare our students to become future leaders. Our consistent high-ranking placement record is a testament to our commitment.
                         </p>
                         <Button variant="outline" className="mt-8 group border-primary/20 text-primary hover:bg-primary/5 hover:text-primary font-semibold">
                             Know More <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -44,13 +44,13 @@ export function WhyChooseUsSection() {
                     <div className="lg:col-span-7 relative">
                         {/* Decorative Elements */}
                         <div className="hidden lg:block absolute -top-8 -left-8 w-24 h-24 bg-primary/10 rounded-full -z-10" />
-                        <div className="hidden lg:block absolute -bottom-8 -right-8 w-24 h-24 bg-yellow-400/10 rounded-full -z-10" />
+                        <div className="hidden lg:block absolute -bottom-8 -right-8 w-24 h-24 bg-accent/10 rounded-full -z-10" />
 
                         <div className="grid grid-cols-3 gap-4 auto-rows-fr">
-                            <StatCard className="bg-yellow-400 !text-black">
-                                <p className="text-4xl font-bold">12th</p>
-                                <p className="font-semibold mt-1">POSITION IN TAMILNADU</p>
-                                <p className="text-sm font-medium">TNEA 2025</p>
+                            <StatCard className="bg-accent text-accent-foreground">
+                                <p className="text-4xl font-bold">A++</p>
+                                <p className="font-semibold mt-1">NAAC ACCREDITATION</p>
+                                <p className="text-sm font-medium">Highest Grade</p>
                             </StatCard>
                             <StatCard className="bg-primary col-span-2">
                                 <p className="text-sm">RANKED IN</p>
@@ -64,19 +64,19 @@ export function WhyChooseUsSection() {
                             <ImageCard id="why-choose-us-1" alt="Students in makerspace" className="aspect-[4/3]" hint="students learning" />
                             
                             <StatCard className="bg-primary">
-                                <p className="text-4xl font-bold">6th</p>
-                                <p className="font-semibold mt-1">RANK IN COIMBATORE</p>
-                                <p className="text-sm font-medium">TNEA 2025</p>
+                                <p className="text-4xl font-bold">Tier-1</p>
+                                <p className="font-semibold mt-1">NBA ACCREDITATION</p>
+                                <p className="text-sm font-medium">Washington Accord</p>
                             </StatCard>
-                             <StatCard className="bg-cyan-400 !text-primary">
-                                <p className="text-4xl font-bold">50+</p>
-                                <p className="font-semibold mt-1">PARTNERSHIPS</p>
+                             <StatCard className="bg-secondary text-secondary-foreground">
+                                <p className="text-4xl font-bold">150+</p>
+                                <p className="font-semibold mt-1">INDUSTRY MoU's</p>
                             </StatCard>
 
                             <ImageCard id="why-choose-us-4" alt="Students in a lab" className="aspect-[4/3]" hint="students lab" />
-                            <StatCard className="bg-cyan-400 !text-primary col-span-2">
-                                <p className="text-3xl font-bold">TOP 2%</p>
-                                <p className="font-semibold mt-1">SCIENTISTS OF THE WORLD</p>
+                            <StatCard className="bg-secondary text-secondary-foreground col-span-2">
+                                <p className="text-3xl font-bold">95%+ </p>
+                                <p className="font-semibold mt-1">PLACEMENT RECORD</p>
                             </StatCard>
                         </div>
                     </div>
