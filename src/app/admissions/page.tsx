@@ -8,7 +8,10 @@ import React from 'react';
 import admissionImage from '@/app/assets/engineering_college.webp';
 import dynamic from 'next/dynamic';
 import type { Metadata } from 'next';
-import { Breadcrumb } from '@/components/breadcrumb';
+import { Breadcrumb, generateBreadcrumbs } from '@/components/breadcrumb';
+import Script from 'next/script';
+
+export const dynamic = 'force-dynamic';
 
 const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
 
@@ -126,7 +129,7 @@ const ProcedureStep = ({ text }: { text: string }) => (
 const CollegeAdmissionCard = ({ collegeData }: { collegeData: typeof collegeAdmissionsData[0] }) => (
   <Card className="w-full shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
     <CardHeader>
-      <h2 className="font-headline text-3xl text-primary font-semibold leading-none tracking-tight">{collegeData.collegeName}</h2>
+      <h3 className="font-headline text-3xl text-primary font-semibold leading-none tracking-tight">{collegeData.collegeName}</h3>
       <CardDescription>Detailed admission procedures and contact information.</CardDescription>
     </CardHeader>
     <CardContent className="grid grid-cols-1 md:grid-cols-12 gap-8">
@@ -172,36 +175,85 @@ const CollegeAdmissionCard = ({ collegeData }: { collegeData: typeof collegeAdmi
 );
 
 export default function AdmissionsPage() {
+    const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://egs-admissions-hub.vercel.app';
+    const pathname = '/admissions';
+
+    const breadcrumbItems = generateBreadcrumbs(pathname);
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": breadcrumbItems.map((item, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "name": item.name,
+            "item": `${siteUrl}${item.href}`
+        }))
+    };
+
+    const howToSchema = {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Apply for Admission at EGS Pillay Group of Institutions",
+        "description": "Find detailed information on how to apply for our diverse range of programs. Get insights into eligibility, application steps, and contact details for our admissions team.",
+        "step": collegeAdmissionsData.flatMap(college =>
+            Object.entries(college.procedures).map(([programType, steps]) => ({
+                "@type": "HowToStep",
+                "name": `${programType} Admissions at ${college.collegeName}`,
+                "text": `General procedure for ${programType} programs at ${college.collegeName}.`,
+                "itemListElement": steps.map(stepText => ({
+                    "@type": "HowToDirection",
+                    "text": stepText
+                }))
+            }))
+        )
+    };
+
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <SiteHeader />
-      <main>
-        <PageHeader
-          title="Admission Procedures"
-          description="Find detailed information on how to apply for our diverse range of programs."
-          imageUrl={admissionImage}
-          data-ai-hint="students applications"
+    <>
+        <Script
+            id="breadcrumb-schema"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+                __html: JSON.stringify(breadcrumbSchema),
+            }}
         />
-        <Breadcrumb />
-        <section className="py-16 md:py-24 bg-secondary/30">
-            <div className="container mx-auto px-6 max-w-7xl">
-                 <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold font-headline bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text">
-                        How to Apply
-                    </h2>
-                    <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
-                        Select an institution below to view the specific admission process for your desired program category.
-                    </p>
-                </div>
-                <div className="flex flex-col items-center space-y-12">
-                    {collegeAdmissionsData.map(college => (
-                        <CollegeAdmissionCard key={college.collegeName} collegeData={college} />
-                    ))}
-                </div>
-            </div>
-        </section>
-      </main>
-      <SiteFooter />
-    </div>
+        <Script
+            id="howto-schema"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+                __html: JSON.stringify(howToSchema),
+            }}
+        />
+        <div className="flex min-h-screen flex-col bg-background">
+            <SiteHeader />
+            <main>
+                <PageHeader
+                title="Admission Procedures"
+                description="Find detailed information on how to apply for our diverse range of programs."
+                imageUrl={admissionImage}
+                data-ai-hint="students applications"
+                />
+                <Breadcrumb />
+                <section className="py-16 md:py-24 bg-secondary/30">
+                    <div className="container mx-auto px-6 max-w-7xl">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold font-headline bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text">
+                                How to Apply
+                            </h2>
+                            <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">
+                                Select an institution below to view the specific admission process for your desired program category.
+                            </p>
+                        </div>
+                        <div className="flex flex-col items-center space-y-12">
+                            {collegeAdmissionsData.map(college => (
+                                <CollegeAdmissionCard key={college.collegeName} collegeData={college} />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <SiteFooter />
+        </div>
+    </>
   );
 }

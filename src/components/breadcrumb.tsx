@@ -6,14 +6,13 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronRight, Home } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import Script from 'next/script';
 
-type BreadcrumbItem = {
+export type BreadcrumbItem = {
   name: string;
   href: string;
 };
 
-const generateBreadcrumbs = (pathname: string): BreadcrumbItem[] => {
+export const generateBreadcrumbs = (pathname: string): BreadcrumbItem[] => {
   const pathSegments = pathname.split('/').filter(segment => segment);
   const breadcrumbs: BreadcrumbItem[] = [{ name: 'Home', href: '/' }];
 
@@ -37,26 +36,7 @@ export function Breadcrumb({ className }: { className?: string }) {
     return null;
   }
   
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": items.map((item, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "name": item.name,
-      "item": `https://egs-admissions-hub.vercel.app${item.href}`
-    }))
-  };
-
   return (
-    <>
-      <Script
-        id="breadcrumb-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
-        }}
-      />
       <nav aria-label="Breadcrumb" className={cn('bg-secondary/30', className)}>
         <div className="container mx-auto px-6">
           <ol className="flex items-center space-x-2 py-3 text-sm">
@@ -88,6 +68,5 @@ export function Breadcrumb({ className }: { className?: string }) {
           </ol>
         </div>
       </nav>
-    </>
   );
 }

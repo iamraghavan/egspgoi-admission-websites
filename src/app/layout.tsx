@@ -8,6 +8,8 @@ import Script from 'next/script';
 import GoogleAnalytics from '@/components/google-analytics';
 import { GA_MEASUREMENT_ID } from '@/lib/gtag';
 
+export const dynamic = 'force-dynamic';
+
 const fontPoppins = Poppins({
   subsets: ['latin'],
   display: 'swap',
@@ -22,67 +24,72 @@ const fontPtSans = PT_Sans({
   weight: ['400', '700'],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://egs-admissions-hub.vercel.app';
 
-// TODO: Update this with the actual production domain
-const siteUrl = 'https://egs-admissions-hub.vercel.app';
-
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: 'Admissions 2026–27 | EGS Pillay Group of Institutions, Nagapattinam',
-    template: '%s | EGS Admissions Hub',
-  },
-  description: 'Apply for Admissions 2026–27 at EGS Pillay Group of Institutions, Nagapattinam. Engineering, Arts & Science, Polytechnic, Nursing, Pharmacy, Education, Yoga & School courses available.',
-  manifest: '/manifest.json',
-  icons: {
-    icon: [
-        { url: '/icon.svg', type: 'image/svg+xml' },
-        { url: '/Icon.png', type: 'image/png' },
-    ],
-    apple: '/apple-icon.png',
-  },
-  openGraph: {
-    title: 'Admissions 2026–27 | EGS Pillay Group of Institutions, Nagapattinam',
+export function generateMetadata(): Metadata {
+  return {
+    metadataBase: new URL(siteUrl),
+    title: {
+      default: 'Admissions 2026–27 | EGS Pillay Group of Institutions, Nagapattinam',
+      template: '%s | EGS Admissions Hub',
+    },
     description: 'Apply for Admissions 2026–27 at EGS Pillay Group of Institutions, Nagapattinam. Engineering, Arts & Science, Polytechnic, Nursing, Pharmacy, Education, Yoga & School courses available.',
-    url: siteUrl,
-    siteName: 'EGS Admissions Hub',
-    images: [
-      {
-        url: `${siteUrl}/og-image.png`, // Must be an absolute URL
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    manifest: '/manifest.json',
+    icons: {
+      icon: [
+          { url: '/icon.svg', type: 'image/svg+xml' },
+          { url: '/Icon.png', type: 'image/png' },
+          { url: '/favicon.ico', sizes: 'any' }
+      ],
+      apple: '/apple-icon.png',
+    },
+    openGraph: {
+      title: 'Admissions 2026–27 | EGS Pillay Group of Institutions, Nagapattinam',
+      description: 'Apply for Admissions 2026–27 at EGS Pillay Group of Institutions, Nagapattinam. Engineering, Arts & Science, Polytechnic, Nursing, Pharmacy, Education, Yoga & School courses available.',
+      url: siteUrl,
+      siteName: 'EGS Admissions Hub',
+      images: [
+        {
+          url: `${siteUrl}/og-image.png`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: 'en_US',
+      type: 'website',
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Admissions 2026–27 | EGS Pillay Group of Institutions, Nagapattinam',
-    description: 'Apply for Admissions 2026–27 at EGS Pillay Group of Institutions, Nagapattinam. Engineering, Arts & Science, Polytechnic, Nursing, Pharmacy, Education, Yoga & School courses available.',
-    // TODO: add twitter user handle
-    // creator: '@handle', 
-    images: [`${siteUrl}/og-image.png`], // Must be an absolute URL
-  },
-};
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Admissions 2026–27 | EGS Pillay Group of Institutions, Nagapattinam',
+      description: 'Apply for Admissions 2026–27 at EGS Pillay Group of Institutions, Nagapattinam. Engineering, Arts & Science, Polytechnic, Nursing, Pharmacy, Education, Yoga & School courses available.',
+      images: [`${siteUrl}/og-image.png`],
+    },
+  };
+}
 
-const organizationSchema = {
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "CollegeOrUniversity",
     "name": "EGS Pillay Group of Institutions",
     "url": siteUrl,
-    "logo": `${siteUrl}/logo.png`,
+    "logo": `${siteUrl}/Icon.png`,
     "sameAs": [
         "https://www.facebook.com/egspecedu/",
         // Add other social media links
@@ -95,11 +102,6 @@ const organizationSchema = {
 };
 
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
        <head>

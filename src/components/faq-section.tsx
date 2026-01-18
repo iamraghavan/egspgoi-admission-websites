@@ -2,7 +2,6 @@
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
-import Script from "next/script";
 
 type FAQItem = {
   question: string;
@@ -24,31 +23,8 @@ export function FaqSection({
   faqsRight,
   className,
 }: FAQSectionProps) {
-
-  const allFaqs = [...faqsLeft, ...faqsRight];
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": allFaqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
   return (
     <section className={cn("w-full bg-gradient-to-r from-primary to-accent py-16 md:py-24", className)}>
-       <Script
-        id="faq-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema),
-        }}
-      />
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-10">

@@ -3,7 +3,10 @@ import { PageHeader } from '@/components/page-header';
 import { SiteHeader } from '@/components/site-header';
 import dynamic from 'next/dynamic';
 import type { Metadata } from 'next';
-import { Breadcrumb } from '@/components/breadcrumb';
+import { Breadcrumb, generateBreadcrumbs } from '@/components/breadcrumb';
+import Script from 'next/script';
+
+export const dynamic = 'force-dynamic';
 
 const FindProgram = dynamic(() => import('@/components/find-program').then(mod => mod.FindProgram));
 const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
@@ -14,22 +17,46 @@ export const metadata: Metadata = {
 };
 
 export default function AcademicsPage() {
+    const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://egs-admissions-hub.vercel.app';
+    const pathname = '/academics';
+
+    const breadcrumbItems = generateBreadcrumbs(pathname);
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": breadcrumbItems.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": `${siteUrl}${item.href}`
+        }))
+    };
+
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-        <SiteHeader />
-        <main>
-            <PageHeader
-                title="Our Academic Programs"
-                description="Explore a wide range of programs and find the one that's right for you."
-                imageUrl="https://picsum.photos/seed/academics/1600/400"
-                data-ai-hint="students library"
-            />
-            <Breadcrumb />
-            <div className="container mx-auto px-6 py-16">
-                <FindProgram />
-            </div>
-        </main>
-        <SiteFooter />
-    </div>
+    <>
+        <Script
+            id="breadcrumb-schema"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+                __html: JSON.stringify(breadcrumbSchema),
+            }}
+        />
+        <div className="flex min-h-screen flex-col bg-background">
+            <SiteHeader />
+            <main>
+                <PageHeader
+                    title="Our Academic Programs"
+                    description="Explore a wide range of programs and find the one that's right for you."
+                    imageUrl="https://picsum.photos/seed/academics/1600/400"
+                    data-ai-hint="students library"
+                />
+                <Breadcrumb />
+                <div className="container mx-auto px-6 py-16">
+                    <FindProgram />
+                </div>
+            </main>
+            <SiteFooter />
+        </div>
+    </>
   );
 }

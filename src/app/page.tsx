@@ -4,6 +4,7 @@ import { HeroSection } from '@/components/hero-section';
 import { LogoCloud } from '@/components/logo-cloud';
 import { SiteHeader } from '@/components/site-header';
 import dynamic from 'next/dynamic';
+import Script from 'next/script';
 
 const WhyChooseUsSection = dynamic(() => import('@/components/why-choose-us-section').then(mod => mod.WhyChooseUsSection));
 const CtaSection = dynamic(() => import('@/components/cta-section').then(mod => mod.CtaSection));
@@ -62,30 +63,53 @@ const faqsRight = [
 ];
 
 export default function Home() {
+    const allFaqs = [...faqsLeft, ...faqsRight];
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": allFaqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
+    };
+
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <SiteHeader />
-      <main className="flex-1">
-        <HeroSection />
-        <AccreditationLogos />
-        <AchievementsSection />
-        <WhyChooseUsSection />
-        <FindProgram />
-        <PlacementShowcase />
-        <LifeAtEgspSection />
-        <LogoCloud />
-        <FaqSection
-            faqsLeft={faqsLeft}
-            faqsRight={faqsRight}
+    <>
+        <Script
+            id="faq-schema"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+                __html: JSON.stringify(faqSchema),
+            }}
         />
-        <TestimonialSlider />
-        <CtaSection />
-      </main>
-      <div className="bg-gradient-to-r from-primary to-accent">
-        <hr className="border-t border-primary-foreground/20" />
-      </div>
-      <SiteFooter />
-    </div>
+        <div className="flex min-h-screen flex-col bg-background">
+        <SiteHeader />
+        <main className="flex-1">
+            <HeroSection />
+            <AccreditationLogos />
+            <AchievementsSection />
+            <WhyChooseUsSection />
+            <FindProgram />
+            <PlacementShowcase />
+            <LifeAtEgspSection />
+            <LogoCloud />
+            <FaqSection
+                faqsLeft={faqsLeft}
+                faqsRight={faqsRight}
+            />
+            <TestimonialSlider />
+            <CtaSection />
+        </main>
+        <div className="bg-gradient-to-r from-primary to-accent">
+            <hr className="border-t border-primary-foreground/20" />
+        </div>
+        <SiteFooter />
+        </div>
+    </>
   );
 }
 
