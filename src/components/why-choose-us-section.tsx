@@ -18,7 +18,7 @@ const ImageCard = ({ id, alt, className, hint }: { id: string; alt: string; clas
     if (!image) return <div className={cn("bg-muted rounded-xl", className)}></div>;
     return (
         <div className={cn('relative rounded-xl overflow-hidden shadow-lg', className)}>
-            <Image src={image.imageUrl} alt={alt} fill className="object-cover" data-ai-hint={hint} sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw" />
+            <Image src={image.imageUrl} alt={alt} fill className="object-cover" data-ai-hint={hint} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 25vw, 20vw" />
         </div>
     );
 };
@@ -47,22 +47,22 @@ export function WhyChooseUsSection() {
                         <div className="hidden lg:block absolute -top-8 -left-8 w-24 h-24 bg-primary/10 rounded-full -z-10" />
                         <div className="hidden lg:block absolute -bottom-8 -right-8 w-24 h-24 bg-accent/10 rounded-full -z-10" />
 
-                        <div className="grid grid-cols-3 gap-4 auto-rows-fr">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-fr">
                             <StatCard className="bg-accent text-accent-foreground">
                                 <p className="text-4xl font-bold font-headline">A++</p>
                                 <p className="font-semibold font-headline mt-1">NAAC ACCREDITATION</p>
                                 <p className="text-sm font-medium">Highest Grade</p>
                             </StatCard>
-                            <StatCard className="bg-primary col-span-2">
+                            <StatCard className="bg-primary md:col-span-2">
                                 <p className="text-sm font-body">RANKED IN</p>
                                 <p className="text-3xl font-bold font-headline">NIRF 2025</p>
                                 <p className="font-semibold font-headline">201 - 300 BAND</p>
                                 <p className="text-xs font-body">UNDER ENGINEERING CATEGORY</p>
                             </StatCard>
 
-                            <ImageCard id="why-choose-us-2" alt="Campus aerial view" className="aspect-[4/3]" hint="campus aerial" />
-                            <ImageCard id="why-choose-us-3" alt="Smiling students" className="col-span-1 row-span-2 h-full min-h-[300px]" hint="students smiling" />
-                            <ImageCard id="why-choose-us-1" alt="Students in makerspace" className="aspect-[4/3]" hint="students learning" />
+                            <ImageCard id="why-choose-us-2" alt="Campus aerial view" className="aspect-video md:aspect-[4/3]" hint="campus aerial" />
+                            <ImageCard id="why-choose-us-3" alt="Smiling students" className="md:row-span-2 h-full min-h-[300px]" hint="students smiling" />
+                            <ImageCard id="why-choose-us-1" alt="Students in makerspace" className="aspect-video md:aspect-[4/3]" hint="students learning" />
                             
                             <StatCard className="bg-primary">
                                 <p className="text-4xl font-bold font-headline">Tier-1</p>
@@ -74,8 +74,8 @@ export function WhyChooseUsSection() {
                                 <p className="font-semibold font-headline mt-1">INDUSTRY MoU's</p>
                             </StatCard>
 
-                            <ImageCard id="why-choose-us-4" alt="Students in a lab" className="aspect-[4/3]" hint="students lab" />
-                            <StatCard className="bg-primary col-span-2">
+                            <ImageCard id="why-choose-us-4" alt="Students in a lab" className="aspect-video md:aspect-[4/3]" hint="students lab" />
+                            <StatCard className="bg-primary md:col-span-2">
                                 <p className="text-3xl font-bold font-headline">95%+ </p>
                                 <p className="font-semibold font-headline mt-1">PLACEMENT RECORD</p>
                             </StatCard>
