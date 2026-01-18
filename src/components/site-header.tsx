@@ -9,6 +9,7 @@ import { MegaMenu } from './mega-menu';
 import Image from 'next/image';
 import logo from '@/app/assets/logo/egspgoi_svg.svg';
 import { MobileNavWrapper } from './mobile-nav-wrapper';
+import { Calendar, Search } from 'lucide-react';
 
 const navLinks = [
   { text: 'Academics', href: '/academics' },
@@ -92,6 +93,14 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex flex-1 items-center justify-end space-x-2">
+            <Button variant="ghost" size="icon" className="hidden md:inline-flex">
+              <Search className="h-5 w-5" />
+              <span className="sr-only">Search</span>
+            </Button>
+            <Button variant="ghost" size="icon" className="hidden md:inline-flex">
+              <Calendar className="h-5 w-5" />
+              <span className="sr-only">Events</span>
+            </Button>
             <Button className="hidden md:inline-flex" asChild>
               <Link href="#apply">Apply Now</Link>
             </Button>
