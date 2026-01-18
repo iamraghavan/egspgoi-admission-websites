@@ -247,4 +247,4 @@ enterprise usage**, and **zero unauthorized reuse**.
 
 > 💡 _Built with ❤️ using Next.js, Tailwind CSS, and ShadCN UI_
 
-<!-- 01 -->
+<!-- 02 -->
