@@ -1,0 +1,119 @@
+# Understanding Google Analytics Custom Events
+
+This document explains what custom events are in Google Analytics (GA4), how to create them, and how they can be used to measure important user interactions on your website.
+
+---
+
+## 1. What are Custom Events?
+
+While Google Analytics automatically tracks basic events like `page_view` and `scroll`, **custom events** allow you to measure specific interactions that are unique and important to your business goals.
+
+For your admissions website, these could be actions like:
+-   Submitting the enquiry form (`form_submit`)
+-   Clicking the "Explore Programs" button (`explore_programs_click`)
+-   Starting a search in the mega menu (`program_search`)
+-   Clicking a specific college link (`college_link_click`)
+
+By tracking these, you can understand exactly how users are interacting with your site's key features and build detailed reports on user behavior.
+
+---
+
+## 2. What are "Key Events" (formerly Conversions)?
+
+A **Key Event** is any event that you consider valuable to your business. When you mark an event as a key event in the Google Analytics UI, GA4 will treat it as a conversion.
+
+For your website, the most important key event is a successful form submission. By marking the `form_submit` event as a key event, you can:
+-   Track your website's conversion rate.
+-   See which traffic sources (e.g., Google Search, Facebook Ads) are driving the most applications.
+-   Optimize your marketing campaigns to focus on what works.
+
+> **Note:** Any event you create can be turned into a key event with a simple toggle in the GA4 interface.
+
+---
+
+## 3. How to Create and Install Events
+
+There are two primary ways to create events: without code (in the GA UI) or with code (on your website).
+
+### Method 1: Create Without Code (In the GA UI)
+
+This method is useful for creating a new event based on an *existing* event. For example, you could create a new event called `engineering_page_view` that triggers every time a `page_view` event occurs on a page with `/engineering/` in the URL.
+
+-   **Use Case:** Good for simple events based on page views or other standard interactions without needing to change the website's code.
+-   **Limitation:** It's not suitable for tracking unique interactions like a successful form submission, which requires validation and happens after a user action.
+
+### Method 2: Create With Code (Recommended for Your App)
+
+This is the most powerful and reliable method. You add a small snippet of JavaScript to your website to send an event to Google Analytics whenever a specific action occurs.
+
+Your application is already set up with a helper function to make this easy.
+
+**File:** `src/lib/gtag.ts`
+
+This file contains an `event` function that you can call from any client-side component or page.
+
+```javascript
+// src/lib/gtag.ts
+export const event = ({ action, category, label, value }) => {
+  if (!GA_MEASUREMENT_ID || typeof window.gtag !== 'function') return;
+  window.gtag('event', action, {
+    event_category: category,
+    event_label: label,
+    value: value,
+  });
+};
+```
+
+#### **How to Use It in Your Website (Code Example)**
+
+Let's look at how the successful form submission event is already implemented in your `AdmissionForm` component.
+
+**File:** `src/components/admission-form.tsx`
+
+Inside the `onSubmit` function, after the form is successfully submitted to your backend, we call the `gtag.event` function:
+
+```typescript
+'use client';
+
+// ... other imports
+import * as gtag from '@/lib/gtag'; // 1. Import the gtag helper
+
+// ...
+
+export function AdmissionForm() {
+  // ... form setup
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    // ... payload preparation
+
+    try {
+      const result = await submitLead(apiPayload);
+
+      if (result && result.success) {
+        
+        // 2. Call the event function on success
+        gtag.event({
+          action: 'form_submit',      // This is the event name
+          category: 'Admissions',
+          label: 'Admission Form Submitted',
+        });
+
+        // ... redirect the user to the success page
+      } else {
+        throw new Error(result.message);
+      }
+    } catch (error: any) {
+      // ... handle error
+    }
+  }
+
+  // ... rest of the component
+}
+```
+
+**Breakdown of the Code:**
+1.  We import the `gtag` helper functions.
+2.  After a successful API response (`result.success`), we trigger the custom event.
+3.  The `action` property (`'form_submit'`) is the **event name** that will appear in your Google Analytics reports.
+
+You can use this same pattern anywhere in your application to track other important user interactions. For instance, you could add an event for when a user clicks the "Explore Programs" button in the hero section.
