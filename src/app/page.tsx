@@ -12,6 +12,7 @@ const FindProgram = dynamic(() => import('@/components/find-program').then(mod =
 const PlacementShowcase = dynamic(() => import('@/components/placement-showcase').then(mod => mod.PlacementShowcase));
 const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
 const TestimonialSlider = dynamic(() => import('@/components/testimonial-slider').then(mod => mod.TestimonialSlider));
+const LifeAtEgspSection = dynamic(() => import('@/components/life-at-egsp-section').then(mod => mod.LifeAtEgspSection));
 
 
 const faqsLeft = [
@@ -71,6 +72,7 @@ export default function Home() {
         <WhyChooseUsSection />
         <FindProgram />
         <PlacementShowcase />
+        <LifeAtEgspSection />
         <LogoCloud />
         <FaqSection
             faqsLeft={faqsLeft}
