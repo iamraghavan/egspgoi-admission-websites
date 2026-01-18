@@ -68,13 +68,13 @@ export function WhyChooseUsSection() {
                                 <p className="font-semibold mt-1">NBA ACCREDITATION</p>
                                 <p className="text-sm font-medium">Washington Accord</p>
                             </StatCard>
-                             <StatCard className="bg-secondary text-secondary-foreground">
+                             <StatCard className="bg-accent text-accent-foreground">
                                 <p className="text-4xl font-bold">150+</p>
                                 <p className="font-semibold mt-1">INDUSTRY MoU's</p>
                             </StatCard>
 
                             <ImageCard id="why-choose-us-4" alt="Students in a lab" className="aspect-[4/3]" hint="students lab" />
-                            <StatCard className="bg-secondary text-secondary-foreground col-span-2">
+                            <StatCard className="bg-primary col-span-2">
                                 <p className="text-3xl font-bold">95%+ </p>
                                 <p className="font-semibold mt-1">PLACEMENT RECORD</p>
                             </StatCard>
