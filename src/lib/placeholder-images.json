@@ -183,32 +183,56 @@
     {
       "id": "partner-27",
       "description": "Logo of a placement partner",
-      "imageUrl": "https://images.unsplash.com/photo-1562705121-e624542c7b9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y29tcGFueSUyMGxvZ298ZW58MHx8fHwxNzY0NDg4OTY2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1562705121-e624542c7b9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y29tcGFueSUyMGxvZ298ZW58MHx8fHwxNzY0NDg4OTY2fDA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "company logo"
     },
     {
       "id": "partner-28",
       "description": "Logo of a placement partner",
-      "imageUrl": "https://images.unsplash.com/photo-1687523327554-fa9f50423489?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjQ0ODg5NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1687523327554-fa9f50423489?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjQ0ODg5NjZ8MA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "company logo"
     },
     {
       "id": "partner-29",
       "description": "Logo of a placement partner",
-      "imageUrl": "https://images.unsplash.com/photo-1620288627223-53302f4e8c74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjQ0ODg5NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1620288627223-53302f4e8c74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjQ0ODg5NjZ8MA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "company logo"
     },
     {
       "id": "partner-30",
       "description": "Logo of a placement partner",
-      "imageUrl": "https://images.unsplash.com/photo-1529612700005-e35377bf1415?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjQ0ODg5NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1529612700005-e35377bf1415?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjQ0ODg5NjZ8MA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "company logo"
     },
     {
       "id": "partner-31",
       "description": "Logo of a placement partner",
-      "imageUrl": "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjQ0ODg5NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjQ0ODg5NjZ8MA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "company logo"
+    },
+    {
+      "id": "why-choose-us-1",
+      "description": "Students collaborating in a makerspace",
+      "imageUrl": "https://images.unsplash.com/photo-1625111380820-9a371d413cc4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzdHVkZW50cyUyMGxlYXJuaW5nfGVufDB8fHx8MTc2ODcwNDQ2NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "students learning"
+    },
+    {
+      "id": "why-choose-us-2",
+      "description": "Aerial view of the university campus",
+      "imageUrl": "https://images.unsplash.com/photo-1766459842752-e06f749c0b54?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjYW1wdXMlMjBhZXJpYWx8ZW58MHx8fHwxNzY4NzA0NDYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "campus aerial"
+    },
+    {
+      "id": "why-choose-us-3",
+      "description": "Happy students on campus",
+      "imageUrl": "https://images.unsplash.com/photo-1634219325274-53add2ddd28b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzdHVkZW50cyUyMHNtaWxpbmd8ZW58MHx8fHwxNzY4NzA0NDY0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "students smiling"
+    },
+    {
+      "id": "why-choose-us-4",
+      "description": "Students working with electronics in a lab",
+      "imageUrl": "https://images.unsplash.com/photo-1727519457936-1b24c507d4b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3R1ZGVudHMlMjBsYWJ8ZW58MHx8fHwxNzY4NjQyNjgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "students lab"
     }
   ]
 }

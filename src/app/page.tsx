@@ -5,6 +5,7 @@ import { LogoCloud } from '@/components/logo-cloud';
 import { SiteHeader } from '@/components/site-header';
 import dynamic from 'next/dynamic';
 
+const WhyChooseUsSection = dynamic(() => import('@/components/why-choose-us-section').then(mod => mod.WhyChooseUsSection));
 const CtaSection = dynamic(() => import('@/components/cta-section').then(mod => mod.CtaSection));
 const FaqSection = dynamic(() => import('@/components/faq-section').then(mod => mod.FaqSection));
 const FindProgram = dynamic(() => import('@/components/find-program').then(mod => mod.FindProgram));
@@ -67,6 +68,7 @@ export default function Home() {
         <HeroSection />
         <AccreditationLogos />
         <AchievementsSection />
+        <WhyChooseUsSection />
         <FindProgram />
         <PlacementShowcase />
         <LogoCloud />
