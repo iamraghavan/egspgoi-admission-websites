@@ -23,13 +23,13 @@ In your application, Google Analytics is already set up to track page views and 
 
 While standard Google Analytics tracks events happening in the user's browser (client-side), the **Measurement Protocol** allows you to send data directly from your **server-side applications** to Google Analytics.
 
-### Key Use Cases:
+### Key Use Cases for Your Website:
 
 This is for tracking events that happen *outside* of the user's direct interaction with the website. For example:
 
-*   **CRM Integration:** A lead submitted on your website is later qualified as "high-value" in your internal CRM. You can use the Measurement Protocol to send an event from your CRM to Google Analytics to enrich that user's profile.
-*   **Backend Processes:** A user makes a purchase, and the payment is processed on your backend. You can send a `purchase` event from your server once the payment is successfully confirmed, which is more reliable than tracking a "thank you" page view.
-*   **Offline Events:** Tracking interactions from internet-connected devices that aren't web browsers, like a point-of-sale system or an in-store kiosk.
+*   **CRM Integration:** An enquiry submitted on your website is later qualified as a "high-value" lead in an internal system. You can use the Measurement Protocol to send an event from your server to Google Analytics to enrich that user's profile and track the true conversion rate.
+*   **Backend Processes:** After a successful enquiry submission via your `submitLead` server action, you could send a more reliable `enquiry_submitted` event from the server. This is more accurate than just tracking a "thank you" page view, which a user might close before it loads.
+*   **Offline Events:** If your admissions team follows up with a student by phone and that student confirms their enrollment, you could send an `enrollment_confirmed` event from your backend system.
 
 ### What is the API Secret?
 
@@ -38,7 +38,50 @@ The **API Secret** is a password for your data stream. Its purpose is **security
 *   **Authentication:** It proves that the data being sent from your server is legitimate and that you have authorized it.
 *   **Prevents Spam:** Without a secret, anyone who knows your `measurement_id` could send fake data (spam) to your Google Analytics property, corrupting your reports.
 
-**How to Use It:**
-The API secret must be kept **secure on your server**. It should be stored as an environment variable and **NEVER** exposed in your client-side code (i.e., not in your Next.js components). When you make an HTTP POST request from your server to the Google Analytics endpoint, you include the `api_secret` in the query string of the request URL.
+### How to Use It for Your Website:
 
-This ensures that only your trusted backend can send events via the Measurement Protocol.
+The API secret must be kept **secure on your server**. It should be stored as an environment variable (e.g., `GA_API_SECRET`) and **NEVER** exposed in your client-side code (i.e., not in your Next.js components).
+
+You use it by making an HTTP POST request from your server (e.g., within a Next.js Server Action or API Route) to the Google Analytics Measurement Protocol endpoint.
+
+**Example: Sending a `lead_qualified` event from the server**
+
+Let's say after a user submits an enquiry form, your backend system qualifies them as a high-potential lead. You could send this event to GA4 from a Server Action like this:
+
+```javascript
+// This code would run on your server, NOT in the browser.
+
+const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID; // Your GA4 Measurement ID
+const apiSecret = process.env.GA_API_SECRET; // Your secret from an environment variable
+
+async function sendLeadQualifiedEvent(clientId: string) {
+  // Ensure required variables are present
+  if (!measurementId || !apiSecret) {
+    console.warn("Google Analytics environment variables not set. Skipping event.");
+    return;
+  }
+
+  try {
+    await fetch(`https://www.google-analytics.com/mp/collect?measurement_id=${measurementId}&api_secret=${apiSecret}`, {
+      method: "POST",
+      body: JSON.stringify({
+        client_id: clientId, // The client_id from the user's browser session
+        events: [{
+          name: 'lead_qualified',
+          params: {
+            'engagement_time_msec': '100', // Example parameter
+            'value': 50 // Example: assign a monetary value to this conversion
+          },
+        }]
+      })
+    });
+  } catch (error) {
+    console.error("Failed to send event to Google Analytics", error);
+  }
+}
+
+// You would call this function from your backend logic after a lead is qualified, e.g.,
+// sendLeadQualifiedEvent('some_client_id_from_user');
+```
+
+This ensures that only your trusted backend can send these valuable conversion events, preventing spam and keeping your analytics data clean.
