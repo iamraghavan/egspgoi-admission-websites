@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Image from 'next/image';
 import { Button } from './ui/button';
@@ -48,13 +49,13 @@ export function WhyChooseUsSection() {
 
                         <div className="grid grid-cols-3 gap-4 auto-rows-fr">
                             <StatCard className="bg-accent text-accent-foreground">
-                                <p className="text-4xl font-bold">A++</p>
+                                <p className="text-4xl font-bold font-headline">A++</p>
                                 <p className="font-semibold mt-1">NAAC ACCREDITATION</p>
                                 <p className="text-sm font-medium">Highest Grade</p>
                             </StatCard>
                             <StatCard className="bg-primary col-span-2">
                                 <p className="text-sm">RANKED IN</p>
-                                <p className="text-3xl font-bold">NIRF 2025</p>
+                                <p className="text-3xl font-bold font-headline">NIRF 2025</p>
                                 <p className="font-semibold">201 - 300 BAND</p>
                                 <p className="text-xs">UNDER ENGINEERING CATEGORY</p>
                             </StatCard>
@@ -64,18 +65,18 @@ export function WhyChooseUsSection() {
                             <ImageCard id="why-choose-us-1" alt="Students in makerspace" className="aspect-[4/3]" hint="students learning" />
                             
                             <StatCard className="bg-primary">
-                                <p className="text-4xl font-bold">Tier-1</p>
+                                <p className="text-4xl font-bold font-headline">Tier-1</p>
                                 <p className="font-semibold mt-1">NBA ACCREDITATION</p>
                                 <p className="text-sm font-medium">Washington Accord</p>
                             </StatCard>
                              <StatCard className="bg-accent text-accent-foreground">
-                                <p className="text-4xl font-bold">150+</p>
+                                <p className="text-4xl font-bold font-headline">150+</p>
                                 <p className="font-semibold mt-1">INDUSTRY MoU's</p>
                             </StatCard>
 
                             <ImageCard id="why-choose-us-4" alt="Students in a lab" className="aspect-[4/3]" hint="students lab" />
                             <StatCard className="bg-primary col-span-2">
-                                <p className="text-3xl font-bold">95%+ </p>
+                                <p className="text-3xl font-bold font-headline">95%+ </p>
                                 <p className="font-semibold mt-1">PLACEMENT RECORD</p>
                             </StatCard>
                         </div>
