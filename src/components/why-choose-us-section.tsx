@@ -30,9 +30,9 @@ export function WhyChooseUsSection() {
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
                     <div className="lg:col-span-5">
                         <h2 className="text-3xl md:text-4xl font-bold font-headline leading-tight bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text">
-                            EXCELLENCE IN EDUCATION.<br/>
-                            PIONEERING IN RESEARCH.<br/>
-                            A LEGACY OF SUCCESS.
+                            TOP-RANKED EDUCATION.<br/>
+                            INNOVATIVE RESEARCH.<br/>
+                            EXCEPTIONAL CAREERS.
                         </h2>
                         <div className="w-20 h-1.5 bg-accent my-6 rounded-full"></div>
                         <p className="text-muted-foreground leading-relaxed font-body">
@@ -54,10 +54,10 @@ export function WhyChooseUsSection() {
                                 <p className="text-sm font-medium">Highest Grade</p>
                             </StatCard>
                             <StatCard className="bg-primary col-span-2">
-                                <p className="text-sm">RANKED IN</p>
+                                <p className="text-sm font-body">RANKED IN</p>
                                 <p className="text-3xl font-bold font-headline">NIRF 2025</p>
                                 <p className="font-semibold font-headline">201 - 300 BAND</p>
-                                <p className="text-xs">UNDER ENGINEERING CATEGORY</p>
+                                <p className="text-xs font-body">UNDER ENGINEERING CATEGORY</p>
                             </StatCard>
 
                             <ImageCard id="why-choose-us-2" alt="Campus aerial view" className="aspect-[4/3]" hint="campus aerial" />
