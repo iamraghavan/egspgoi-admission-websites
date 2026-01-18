@@ -51,7 +51,7 @@ export function generateMetadata(): Metadata {
       siteName: 'EGS Admissions Hub',
       images: [
         {
-          url: `${siteUrl}/og-image.png`,
+          url: `${siteUrl}/og-image.webp`,
           width: 1200,
           height: 630,
         },
@@ -74,7 +74,7 @@ export function generateMetadata(): Metadata {
       card: 'summary_large_image',
       title: 'Admissions 2026–27 | EGS Pillay Group of Institutions, Nagapattinam',
       description: 'Apply for Admissions 2026–27 at EGS Pillay Group of Institutions, Nagapattinam. Engineering, Arts & Science, Polytechnic, Nursing, Pharmacy, Education, Yoga & School courses available.',
-      images: [`${siteUrl}/og-image.png`],
+      images: [`${siteUrl}/og-image.webp`],
     },
   };
 }

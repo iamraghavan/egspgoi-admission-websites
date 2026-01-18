@@ -72,7 +72,7 @@ export async function generateMetadata({ searchParams }: { searchParams: { [key:
   
     const defaultTitle = 'Admissions 2026–27 | EGS Pillay Group of Institutions, Nagapattinam';
     const defaultDescription = 'Apply for Admissions 2026–27 at EGS Pillay Group of Institutions, Nagapattinam. Engineering, Arts & Science, Polytechnic, Nursing, Pharmacy, Education, Yoga & School courses available.';
-    const defaultOgImage = `${siteUrl}/og-image.png`;
+    const defaultOgImage = `${siteUrl}/og-image.webp`;
   
     if (!query) {
       return {
