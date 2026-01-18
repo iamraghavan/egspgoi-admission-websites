@@ -33,6 +33,14 @@ export const metadata: Metadata = {
     template: '%s | EGS Admissions Hub',
   },
   description: 'Your gateway to a premier education at EGS Pillay Group of Institutions. Explore and apply to our top-tier Engineering, Arts, Science, and Management programs.',
+  manifest: '/manifest.json',
+  icons: {
+    icon: [
+        { url: '/icon.svg', type: 'image/svg+xml' },
+        { url: '/Icon.png', type: 'image/png' },
+    ],
+    apple: '/apple-icon.png',
+  },
   openGraph: {
     title: 'EGS Admissions Hub',
     description: 'Your gateway to a premier education at EGS Pillay Group of Institutions.',
