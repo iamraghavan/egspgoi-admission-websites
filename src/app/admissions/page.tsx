@@ -261,6 +261,7 @@ export default function AdmissionsPage() {
                 title="Admission Procedures"
                 description="Find detailed information on how to apply for our diverse range of programs."
                 imageUrl={admissionImage}
+                imageAlt="A wide shot of the EGS Pillay Engineering College building on a sunny day."
                 data-ai-hint="students applications"
                 />
                 <Breadcrumb />

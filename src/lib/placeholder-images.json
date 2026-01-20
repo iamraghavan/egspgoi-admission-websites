@@ -7,6 +7,12 @@
       "imageHint": "university campus"
     },
     {
+      "id": "academics-header",
+      "description": "A group of university students collaborating and studying together in a modern, well-lit library.",
+      "imageUrl": "https://images.unsplash.com/photo-1752920299211-28be8c9b0121?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzdHVkZW50cyUyMGxpYnJhcnl8ZW58MHx8fHwxNzY4ODQzMTU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "students library"
+    },
+    {
       "id": "testimonial-1",
       "description": "Avatar of a female student",
       "imageUrl": "https://images.unsplash.com/photo-1729824186568-be656d0eecf9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzdHVkZW50JTIwYXZhdGFyfGVufDB8fHx8MTc2NDQ3ODE0OXww&ixlib=rb-4.1.0&q=80&w=1080",

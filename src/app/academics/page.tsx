@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 import { Breadcrumb, generateBreadcrumbs } from '@/components/breadcrumb';
 import Script from 'next/script';
 import { siteConfig } from '@/lib/config';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export const dynamic = 'force-dynamic';
 
@@ -32,6 +33,8 @@ export default function AcademicsPage() {
           "item": `${siteUrl}${item.href}`
         }))
     };
+    
+    const headerImage = PlaceHolderImages.find(p => p.id === 'academics-header');
 
   return (
     <>
@@ -48,8 +51,9 @@ export default function AcademicsPage() {
                 <PageHeader
                     title="Our Academic Programs"
                     description="Explore a wide range of programs and find the one that's right for you."
-                    imageUrl="https://picsum.photos/seed/academics/1600/400"
-                    data-ai-hint="students library"
+                    imageUrl={headerImage?.imageUrl || "https://picsum.photos/seed/academics/1600/400"}
+                    imageAlt={headerImage?.description}
+                    data-ai-hint={headerImage?.imageHint || "students library"}
                 />
                 <Breadcrumb />
                 <div className="container mx-auto px-6 py-16">
