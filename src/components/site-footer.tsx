@@ -45,7 +45,7 @@ const aboutEgspLinks = [
 
 
 const mediaLinks = [
-    { name: 'Virtual Tour', href: '#', icon: View },
+    { name: 'Virtual Tour', href: '/stories/campus-tour', icon: View },
     { name: 'Videos', href: '#', icon: Video },
     { name: 'Community Radio', href: '#', icon: Radio },
 ]
