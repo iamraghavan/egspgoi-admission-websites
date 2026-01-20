@@ -209,6 +209,28 @@ export default function AdmissionsPage() {
         )
     };
 
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Admission Procedures for EGS Pillay Group of Institutions",
+        "description": "Find detailed information on how to apply for our diverse range of programs. Get insights into eligibility, application steps, and contact details for our admissions team.",
+        "image": `${siteUrl}/og-image.webp`,
+        "author": {
+            "@type": "Organization",
+            "name": "EGS Pillay Group of Institutions"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "EGS Pillay Group of Institutions",
+            "logo": {
+              "@type": "ImageObject",
+              "url": `${siteUrl}/Icon.png`
+            }
+        },
+        "datePublished": "2024-01-01T08:00:00+05:30",
+        "dateModified": new Date().toISOString()
+    };
+
   return (
     <>
         <Script
@@ -223,6 +245,13 @@ export default function AdmissionsPage() {
             type="application/ld+json"
             dangerouslySetInnerHTML={{
                 __html: JSON.stringify(howToSchema),
+            }}
+        />
+        <Script
+            id="article-schema"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+                __html: JSON.stringify(articleSchema),
             }}
         />
         <div className="flex min-h-screen flex-col bg-background">
