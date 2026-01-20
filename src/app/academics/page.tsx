@@ -3,9 +3,7 @@ import { PageHeader } from '@/components/page-header';
 import { SiteHeader } from '@/components/site-header';
 import dynamicImport from 'next/dynamic';
 import type { Metadata } from 'next';
-import { Breadcrumb, generateBreadcrumbs } from '@/components/breadcrumb';
-import Script from 'next/script';
-import { siteConfig } from '@/lib/config';
+import { Breadcrumb } from '@/components/breadcrumb';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export const dynamic = 'force-dynamic';
@@ -19,32 +17,10 @@ export const metadata: Metadata = {
 };
 
 export default function AcademicsPage() {
-    const siteUrl = siteConfig.baseUrl;
-    const pathname = '/academics';
-
-    const breadcrumbItems = generateBreadcrumbs(pathname);
-    const breadcrumbSchema = {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": breadcrumbItems.map((item, index) => ({
-          "@type": "ListItem",
-          "position": index + 1,
-          "name": item.name,
-          "item": `${siteUrl}${item.href}`
-        }))
-    };
-    
     const headerImage = PlaceHolderImages.find(p => p.id === 'academics-header');
 
   return (
     <>
-        <Script
-            id="breadcrumb-schema"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-                __html: JSON.stringify(breadcrumbSchema),
-            }}
-        />
         <div className="flex min-h-screen flex-col bg-background">
             <SiteHeader />
             <main>

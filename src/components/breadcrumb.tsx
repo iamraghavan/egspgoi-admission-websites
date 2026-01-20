@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from 'react';
@@ -6,6 +5,8 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronRight, Home } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Script from 'next/script';
+import { siteConfig } from '@/lib/config';
 
 export type BreadcrumbItem = {
   name: string;
@@ -31,12 +32,32 @@ export const generateBreadcrumbs = (pathname: string): BreadcrumbItem[] => {
 export function Breadcrumb({ className }: { className?: string }) {
   const pathname = usePathname();
   const items = generateBreadcrumbs(pathname);
+  const siteUrl = siteConfig.baseUrl;
 
   if (items.length <= 1) {
     return null;
   }
   
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": items.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": `${siteUrl}${item.href}`
+    }))
+  };
+
   return (
+    <>
+      <Script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+            __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
       <nav aria-label="Breadcrumb" className={cn('bg-secondary/30', className)}>
         <div className="container mx-auto px-6">
           <ol className="flex items-center space-x-2 py-3 text-sm">
@@ -68,5 +89,6 @@ export function Breadcrumb({ className }: { className?: string }) {
           </ol>
         </div>
       </nav>
+    </>
   );
 }

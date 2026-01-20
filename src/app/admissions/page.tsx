@@ -8,7 +8,7 @@ import React from 'react';
 import admissionImage from '@/app/assets/engineering_college.webp';
 import dynamicImport from 'next/dynamic';
 import type { Metadata } from 'next';
-import { Breadcrumb, generateBreadcrumbs } from '@/components/breadcrumb';
+import { Breadcrumb } from '@/components/breadcrumb';
 import Script from 'next/script';
 import { siteConfig } from '@/lib/config';
 
@@ -177,19 +177,6 @@ const CollegeAdmissionCard = ({ collegeData }: { collegeData: typeof collegeAdmi
 
 export default function AdmissionsPage() {
     const siteUrl = siteConfig.baseUrl;
-    const pathname = '/admissions';
-
-    const breadcrumbItems = generateBreadcrumbs(pathname);
-    const breadcrumbSchema = {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": breadcrumbItems.map((item, index) => ({
-            "@type": "ListItem",
-            "position": index + 1,
-            "name": item.name,
-            "item": `${siteUrl}${item.href}`
-        }))
-    };
 
     const howToSchema = {
         "@context": "https://schema.org",
@@ -233,13 +220,6 @@ export default function AdmissionsPage() {
 
   return (
     <>
-        <Script
-            id="breadcrumb-schema"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-                __html: JSON.stringify(breadcrumbSchema),
-            }}
-        />
         <Script
             id="howto-schema"
             type="application/ld+json"
