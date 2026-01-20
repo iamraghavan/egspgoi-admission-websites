@@ -48,7 +48,7 @@ const TestimonialCard = ({
       <div className="flex-grow">"{quote}"</div>
       <div className="flex items-center gap-4 mt-5">
         <Avatar>
-            {imageUrl && <AvatarImage src={imageUrl} alt={name} />}
+            {imageUrl && <AvatarImage src={imageUrl} alt={`Profile picture of ${name}`} />}
             <AvatarFallback>{name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col">

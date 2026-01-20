@@ -48,10 +48,10 @@ export function CtaSection() {
               </a>
             </p>
             <a
-              href="#contact"
+              href="#apply"
               className="inline-block px-8 py-3 bg-white text-primary hover:bg-white/90 transition-all rounded-md font-bold uppercase text-sm mt-2"
             >
-              Contact Us
+              Apply Now
             </a>
           </div>
 
@@ -97,7 +97,7 @@ export function CtaSection() {
               <div>
                 <h3 className="text-xl font-bold font-headline">Visit Our Office</h3>
                 <p className="text-primary-foreground/80 mb-2 max-w-xs">{contactInfo.visit.address}</p>
-                <a href="#" className="font-semibold hover:underline text-white">Get Directions</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=E.G.S.+Pillay+Engineering+College" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-white">Get Directions</a>
               </div>
             </div>
           </div>
