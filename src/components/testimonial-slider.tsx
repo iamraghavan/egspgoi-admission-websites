@@ -112,7 +112,9 @@ export function TestimonialSlider() {
           'https://alumni.egspgroup.in/api/alumni?auth=raghavan&key=1407'
         );
         if (!response.ok) {
-            throw new Error('Failed to fetch alumni data.');
+            console.warn(`Failed to fetch alumni data (status: ${response.status}). Using fallback testimonials.`);
+            setTestimonials(fallbackTestimonials);
+            return;
         }
         const data = await response.json();
         const alumniData: Alumni[] = data.data.slice(0, 6); // Limit to 6 for 3 columns of 2
@@ -143,7 +145,7 @@ export function TestimonialSlider() {
             setTestimonials(fallbackTestimonials);
         }
       } catch (error) {
-        console.error('Failed to fetch or generate testimonials:', error);
+        console.warn('Failed to fetch or generate testimonials:', error);
         // Fallback for testimonials if API fails or rate limit is exceeded
         setTestimonials(fallbackTestimonials);
       } finally {
