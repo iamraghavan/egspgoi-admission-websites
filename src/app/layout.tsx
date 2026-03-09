@@ -6,7 +6,6 @@ import { Poppins, PT_Sans } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import Script from 'next/script';
 import GoogleAnalytics from '@/components/google-analytics';
-import { GA_MEASUREMENT_ID } from '@/lib/gtag';
 import { siteConfig } from '@/lib/config';
 
 export const dynamic = 'force-dynamic';
@@ -159,6 +158,7 @@ const websiteSchema = {
             `,
           }}
         />
+        <GoogleAnalytics />
       </head>
       <body
         suppressHydrationWarning
@@ -173,7 +173,6 @@ const websiteSchema = {
           src="https://www.facebook.com/tr?id=660713297027148&ev=PageView&noscript=1"
           />
         </noscript>
-        {GA_MEASUREMENT_ID && <GoogleAnalytics />}
         {children}
         <Toaster />
       </body>
