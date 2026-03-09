@@ -1,3 +1,4 @@
+'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -5,6 +6,7 @@ import logo from '@/app/assets/logo/egspgoi_svg_white.svg';
 import { Facebook, Instagram, Linkedin, Radio, Twitter, Video, View } from 'lucide-react';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
+import { trackMetaEvent } from '@/lib/meta-pixel';
 
 const socialLinks = [
   { name: 'Facebook', href: '#', icon: Facebook },
@@ -143,8 +145,8 @@ export function SiteFooter() {
                      <div>
                         <h3 className="font-semibold font-headline text-lg">Admissions</h3>
                         <div className="mt-4 space-y-2 text-sm text-primary-foreground/80">
-                            <p><a href="tel:+919976888999" className="hover:text-white hover:underline">+91 99768 88999</a></p>
-                            <p><a href="tel:+918680954537" className="hover:text-white hover:underline">+91 86809 54537</a></p>
+                            <p><a href="tel:+919976888999" className="hover:text-white hover:underline" onClick={() => trackMetaEvent('Contact', { contact_method: 'phone' })}>+91 99768 88999</a></p>
+                            <p><a href="tel:+918680954537" className="hover:text-white hover:underline" onClick={() => trackMetaEvent('Contact', { contact_method: 'phone' })}>+91 86809 54537</a></p>
                             <p><a href="mailto:admission@egspec.org" className="hover:text-white hover:underline">admission@egspec.org</a></p>
                         </div>
                     </div>

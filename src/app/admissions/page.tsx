@@ -1,26 +1,19 @@
+'use client';
 
 import { PageHeader } from '@/components/page-header';
 import { SiteHeader } from '@/components/site-header';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { CheckCircle, Mail, Phone } from 'lucide-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import admissionImage from '@/app/assets/engineering_college.webp';
 import dynamicImport from 'next/dynamic';
-import type { Metadata } from 'next';
 import { Breadcrumb } from '@/components/breadcrumb';
 import Script from 'next/script';
 import { siteConfig } from '@/lib/config';
-
-export const dynamic = 'force-dynamic';
+import { trackMetaEvent } from '@/lib/meta-pixel';
 
 const SiteFooter = dynamicImport(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
-
-export const metadata: Metadata = {
-    title: 'Admission Procedures',
-    description: "Find detailed information on how to apply for our diverse range of programs. Get insights into eligibility, application steps, and contact details for our admissions team.",
-};
-
 
 const collegeAdmissionsData = [
   {
@@ -142,7 +135,7 @@ const CollegeAdmissionCard = ({ collegeData }: { collegeData: typeof collegeAdmi
                 <Phone className="h-5 w-5 text-muted-foreground mt-1" />
                 <div className="text-sm">
                   {collegeData.contact.phone.map(num => (
-                    <a key={num} href={`tel:${num.replace(/\s/g, '')}`} className="block hover:underline font-medium text-foreground">{num}</a>
+                    <a key={num} href={`tel:${num.replace(/\s/g, '')}`} className="block hover:underline font-medium text-foreground" onClick={() => trackMetaEvent('Contact', { contact_method: 'phone' })}>{num}</a>
                   ))}
                 </div>
               </div>
@@ -177,6 +170,13 @@ const CollegeAdmissionCard = ({ collegeData }: { collegeData: typeof collegeAdmi
 
 export default function AdmissionsPage() {
     const siteUrl = siteConfig.baseUrl;
+
+    useEffect(() => {
+        trackMetaEvent('ViewContent', {
+          content_name: 'Admission Procedures',
+          content_category: 'Admissions',
+        });
+    }, []);
 
     const howToSchema = {
         "@context": "https://schema.org",

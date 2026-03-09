@@ -1,23 +1,25 @@
+'use client';
 
 import { PageHeader } from '@/components/page-header';
 import { SiteHeader } from '@/components/site-header';
 import dynamicImport from 'next/dynamic';
-import type { Metadata } from 'next';
 import { Breadcrumb } from '@/components/breadcrumb';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-
-export const dynamic = 'force-dynamic';
+import { useEffect } from 'react';
+import { trackMetaEvent } from '@/lib/meta-pixel';
 
 const FindProgram = dynamicImport(() => import('@/components/find-program').then(mod => mod.FindProgram));
 const SiteFooter = dynamicImport(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
 
-export const metadata: Metadata = {
-    title: 'Academic Programs',
-    description: "Explore a wide range of undergraduate, postgraduate, and doctoral programs offered by the EGS Pillay Group of Institutions. Find the perfect course for your career path.",
-};
-
 export default function AcademicsPage() {
     const headerImage = PlaceHolderImages.find(p => p.id === 'academics-header');
+
+    useEffect(() => {
+        trackMetaEvent('ViewContent', {
+          content_name: 'Academic Programs',
+          content_category: 'Academics',
+        });
+    }, []);
 
   return (
     <>

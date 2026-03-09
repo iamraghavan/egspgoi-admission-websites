@@ -2,6 +2,7 @@
 'use client';
 
 import { Mail, MapPin, Phone } from 'lucide-react';
+import { trackMetaEvent } from '@/lib/meta-pixel';
 
 const contactInfo = {
   call: [
@@ -66,7 +67,7 @@ export function CtaSection() {
                   <p className="text-primary-foreground/80 mb-2">Available during working hours.</p>
                   <div className="space-y-1">
                     {contactInfo.call.map((item) => (
-                       <a key={item.number} href={`tel:${item.number.replace(/\s/g, '')}`} className="block font-semibold hover:underline">
+                       <a key={item.number} href={`tel:${item.number.replace(/\s/g, '')}`} className="block font-semibold hover:underline" onClick={() => trackMetaEvent('Contact', { contact_method: 'phone' })}>
                          {item.number}
                        </a>
                     ))}

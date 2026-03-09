@@ -9,6 +9,7 @@ import { SiteHeader } from '@/components/site-header';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import dynamic from 'next/dynamic';
+import { trackMetaEvent } from '@/lib/meta-pixel';
 
 const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
 
@@ -64,7 +65,7 @@ function SuccessContent() {
                                             {assignedUserPhone && (
                                                 <div className="flex items-center gap-3 text-muted-foreground">
                                                     <Phone className="h-4 w-4" />
-                                                    <a href={`tel:+91${assignedUserPhone.replace(/\s/g, '')}`} className="hover:underline text-foreground">+91 {assignedUserPhone}</a>
+                                                    <a href={`tel:+91${assignedUserPhone.replace(/\s/g, '')}`} className="hover:underline text-foreground" onClick={() => trackMetaEvent('Contact', { contact_method: 'phone' })}>+91 {assignedUserPhone}</a>
                                                 </div>
                                             )}
                                         </div>

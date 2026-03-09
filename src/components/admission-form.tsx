@@ -34,6 +34,7 @@ import statesAndDistricts from '@/app/assets/docs/states-and-districts.json';
 import coursesByCollege from '@/app/assets/docs/college-courses.json';
 import { submitLead } from '@/app/actions/submit-lead';
 import * as gtag from '@/lib/gtag';
+import { trackMetaEvent } from '@/lib/meta-pixel';
 
 type CollegeName = keyof typeof coursesByCollege;
 
@@ -101,6 +102,8 @@ export function AdmissionForm() {
           category: 'Admissions',
           label: 'Admission Form Submitted',
         });
+        
+        trackMetaEvent('Lead', { content_name: 'Admission Enquiry' });
 
         const queryParams = new URLSearchParams();
         queryParams.set('success', 'true');
