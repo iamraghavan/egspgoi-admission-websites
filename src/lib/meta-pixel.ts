@@ -1,3 +1,4 @@
+
 'use client';
 
 // Define the type for the fbq function
@@ -11,7 +12,11 @@ type EventData = {
   [key: string]: any;
 };
 
-export const trackMetaEvent = (eventName: string, eventData: EventData = {}) => {
+type UserData = {
+    [key: string]: any;
+};
+
+export const trackMetaEvent = (eventName: string, eventData: EventData = {}, userData: UserData = {}) => {
   if (typeof window.fbq !== 'function') {
     console.warn('Meta Pixel not loaded.');
     return;
@@ -33,10 +38,12 @@ export const trackMetaEvent = (eventName: string, eventData: EventData = {}) => 
     body: JSON.stringify({
       event_name: eventName,
       event_id: eventID,
-      event_data: eventData,
+      action_source: 'website',
       event_time: Math.floor(Date.now() / 1000),
       event_source_url: window.location.href,
       user_agent: navigator.userAgent,
+      user_data: userData,
+      event_data: eventData,
     }),
   }).catch(error => {
     console.error('Failed to send Meta event to backend:', error);

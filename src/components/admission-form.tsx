@@ -103,7 +103,18 @@ export function AdmissionForm() {
           label: 'Admission Form Submitted',
         });
         
-        trackMetaEvent('Lead', { content_name: 'Admission Enquiry' });
+        const nameParts = values.name.trim().split(' ');
+        const lastName = nameParts.length > 1 ? nameParts.pop() : '';
+        const firstName = nameParts.join(' ');
+
+        const userData = {
+            em: values.email,
+            ph: phoneNumber,
+            fn: firstName,
+            ln: lastName,
+        };
+        
+        trackMetaEvent('Lead', { content_name: 'Admission Enquiry' }, userData);
 
         const queryParams = new URLSearchParams();
         queryParams.set('success', 'true');
