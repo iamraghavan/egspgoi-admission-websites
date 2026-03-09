@@ -153,7 +153,7 @@ const websiteSchema = {
               t.src=v;s=b.getElementsByTagName(e)[0];
               s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '660713297027148');
+              fbq('init', '${siteConfig.metaPixelId}');
               fbq('track', 'PageView');
             `,
           }}
@@ -170,7 +170,7 @@ const websiteSchema = {
       >
         <noscript>
           <img height="1" width="1" style={{display: 'none'}}
-          src="https://www.facebook.com/tr?id=660713297027148&ev=PageView&noscript=1"
+          src={`https://www.facebook.com/tr?id=${siteConfig.metaPixelId}&ev=PageView&noscript=1`}
           />
         </noscript>
         {children}
