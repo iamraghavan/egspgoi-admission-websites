@@ -154,6 +154,7 @@ const websiteSchema = {
               s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
               fbq('init', '1980598682520515');
+              fbq('init', '660713297027148');
               fbq('track', 'PageView');
             `,
           }}
@@ -171,6 +172,9 @@ const websiteSchema = {
         <noscript>
           <img height="1" width="1" style={{display: 'none'}}
           src="https://www.facebook.com/tr?id=1980598682520515&ev=PageView&noscript=1"
+          />
+          <img height="1" width="1" style={{display: 'none'}}
+          src="https://www.facebook.com/tr?id=660713297027148&ev=PageView&noscript=1"
           />
         </noscript>
         {children}
