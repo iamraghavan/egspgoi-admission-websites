@@ -155,6 +155,7 @@ const websiteSchema = {
               'https://connect.facebook.net/en_US/fbevents.js');
               fbq('init', '1980598682520515');
               fbq('init', '660713297027148');
+              fbq('init', '2150113128888459');
               fbq('track', 'PageView');
             `,
           }}
@@ -175,6 +176,9 @@ const websiteSchema = {
           />
           <img height="1" width="1" style={{display: 'none'}}
           src="https://www.facebook.com/tr?id=660713297027148&ev=PageView&noscript=1"
+          />
+          <img height="1" width="1" style={{display: 'none'}}
+          src="https://www.facebook.com/tr?id=2150113128888459&ev=PageView&noscript=1"
           />
         </noscript>
         {children}
