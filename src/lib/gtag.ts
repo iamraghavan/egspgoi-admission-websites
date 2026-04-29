@@ -9,14 +9,16 @@ declare global {
   }
 }
 
-export const GA_MEASUREMENT_ID = 'G-XNN53VPPHW';
+export const GA_MEASUREMENT_IDS = ['G-XNN53VPPHW', 'G-NTCJ08TSVC'];
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: string) => {
-  if (!GA_MEASUREMENT_ID || typeof window.gtag !== 'function') return;
-  window.gtag('config', GA_MEASUREMENT_ID, {
-    page_path: url,
-  });
+  if (!GA_MEASUREMENT_IDS.length || typeof window.gtag !== 'function') return;
+  for (const id of GA_MEASUREMENT_IDS) {
+    window.gtag('config', id, {
+      page_path: url,
+    });
+  }
 };
 
 type GTagEvent = {
@@ -28,7 +30,7 @@ type GTagEvent = {
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
 export const event = ({ action, category, label, value }: GTagEvent) => {
-  if (!GA_MEASUREMENT_ID || typeof window.gtag !== 'function') return;
+  if (!GA_MEASUREMENT_IDS.length || typeof window.gtag !== 'function') return;
   window.gtag('event', action, {
     event_category: category,
     event_label: label,
