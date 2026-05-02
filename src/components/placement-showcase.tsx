@@ -14,6 +14,22 @@ export function PlacementShowcase() {
   // We only grab the two banners specifically intended for placement scrolling
   const placementBanners = PlaceHolderImages.filter((p) => p.id === 'placement-banner-1' || p.id === 'placement-banner-2');
 
+  // Fallback banners in case of JSON filtering issues
+  const displayBanners = placementBanners.length > 0 ? placementBanners : [
+    {
+      id: 'placement-banner-1',
+      imageUrl: '/placements/banner-1.webp',
+      description: 'EGS Pillay Group Placement Achievements and Statistics 2024-2025',
+      imageHint: 'placement achievements'
+    },
+    {
+      id: 'placement-banner-2',
+      imageUrl: '/placements/banner-2.webp',
+      description: 'EGS Pillay Group Top Recruiters and Industry Partners 2024-2025',
+      imageHint: 'top recruiters'
+    }
+  ];
+
   return (
     <section
       id="placement-showcase"
@@ -31,40 +47,35 @@ export function PlacementShowcase() {
         </div>
 
         <div className="max-w-6xl mx-auto">
-          {placementBanners.length > 0 ? (
-            <Carousel
-              opts={{ align: 'start', loop: true }}
-              plugins={[Autoplay({ delay: 5000, stopOnInteraction: false })]}
-              className="w-full"
-            >
-              <CarouselContent>
-                {placementBanners.map((banner, index) => (
-                  <CarouselItem key={banner.id}>
-                    <div className="p-1">
-                      <div className="relative aspect-[21/9] rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-muted">
-                        <Image
-                          src={banner.imageUrl as string}
-                          alt={banner.description}
-                          title={banner.description}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 1200px) 100vw, 1152px"
-                          priority={index === 0}
-                          data-ai-hint={banner.imageHint}
-                        />
-                        {/* Overlay for better readability and indexing */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                      </div>
+          <Carousel
+            opts={{ align: 'start', loop: true }}
+            plugins={[Autoplay({ delay: 5000, stopOnInteraction: false })]}
+            className="w-full"
+          >
+            <CarouselContent>
+              {displayBanners.map((banner, index) => (
+                <CarouselItem key={banner.id}>
+                  <div className="p-1">
+                    <div className="relative aspect-[21/9] rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-muted">
+                      <Image
+                        src={banner.imageUrl as string}
+                        alt={banner.description}
+                        title={banner.description}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1200px) 100vw, 1152px"
+                        priority={index === 0}
+                        data-ai-hint={banner.imageHint}
+                        loading={index === 0 ? "eager" : "lazy"}
+                      />
+                      {/* Overlay for better readability and SEO-friendly visual layering */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                     </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-          ) : (
-            <div className="flex items-center justify-center h-64 bg-white/5 rounded-xl border border-dashed border-white/20">
-              <p className="text-primary-foreground/50 italic">Loading placement achievements...</p>
-            </div>
-          )}
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </div>
     </section>
