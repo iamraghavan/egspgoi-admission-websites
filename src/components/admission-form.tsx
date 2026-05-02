@@ -97,11 +97,15 @@ export function AdmissionForm() {
       const result = await submitLead(apiPayload);
 
       if (result && result.success) {
+        // Track GA4 Event
         gtag.event({
           action: 'form_submit',
           category: 'Admissions',
           label: 'Admission Form Submitted',
         });
+        
+        // Track Google Ads Conversion
+        gtag.reportConversion('0-vOCKKSuaYcENLgv5RC');
         
         const nameParts = values.name.trim().split(' ');
         const lastName = nameParts.length > 1 ? nameParts.pop() : '';
@@ -114,6 +118,7 @@ export function AdmissionForm() {
             ln: lastName,
         };
         
+        // Track Meta Pixel + CAPI Event
         trackMetaEvent('Lead', { content_name: 'Admission Enquiry' }, userData);
 
         const queryParams = new URLSearchParams();

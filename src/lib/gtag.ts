@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-export const GA_MEASUREMENT_IDS = ['G-XNN53VPPHW', 'G-NTCJ08TSVC'];
+export const GA_MEASUREMENT_IDS = ['G-XNN53VPPHW', 'G-NTCJ08TSVC', 'AW-17759727698'];
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: string) => {
@@ -35,5 +35,16 @@ export const event = ({ action, category, label, value }: GTagEvent) => {
     event_category: category,
     event_label: label,
     value: value,
+  });
+};
+
+/**
+ * Reports a Google Ads conversion.
+ * @param label The conversion label provided by Google Ads.
+ */
+export const reportConversion = (label: string) => {
+  if (typeof window.gtag !== 'function') return;
+  window.gtag('event', 'conversion', {
+    'send_to': `AW-17759727698/${label}`,
   });
 };
