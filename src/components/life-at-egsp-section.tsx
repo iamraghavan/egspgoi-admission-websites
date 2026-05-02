@@ -22,6 +22,7 @@ const layoutConfig = [
 
 export function LifeAtEgspSection() {
     // Filter and map images specifically for the 'life' (culturals) section
+    // These IDs are mapped to /culturals/*.webp in placeholder-images.json
     const lifeImages = PlaceHolderImages.filter(img => img.id.startsWith('life-')).slice(0, 8);
 
     return (
@@ -43,7 +44,7 @@ export function LifeAtEgspSection() {
                         return (
                             <div key={image.id} className={cn('relative rounded-xl overflow-hidden group shadow-md', layout.className)}>
                                 <Image
-                                    src={image.imageUrl}
+                                    src={image.imageUrl as string}
                                     alt={image.description}
                                     fill
                                     className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"

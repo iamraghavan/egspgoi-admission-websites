@@ -20,7 +20,7 @@ const ImageCard = ({ id, alt, className, hint }: { id: string; alt: string; clas
     return (
         <div className={cn('relative rounded-xl overflow-hidden shadow-lg h-full min-h-[150px]', className)}>
             <Image 
-                src={image.imageUrl} 
+                src={image.imageUrl as string} 
                 alt={alt} 
                 fill 
                 className="object-cover transition-transform duration-500 hover:scale-105" 
@@ -74,10 +74,10 @@ export function WhyChooseUsSection() {
                                 <p className="text-xs font-body opacity-80 italic">Under Engineering Category</p>
                             </StatCard>
 
-                            {/* Row 2 */}
-                            <ImageCard id="why-choose-us-2" alt="Campus aerial view" hint="campus aerial" />
-                            <ImageCard id="why-choose-us-3" alt="Smiling students" className="md:row-span-2" hint="students smiling" />
-                            <ImageCard id="why-choose-us-1" alt="Students in makerspace" hint="students makerspace" />
+                            {/* Row 2 - Local Images */}
+                            <ImageCard id="why-choose-us-2" alt="EGS Pillay Cultural" hint="cultural event" />
+                            <ImageCard id="why-choose-us-3" alt="EGS Pillay Cultural" className="md:row-span-2" hint="cultural event" />
+                            <ImageCard id="why-choose-us-1" alt="EGS Pillay Cultural" hint="cultural event" />
                             
                             {/* Row 3 */}
                             <StatCard className="bg-primary">
@@ -91,8 +91,8 @@ export function WhyChooseUsSection() {
                                 <p className="text-xs opacity-90">Strong Corporate Network</p>
                             </StatCard>
 
-                            {/* Row 4 */}
-                            <ImageCard id="why-choose-us-4" alt="Students in a lab" hint="students lab" />
+                            {/* Row 4 - Local Image */}
+                            <ImageCard id="why-choose-us-4" alt="EGS Pillay Cultural" hint="cultural event" />
                             <StatCard className="bg-primary md:col-span-2">
                                 <p className="text-3xl font-bold font-headline">95%+ </p>
                                 <p className="font-semibold font-headline mt-1 uppercase text-sm">Placement Record</p>
