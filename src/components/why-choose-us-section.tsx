@@ -3,18 +3,16 @@
 
 import React from 'react';
 import { Button } from './ui/button';
-import { ArrowRight, Trophy, ShieldCheck, Handshake, Briefcase, BarChart3 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
 const AchievementCard = ({ 
-  icon: Icon, 
   value, 
   label, 
   subLabel, 
   className 
 }: { 
-  icon: React.ElementType; 
   value: string; 
   label: string; 
   subLabel: string;
@@ -24,9 +22,6 @@ const AchievementCard = ({
     "group p-8 rounded-2xl border bg-card transition-all duration-300 hover:shadow-lg hover:-translate-y-1",
     className
   )}>
-    <div className="mb-4 inline-flex items-center justify-center p-3 rounded-xl bg-primary/10 text-primary transition-colors duration-300">
-      <Icon className="h-6 w-6" />
-    </div>
     <div className="space-y-1">
       <h3 className="text-4xl font-bold font-headline tracking-tight text-primary">
         {value}
@@ -77,35 +72,30 @@ export function WhyChooseUsSection() {
           {/* Achievements Grid */}
           <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
             <AchievementCard 
-              icon={Trophy}
               value="A++"
               label="NAAC Accreditation"
               subLabel="Highest possible grade received, signifying excellence across all academic parameters."
               className="md:col-span-1"
             />
             <AchievementCard 
-              icon={BarChart3}
               value="201-300"
               label="NIRF 2025 Band"
               subLabel="Ranked among the top engineering institutions in India by the Ministry of Education."
               className="md:col-span-1"
             />
             <AchievementCard 
-              icon={ShieldCheck}
               value="Tier-1"
               label="NBA Accreditation"
               subLabel="Accredited under the Washington Accord, ensuring international quality standards."
               className="md:col-span-1"
             />
             <AchievementCard 
-              icon={Handshake}
               value="150+"
               label="Industry MoU's"
               subLabel="Extensive corporate partnerships providing students with real-world exposure and internships."
               className="md:col-span-1"
             />
             <AchievementCard 
-              icon={Briefcase}
               value="95%+"
               label="Placement Record"
               subLabel="Consistently achieving exceptional career outcomes with top-tier global recruiters."
