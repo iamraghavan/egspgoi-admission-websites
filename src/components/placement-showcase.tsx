@@ -11,20 +11,20 @@ import Autoplay from 'embla-carousel-autoplay';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export function PlacementShowcase() {
-  // We only grab the two banners specifically intended for placement scrolling
+  // We only grab the two banners specifically intended for placement scrolling from the corrected IDs
   const placementBanners = PlaceHolderImages.filter((p) => p.id === 'placement-banner-1' || p.id === 'placement-banner-2');
 
-  // Fallback banners in case of JSON filtering issues
+  // Fallback banners with the correct corrected filenames
   const displayBanners = placementBanners.length > 0 ? placementBanners : [
     {
       id: 'placement-banner-1',
-      imageUrl: '/placements/banner-1.webp',
+      imageUrl: '/placements/1.webp',
       description: 'EGS Pillay Group Placement Achievements and Statistics 2024-2025',
       imageHint: 'placement achievements'
     },
     {
       id: 'placement-banner-2',
-      imageUrl: '/placements/banner-2.webp',
+      imageUrl: '/placements/2.webp',
       description: 'EGS Pillay Group Top Recruiters and Industry Partners 2024-2025',
       imageHint: 'top recruiters'
     }
