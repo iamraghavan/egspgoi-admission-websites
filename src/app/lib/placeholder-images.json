@@ -33,39 +33,51 @@
     },
     {
       "id": "partner-1",
-      "description": "Placement Partner Logo",
-      "imageUrl": "/culturals/6.webp",
+      "description": "Placement Partner Logo 1",
+      "imageUrl": "/placements/logo-1.webp",
       "imageHint": "company logo"
     },
     {
       "id": "partner-2",
-      "description": "Placement Partner Logo",
-      "imageUrl": "/culturals/7.webp",
+      "description": "Placement Partner Logo 2",
+      "imageUrl": "/placements/logo-2.webp",
       "imageHint": "company logo"
     },
     {
       "id": "partner-3",
-      "description": "Placement Partner Logo",
-      "imageUrl": "/culturals/8.webp",
+      "description": "Placement Partner Logo 3",
+      "imageUrl": "/placements/logo-3.webp",
       "imageHint": "company logo"
     },
     {
       "id": "partner-4",
-      "description": "Placement Partner Logo",
-      "imageUrl": "/culturals/9.webp",
+      "description": "Placement Partner Logo 4",
+      "imageUrl": "/placements/logo-4.webp",
       "imageHint": "company logo"
     },
     {
       "id": "partner-5",
-      "description": "Placement Partner Logo",
-      "imageUrl": "/culturals/10.webp",
+      "description": "Placement Partner Logo 5",
+      "imageUrl": "/placements/logo-5.webp",
       "imageHint": "company logo"
     },
     {
       "id": "partner-6",
-      "description": "Placement Partner Logo",
-      "imageUrl": "/culturals/11.webp",
+      "description": "Placement Partner Logo 6",
+      "imageUrl": "/placements/logo-6.webp",
       "imageHint": "company logo"
+    },
+    {
+      "id": "placement-banner-1",
+      "description": "Placement Achievements and Top Recruiters 2024 at EGS Pillay Group",
+      "imageUrl": "/placements/banner-1.webp",
+      "imageHint": "placement banner"
+    },
+    {
+      "id": "placement-banner-2",
+      "description": "Career Success Stories and Industry Partnerships - EGS Admissions",
+      "imageUrl": "/placements/banner-2.webp",
+      "imageHint": "placement banner"
     },
     {
       "id": "why-choose-us-1",
@@ -93,73 +105,73 @@
     },
     {
       "id": "life-1",
-      "description": "Annual Cultural Fest",
+      "description": "EGS Pillay Cultural Event",
       "imageUrl": "/culturals/5.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-2",
-      "description": "Sports Meet 2024",
+      "description": "EGS Pillay Cultural Event",
       "imageUrl": "/culturals/6.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-3",
-      "description": "Technical Symposium",
+      "description": "EGS Pillay Cultural Event",
       "imageUrl": "/culturals/7.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-4",
-      "description": "Campus Celebration",
+      "description": "EGS Pillay Cultural Event",
       "imageUrl": "/culturals/8.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-5",
-      "description": "Student Workshop",
+      "description": "EGS Pillay Cultural Event",
       "imageUrl": "/culturals/9.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-6",
-      "description": "Robotics Club Meet",
+      "description": "EGS Pillay Cultural Event",
       "imageUrl": "/culturals/10.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-7",
-      "description": "Inter-College Fest",
+      "description": "EGS Pillay Cultural Event",
       "imageUrl": "/culturals/11.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-8",
-      "description": "Science Expo",
+      "description": "EGS Pillay Cultural Event",
       "imageUrl": "/culturals/12.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-9",
-      "description": "Dance Performance",
+      "description": "EGS Pillay Cultural Event",
       "imageUrl": "/culturals/13.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-10",
-      "description": "Musical Night",
+      "description": "EGS Pillay Cultural Event",
       "imageUrl": "/culturals/14.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-11",
-      "description": "Art Exhibition",
+      "description": "EGS Pillay Cultural Event",
       "imageUrl": "/culturals/15.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-12",
-      "description": "Graduation Day",
+      "description": "EGS Pillay Cultural Event",
       "imageUrl": "/culturals/16.webp",
       "imageHint": "cultural event"
     },
@@ -186,18 +198,6 @@
       "description": "EGS Pillay Campus Life",
       "imageUrl": "/culturals/4.webp",
       "imageHint": "sports complex"
-    },
-    {
-      "id": "story-campus-5",
-      "description": "Campus Greenery",
-      "imageUrl": "/culturals/13.webp",
-      "imageHint": "campus view"
-    },
-    {
-      "id": "story-campus-6",
-      "description": "Innovation Hub",
-      "imageUrl": "/culturals/14.webp",
-      "imageHint": "lab environment"
     }
   ]
 }

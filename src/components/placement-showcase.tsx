@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -5,23 +6,11 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
-const studentPlacements = [
-  PlaceHolderImages.find((p) => p.id === 'testimonial-1'),
-  PlaceHolderImages.find((p) => p.id === 'testimonial-2'),
-  PlaceHolderImages.find((p) => p.id === 'testimonial-3'),
-].filter(Boolean);
-
-const studentFeatures = [
-    PlaceHolderImages.find((p) => p.id === 'testimonial-3'),
-    PlaceHolderImages.find((p) => p.id === 'testimonial-1'),
-    PlaceHolderImages.find((p) => p.id === 'testimonial-2'),
-  ].filter(Boolean);
+const placementBanners = PlaceHolderImages.filter((p) => p.id.startsWith('placement-banner-'));
 
 export function PlacementShowcase() {
   return (
@@ -35,66 +24,38 @@ export function PlacementShowcase() {
             Our Placement Ecosystem
           </h2>
           <p className="text-lg text-primary-foreground/80 mt-4 max-w-3xl mx-auto">
-            We've cultivated a robust network of industry leaders and provided unparalleled opportunities, resulting in exceptional career outcomes for our graduates.
+            Our strong industry connections and dedicated placement training lead to exceptional career outcomes for every graduate.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-6">
-             <Carousel
-              opts={{ align: 'start', loop: true }}
-              plugins={[Autoplay({ delay: 3500, stopOnInteraction: true })]}
-              className="w-full"
-            >
-              <CarouselContent>
-                {studentFeatures.map((student) => (
-                  <CarouselItem key={student!.id}>
-                    <div className="p-2">
-                      <div className="relative aspect-video rounded-lg overflow-hidden">
-                        <Image
-                          src={student!.imageUrl}
-                          alt={student!.description}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          data-ai-hint={student!.imageHint}
-                        />
-                         <div className="absolute inset-0 bg-black/30" />
-                      </div>
+        <div className="max-w-6xl mx-auto">
+          <Carousel
+            opts={{ align: 'start', loop: true }}
+            plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
+            className="w-full"
+          >
+            <CarouselContent>
+              {placementBanners.map((banner) => (
+                <CarouselItem key={banner.id}>
+                  <div className="p-1">
+                    <div className="relative aspect-[21/9] rounded-xl overflow-hidden shadow-2xl">
+                      <Image
+                        src={banner.imageUrl as string}
+                        alt={banner.description}
+                        title={banner.description}
+                        fill
+                        className="object-cover"
+                        sizes="100vw"
+                        priority
+                        data-ai-hint={banner.imageHint}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                     </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-          </div>
-
-          <div className="lg:col-span-6">
-             <Carousel
-              opts={{ align: 'start', loop: true }}
-              plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]}
-              className="w-full"
-            >
-              <CarouselContent>
-                {studentPlacements.map((student) => (
-                  <CarouselItem key={student!.id}>
-                    <div className="p-2">
-                      <div className="relative aspect-video rounded-lg overflow-hidden">
-                        <Image
-                          src={student!.imageUrl}
-                          alt={student!.description}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          data-ai-hint={student!.imageHint}
-                        />
-                         <div className="absolute inset-0 bg-black/30" />
-                      </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-          </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </div>
     </section>
