@@ -32,39 +32,51 @@
     },
     {
       "id": "partner-1",
-      "description": "Placement Partner Logo",
-      "imageUrl": "/culturals/6.webp",
+      "description": "Placement Partner Logo 1",
+      "imageUrl": "/placements/logo-1.webp",
       "imageHint": "company logo"
     },
     {
       "id": "partner-2",
-      "description": "Placement Partner Logo",
-      "imageUrl": "/culturals/7.webp",
+      "description": "Placement Partner Logo 2",
+      "imageUrl": "/placements/logo-2.webp",
       "imageHint": "company logo"
     },
     {
       "id": "partner-3",
-      "description": "Placement Partner Logo",
-      "imageUrl": "/culturals/8.webp",
+      "description": "Placement Partner Logo 3",
+      "imageUrl": "/placements/logo-3.webp",
       "imageHint": "company logo"
     },
     {
       "id": "partner-4",
-      "description": "Placement Partner Logo",
-      "imageUrl": "/culturals/9.webp",
+      "description": "Placement Partner Logo 4",
+      "imageUrl": "/placements/logo-4.webp",
       "imageHint": "company logo"
     },
     {
       "id": "partner-5",
-      "description": "Placement Partner Logo",
-      "imageUrl": "/culturals/10.webp",
+      "description": "Placement Partner Logo 5",
+      "imageUrl": "/placements/logo-5.webp",
       "imageHint": "company logo"
     },
     {
       "id": "partner-6",
-      "description": "Placement Partner Logo",
-      "imageUrl": "/culturals/11.webp",
+      "description": "Placement Partner Logo 6",
+      "imageUrl": "/placements/logo-6.webp",
       "imageHint": "company logo"
+    },
+    {
+      "id": "placement-banner-1",
+      "description": "EGS Pillay Group Placement Achievements and Statistics 2024-2025",
+      "imageUrl": "/placements/banner-1.webp",
+      "imageHint": "placement achievements"
+    },
+    {
+      "id": "placement-banner-2",
+      "description": "EGS Pillay Group Top Recruiters and Industry Partners 2024-2025",
+      "imageUrl": "/placements/banner-2.webp",
+      "imageHint": "top recruiters"
     },
     {
       "id": "why-choose-us-1",
@@ -93,47 +105,71 @@
     {
       "id": "life-1",
       "description": "EGS Pillay Cultural Event",
-      "imageUrl": "/culturals/5.webp",
+      "imageUrl": "/culturals/1.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-2",
       "description": "EGS Pillay Cultural Event",
-      "imageUrl": "/culturals/6.webp",
+      "imageUrl": "/culturals/2.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-3",
       "description": "EGS Pillay Cultural Event",
-      "imageUrl": "/culturals/7.webp",
+      "imageUrl": "/culturals/3.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-4",
       "description": "EGS Pillay Cultural Event",
-      "imageUrl": "/culturals/8.webp",
+      "imageUrl": "/culturals/4.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-5",
       "description": "EGS Pillay Cultural Event",
-      "imageUrl": "/culturals/9.webp",
+      "imageUrl": "/culturals/5.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-6",
       "description": "EGS Pillay Cultural Event",
-      "imageUrl": "/culturals/10.webp",
+      "imageUrl": "/culturals/6.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-7",
       "description": "EGS Pillay Cultural Event",
-      "imageUrl": "/culturals/11.webp",
+      "imageUrl": "/culturals/7.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-8",
+      "description": "EGS Pillay Cultural Event",
+      "imageUrl": "/culturals/8.webp",
+      "imageHint": "cultural event"
+    },
+    {
+      "id": "life-9",
+      "description": "EGS Pillay Cultural Event",
+      "imageUrl": "/culturals/9.webp",
+      "imageHint": "cultural event"
+    },
+    {
+      "id": "life-10",
+      "description": "EGS Pillay Cultural Event",
+      "imageUrl": "/culturals/10.webp",
+      "imageHint": "cultural event"
+    },
+    {
+      "id": "life-11",
+      "description": "EGS Pillay Cultural Event",
+      "imageUrl": "/culturals/11.webp",
+      "imageHint": "cultural event"
+    },
+    {
+      "id": "life-12",
       "description": "EGS Pillay Cultural Event",
       "imageUrl": "/culturals/12.webp",
       "imageHint": "cultural event"
