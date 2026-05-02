@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -20,34 +21,29 @@ const AchievementCard = ({
   className?: string;
 }) => (
   <div className={cn(
-    "group relative p-8 rounded-2xl border bg-card transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 overflow-hidden",
+    "group p-8 rounded-2xl border bg-card transition-all duration-300 hover:shadow-lg hover:-translate-y-1",
     className
   )}>
-    <div className="absolute top-0 right-0 p-4 opacity-5 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12">
-      <Icon size={120} />
+    <div className="mb-4 inline-flex items-center justify-center p-3 rounded-xl bg-primary/10 text-primary transition-colors duration-300">
+      <Icon className="h-6 w-6" />
     </div>
-    <div className="relative z-10">
-      <div className="mb-4 inline-flex items-center justify-center p-3 rounded-xl bg-primary/5 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-        <Icon className="h-6 w-6" />
-      </div>
-      <div className="space-y-1">
-        <h3 className="text-4xl font-bold font-headline tracking-tight text-primary">
-          {value}
-        </h3>
-        <p className="text-sm font-bold uppercase tracking-wider text-accent">
-          {label}
-        </p>
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          {subLabel}
-        </p>
-      </div>
+    <div className="space-y-1">
+      <h3 className="text-4xl font-bold font-headline tracking-tight text-primary">
+        {value}
+      </h3>
+      <p className="text-sm font-bold uppercase tracking-wider text-accent">
+        {label}
+      </p>
+      <p className="text-sm text-muted-foreground leading-relaxed">
+        {subLabel}
+      </p>
     </div>
   </div>
 );
 
 export function WhyChooseUsSection() {
   return (
-    <section className="py-20 md:py-32 bg-secondary/30 overflow-hidden">
+    <section className="py-20 md:py-32 bg-background overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-16 items-start">
           {/* Text Content */}
@@ -70,7 +66,7 @@ export function WhyChooseUsSection() {
               </p>
             </div>
 
-            <Button asChild size="lg" className="group px-8 rounded-full shadow-lg shadow-primary/20">
+            <Button asChild size="lg" className="group px-8 rounded-full shadow-md">
               <Link href="/admissions">
                 Know More 
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -113,7 +109,7 @@ export function WhyChooseUsSection() {
               value="95%+"
               label="Placement Record"
               subLabel="Consistently achieving exceptional career outcomes with top-tier global recruiters."
-              className="md:col-span-2 bg-primary/5 border-primary/20"
+              className="md:col-span-2 border-primary/20"
             />
           </div>
         </div>
