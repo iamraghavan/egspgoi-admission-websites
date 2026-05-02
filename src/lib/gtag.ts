@@ -53,7 +53,4 @@ export const reportConversion = (label: string, callback?: () => void) => {
     'send_to': `AW-17759727698/${label}`,
     'event_callback': callback
   });
-  
-  // If no callback is provided, we should return true to indicate it was triggered
-  return false;
 };

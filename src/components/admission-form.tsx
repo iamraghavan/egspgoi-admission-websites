@@ -131,10 +131,8 @@ export function AdmissionForm() {
           queryParams.set('assigned_user_phone', '9363087377');
         }
 
-        // 3. Track Google Ads Conversion with navigation callback
-        gtag.reportConversion('0-vOCKKSuaYcENLgv5RC', () => {
-          router.push(`/admission/enquiry/2026-2027?${queryParams.toString()}`);
-        });
+        // Navigate to success page. Conversion tracking happens on Page Load of success page.
+        router.push(`/admission/enquiry/2026-2027?${queryParams.toString()}`);
 
       } else {
         throw new Error(result.message || 'An unknown error occurred during submission.');

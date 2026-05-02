@@ -1,7 +1,7 @@
 
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { CheckCircle, Mail, Phone, User } from 'lucide-react';
@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import dynamic from 'next/dynamic';
 import { trackMetaEvent } from '@/lib/meta-pixel';
+import * as gtag from '@/lib/gtag';
 
 const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => mod.SiteFooter));
 
@@ -19,6 +20,17 @@ function SuccessContent() {
     const assignedUserName = searchParams.get('assigned_user_name');
     const assignedUserEmail = searchParams.get('assigned_user_email');
     const assignedUserPhone = searchParams.get('assigned_user_phone');
+
+    useEffect(() => {
+        // Track Google Ads Conversion on Page Load
+        gtag.reportConversion('0-vOCKKSuaYcENLgv5RC');
+        
+        // Track ViewContent for the success page
+        trackMetaEvent('ViewContent', { 
+            content_name: 'Enquiry Success',
+            content_category: 'Admissions'
+        });
+    }, []);
     
     return (
         <div className="flex min-h-screen flex-col bg-background">
