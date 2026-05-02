@@ -11,8 +11,8 @@ import Autoplay from 'embla-carousel-autoplay';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export function PlacementShowcase() {
-  // Ensure we are only grabbing banners specifically tagged for placements
-  const placementBanners = PlaceHolderImages.filter((p) => p.id.startsWith('placement-banner-'));
+  // We only grab the two banners specifically intended for placement scrolling
+  const placementBanners = PlaceHolderImages.filter((p) => p.id === 'placement-banner-1' || p.id === 'placement-banner-2');
 
   return (
     <section
@@ -34,14 +34,14 @@ export function PlacementShowcase() {
           {placementBanners.length > 0 ? (
             <Carousel
               opts={{ align: 'start', loop: true }}
-              plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
+              plugins={[Autoplay({ delay: 5000, stopOnInteraction: false })]}
               className="w-full"
             >
               <CarouselContent>
-                {placementBanners.map((banner) => (
+                {placementBanners.map((banner, index) => (
                   <CarouselItem key={banner.id}>
                     <div className="p-1">
-                      <div className="relative aspect-[21/9] rounded-xl overflow-hidden shadow-2xl border border-white/10">
+                      <div className="relative aspect-[21/9] rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-muted">
                         <Image
                           src={banner.imageUrl as string}
                           alt={banner.description}
@@ -49,10 +49,11 @@ export function PlacementShowcase() {
                           fill
                           className="object-cover"
                           sizes="(max-width: 1200px) 100vw, 1152px"
-                          priority
+                          priority={index === 0}
                           data-ai-hint={banner.imageHint}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                        {/* Overlay for better readability and indexing */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                       </div>
                     </div>
                   </CarouselItem>
