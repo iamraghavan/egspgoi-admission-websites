@@ -2,68 +2,68 @@
   "placeholderImages": [
     {
       "id": "hero-image",
-      "description": "A vibrant image of a modern university campus",
-      "imageUrl": "https://images.unsplash.com/flagged/photo-1554473675-d0904f3cbf38?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx1bml2ZXJzaXR5JTIwY2FtcHVzfGVufDB8fHx8MTc2NDQ5NTg4MXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "university campus"
+      "description": "EGS Pillay Cultural Event",
+      "imageUrl": "/culturals/1.webp",
+      "imageHint": "cultural event"
     },
     {
       "id": "academics-header",
-      "description": "A group of university students collaborating and studying together in a modern, well-lit library.",
-      "imageUrl": "https://images.unsplash.com/photo-1752920299211-28be8c9b0121?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzdHVkZW50cyUyMGxpYnJhcnl8ZW58MHx8fHwxNzY4ODQzMTU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "students library"
+      "description": "EGS Pillay Cultural Event",
+      "imageUrl": "/culturals/2.webp",
+      "imageHint": "cultural event"
     },
     {
       "id": "testimonial-1",
-      "description": "Avatar of a female student",
-      "imageUrl": "https://images.unsplash.com/photo-1729824186568-be656d0eecf9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdHVkZW50JTIwYXZhdGFyfGVufDB8fHx8MTc2NDQ3ODE0OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "EGS Pillay Student",
+      "imageUrl": "/culturals/3.webp",
       "imageHint": "student avatar"
     },
     {
       "id": "testimonial-2",
-      "description": "Avatar of a male student",
-      "imageUrl": "https://images.unsplash.com/photo-1574132190990-cfd62178bb1c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzdHVkZW50JTIwYXZhdGFyfGVufDB8fHx8MTc2NDQ3ODE0OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "EGS Pillay Student",
+      "imageUrl": "/culturals/4.webp",
       "imageHint": "student avatar"
     },
     {
       "id": "testimonial-3",
-      "description": "Avatar of a male faculty member",
-      "imageUrl": "https://images.unsplash.com/photo-1668701064538-79c4c87fbeb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmYWN1bHR5JTIwYXZhdGFyfGVufDB8fHx8MTc2NDYwNDA5NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "EGS Pillay Faculty",
+      "imageUrl": "/culturals/5.webp",
       "imageHint": "faculty avatar"
     },
     {
       "id": "partner-1",
-      "description": "Logo of a placement partner",
-      "imageUrl": "https://images.unsplash.com/photo-1562705121-e624542c7b9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y29tcGFueSUyMGxvZ298ZW58MHx8fHwxNzY4ODUwMTg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Placement Partner Logo",
+      "imageUrl": "/culturals/6.webp",
       "imageHint": "company logo"
     },
     {
       "id": "partner-2",
-      "description": "Logo of a placement partner",
-      "imageUrl": "https://images.unsplash.com/photo-1622465911368-72162f8da3e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3Njg4NTAxODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Placement Partner Logo",
+      "imageUrl": "/culturals/7.webp",
       "imageHint": "company logo"
     },
     {
       "id": "partner-3",
-      "description": "Logo of a placement partner",
-      "imageUrl": "https://images.unsplash.com/photo-1529612700005-e35377bf1415?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3Njg4NTAxODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Placement Partner Logo",
+      "imageUrl": "/culturals/8.webp",
       "imageHint": "company logo"
     },
     {
       "id": "partner-4",
-      "description": "Logo of a placement partner",
-      "imageUrl": "https://images.unsplash.com/photo-1622465911368-72162f8da3e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3Njg4NTAxODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Placement Partner Logo",
+      "imageUrl": "/culturals/9.webp",
       "imageHint": "company logo"
     },
     {
       "id": "partner-5",
-      "description": "Logo of a placement partner",
-      "imageUrl": "https://images.unsplash.com/photo-1496200186974-4293800e2c20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3Njg4NTAxODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Placement Partner Logo",
+      "imageUrl": "/culturals/10.webp",
       "imageHint": "company logo"
     },
     {
       "id": "partner-6",
-      "description": "Logo of a placement partner",
-      "imageUrl": "https://images.unsplash.com/photo-1529612700005-e35377bf1415?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3Njg4NTAxODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Placement Partner Logo",
+      "imageUrl": "/culturals/11.webp",
       "imageHint": "company logo"
     },
     {
@@ -140,26 +140,26 @@
     },
     {
       "id": "story-campus-1",
-      "description": "The grand entrance of the main university building",
-      "imageUrl": "https://images.unsplash.com/photo-1702238139056-96ac7ecbc493?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx1bml2ZXJzaXR5JTIwZW50cmFuY2V8ZW58MHx8fHwxNzY4ODc2NjkfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "EGS Pillay Campus Life",
+      "imageUrl": "/culturals/1.webp",
       "imageHint": "university entrance"
     },
     {
       "id": "story-campus-2",
-      "description": "A modern library filled with students studying",
-      "imageUrl": "https://images.unsplash.com/photo-1506377872008-6645d9d29ef7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dW5pdmVyc2l0eSUyMGxpYnJhcnl8ZW58MHx8fHwxNzY4ODc2NjgfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "EGS Pillay Campus Life",
+      "imageUrl": "/culturals/2.webp",
       "imageHint": "university library"
     },
     {
       "id": "story-campus-3",
-      "description": "Lush green lawns and gardens on campus",
-      "imageUrl": "https://images.unsplash.com/photo-1768720407727-f4c4b9a17e58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjYW1wdXMlMjBsYXdufGVufDB8fHx8MTc2ODg4NzY2OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "EGS Pillay Campus Life",
+      "imageUrl": "/culturals/3.webp",
       "imageHint": "campus lawn"
     },
     {
       "id": "story-campus-4",
-      "description": "State-of-the-art sports complex with a swimming pool",
-      "imageUrl": "https://images.unsplash.com/photo-1518280828139-6db9e2c5a092?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzcG9ydHMlMjBjb21wbGV4fGVufDB8fHx8MTc2ODg4NzY2OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "EGS Pillay Campus Life",
+      "imageUrl": "/culturals/4.webp",
       "imageHint": "sports complex"
     }
   ]
