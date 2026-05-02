@@ -1,3 +1,4 @@
+
 {
   "placeholderImages": [
     {
@@ -92,50 +93,74 @@
     },
     {
       "id": "life-1",
-      "description": "EGS Pillay Cultural Event",
+      "description": "Annual Cultural Fest",
       "imageUrl": "/culturals/5.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-2",
-      "description": "EGS Pillay Cultural Event",
+      "description": "Sports Meet 2024",
       "imageUrl": "/culturals/6.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-3",
-      "description": "EGS Pillay Cultural Event",
+      "description": "Technical Symposium",
       "imageUrl": "/culturals/7.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-4",
-      "description": "EGS Pillay Cultural Event",
+      "description": "Campus Celebration",
       "imageUrl": "/culturals/8.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-5",
-      "description": "EGS Pillay Cultural Event",
+      "description": "Student Workshop",
       "imageUrl": "/culturals/9.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-6",
-      "description": "EGS Pillay Cultural Event",
+      "description": "Robotics Club Meet",
       "imageUrl": "/culturals/10.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-7",
-      "description": "EGS Pillay Cultural Event",
+      "description": "Inter-College Fest",
       "imageUrl": "/culturals/11.webp",
       "imageHint": "cultural event"
     },
     {
       "id": "life-8",
-      "description": "EGS Pillay Cultural Event",
+      "description": "Science Expo",
       "imageUrl": "/culturals/12.webp",
+      "imageHint": "cultural event"
+    },
+    {
+      "id": "life-9",
+      "description": "Dance Performance",
+      "imageUrl": "/culturals/13.webp",
+      "imageHint": "cultural event"
+    },
+    {
+      "id": "life-10",
+      "description": "Musical Night",
+      "imageUrl": "/culturals/14.webp",
+      "imageHint": "cultural event"
+    },
+    {
+      "id": "life-11",
+      "description": "Art Exhibition",
+      "imageUrl": "/culturals/15.webp",
+      "imageHint": "cultural event"
+    },
+    {
+      "id": "life-12",
+      "description": "Graduation Day",
+      "imageUrl": "/culturals/16.webp",
       "imageHint": "cultural event"
     },
     {
@@ -161,6 +186,18 @@
       "description": "EGS Pillay Campus Life",
       "imageUrl": "/culturals/4.webp",
       "imageHint": "sports complex"
+    },
+    {
+      "id": "story-campus-5",
+      "description": "Campus Greenery",
+      "imageUrl": "/culturals/13.webp",
+      "imageHint": "campus view"
+    },
+    {
+      "id": "story-campus-6",
+      "description": "Innovation Hub",
+      "imageUrl": "/culturals/14.webp",
+      "imageHint": "lab environment"
     }
   ]
 }

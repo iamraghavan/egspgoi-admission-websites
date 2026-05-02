@@ -18,12 +18,15 @@ const layoutConfig = [
   { className: 'md:row-span-1 md:col-span-1' },
   { className: 'md:row-span-1 md:col-span-1' },
   { className: 'md:row-span-1 md:col-span-1' },
+  { className: 'md:row-span-1 md:col-span-1' },
+  { className: 'md:row-span-1 md:col-span-1' },
+  { className: 'md:row-span-1 md:col-span-2' },
+  { className: 'md:row-span-1 md:col-span-2' },
 ];
 
 export function LifeAtEgspSection() {
-    // Filter and map images specifically for the 'life' (culturals) section
-    // These IDs are mapped to /culturals/*.webp in placeholder-images.json
-    const lifeImages = PlaceHolderImages.filter(img => img.id.startsWith('life-')).slice(0, 8);
+    // Filter and map images specifically for the 'life' section
+    const lifeImages = PlaceHolderImages.filter(img => img.id.startsWith('life-')).slice(0, 12);
 
     return (
         <section className="bg-background py-16 md:py-24">
