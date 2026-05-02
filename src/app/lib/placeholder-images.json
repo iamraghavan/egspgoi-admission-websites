@@ -1,0 +1,167 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-image",
+      "description": "A vibrant image of a modern university campus",
+      "imageUrl": "https://images.unsplash.com/flagged/photo-1554473675-d0904f3cbf38?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx1bml2ZXJzaXR5JTIwY2FtcHVzfGVufDB8fHx8MTc2NDQ5NTg4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "university campus"
+    },
+    {
+      "id": "academics-header",
+      "description": "A group of university students collaborating and studying together in a modern, well-lit library.",
+      "imageUrl": "https://images.unsplash.com/photo-1752920299211-28be8c9b0121?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzdHVkZW50cyUyMGxpYnJhcnl8ZW58MHx8fHwxNzY4ODQzMTU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "students library"
+    },
+    {
+      "id": "testimonial-1",
+      "description": "Avatar of a female student",
+      "imageUrl": "https://images.unsplash.com/photo-1729824186568-be656d0eecf9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzdHVkZW50JTIwYXZhdGFyfGVufDB8fHx8MTc2NDQ3ODE0OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "student avatar"
+    },
+    {
+      "id": "testimonial-2",
+      "description": "Avatar of a male student",
+      "imageUrl": "https://images.unsplash.com/photo-1574132190990-cfd62178bb1c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzdHVkZW50JTIwYXZhdGFyfGVufDB8fHx8MTc2NDQ3ODE0OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "student avatar"
+    },
+    {
+      "id": "testimonial-3",
+      "description": "Avatar of a male faculty member",
+      "imageUrl": "https://images.unsplash.com/photo-1668701064538-79c4c87fbeb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmYWN1bHR5JTIwYXZhdGFyfGVufDB8fHx8MTc2NDYwNDA5NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "faculty avatar"
+    },
+    {
+      "id": "partner-1",
+      "description": "Logo of a placement partner",
+      "imageUrl": "https://images.unsplash.com/photo-1562705121-e624542c7b9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y29tcGFueSUyMGxvZ298ZW58MHx8fHwxNzY0NDg4OTY2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "partner-2",
+      "description": "Logo of a placement partner",
+      "imageUrl": "https://images.unsplash.com/photo-1622465911368-72162f8da3e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjQ0ODg5NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "partner-3",
+      "description": "Logo of a placement partner",
+      "imageUrl": "https://images.unsplash.com/photo-1529612700005-e35377bf1415?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjQ0ODg5NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "partner-4",
+      "description": "Logo of a placement partner",
+      "imageUrl": "https://images.unsplash.com/photo-1622465911368-72162f8da3e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjQ0ODg5NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "partner-5",
+      "description": "Logo of a placement partner",
+      "imageUrl": "https://images.unsplash.com/photo-1496200186974-4293800e2c20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjQ0ODg5NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "partner-6",
+      "description": "Logo of a placement partner",
+      "imageUrl": "https://images.unsplash.com/photo-1529612700005-e35377bf1415?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjQ0ODg5NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "why-choose-us-1",
+      "description": "Students collaborating in a makerspace",
+      "imageUrl": "https://images.unsplash.com/photo-1625111380820-9a371d413cc4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzdHVkZW50cyUyMGxlYXJuaW5nfGVufDB8fHx8MTc2ODcwNDQ2NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "students learning"
+    },
+    {
+      "id": "why-choose-us-2",
+      "description": "Aerial view of the university campus",
+      "imageUrl": "https://images.unsplash.com/photo-1766459842752-e06f749c0b54?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjYW1wdXMlMjBhZXJpYWx8ZW58MHx8fHwxNzY4NzA0NDYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "campus aerial"
+    },
+    {
+      "id": "why-choose-us-3",
+      "description": "Happy students on campus",
+      "imageUrl": "https://images.unsplash.com/photo-1634219325274-53add2ddd28b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzdHVkZW50cyUyMHNtaWxpbmd8ZW58MHx8fHwxNzY4NzA0NDY0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "students smiling"
+    },
+    {
+      "id": "why-choose-us-4",
+      "description": "Students working with electronics in a lab",
+      "imageUrl": "https://images.unsplash.com/photo-1727519457936-1b24c507d4b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3R1ZGVudHMlMjBsYWJ8ZW58MHx8fHwxNzY4NjQyNjgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "students lab"
+    },
+    {
+      "id": "life-1",
+      "description": "Students celebrating at a cultural event",
+      "imageUrl": "https://images.unsplash.com/photo-1505428160878-8e349f4d301c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjdWx0dXJhbCUyMGV2ZW50fGVufDB8fHx8MTc2ODcwNTc2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cultural event"
+    },
+    {
+      "id": "life-2",
+      "description": "A guest speaker at a college lecture",
+      "imageUrl": "https://images.unsplash.com/photo-1646579886135-068c73800308?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxndWVzdCUyMGxlY3R1cmV8ZW58MHx8fHwxNzY4NzA1NzY2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "guest lecture"
+    },
+    {
+      "id": "life-3",
+      "description": "Students performing a group dance on stage",
+      "imageUrl": "https://images.unsplash.com/photo-1718908721930-31120bc1beb5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkYW5jZSUyMHBlcmZvcm1hbmNlfGVufDB8fHx8MTc2ODY5ODAzNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dance performance"
+    },
+    {
+      "id": "life-4",
+      "description": "Colorful student festival on campus",
+      "imageUrl": "https://images.unsplash.com/photo-1622831877966-18a6c8731a01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdHVkZW50JTIwZmVzdGl2YWx8ZW58MHx8fHwxNzY4NjQ2ODg0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "student festival"
+    },
+    {
+      "id": "life-5",
+      "description": "A singer performing at a campus concert",
+      "imageUrl": "https://images.unsplash.com/photo-1641907066312-3727f484d795?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzaW5nZXIlMjBjb25jZXJ0fGVufDB8fHx8MTc2ODcwNTc2N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "singer concert"
+    },
+    {
+      "id": "life-6",
+      "description": "A student band playing music",
+      "imageUrl": "https://images.unsplash.com/photo-1663380984443-bc88fe4bb2ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdHVkZW50JTIwYmFuZHxlbnwwfHx8fDE3Njg3MDU3NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "student band"
+    },
+    {
+      "id": "life-7",
+      "description": "Students in traditional dance costumes",
+      "imageUrl": "https://images.unsplash.com/photo-1609329007778-42630e6b1580?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx0cmFkaXRpb25hbCUyMGRhbmNlfGVufDB8fHx8MTc2ODcwNTc2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "traditional dance"
+    },
+    {
+      "id": "life-8",
+      "description": "A large crowd of students at a campus event",
+      "imageUrl": "https://images.unsplash.com/photo-1764254812010-78ab61ef114b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjYW1wdXMlMjBjcm93ZHxlbnwwfHx8fDE3Njg3MDU3Njd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "campus crowd"
+    },
+    {
+      "id": "story-campus-1",
+      "description": "The grand entrance of the main university building",
+      "imageUrl": "https://images.unsplash.com/photo-1702238139056-96ac7ecbc493?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx1bml2ZXJzaXR5JTIwZW50cmFuY2V8ZW58MHx8fHwxNzY4ODg3NjY5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "university entrance"
+    },
+    {
+      "id": "story-campus-2",
+      "description": "A modern library filled with students studying",
+      "imageUrl": "https://images.unsplash.com/photo-1506377872008-6645d9d29ef7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dW5pdmVyc2l0eSUyMGxpYnJhcnl8ZW58MHx8fHwxNzY4ODg3NjY4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "university library"
+    },
+    {
+      "id": "story-campus-3",
+      "description": "Lush green lawns and gardens on campus",
+      "imageUrl": "https://images.unsplash.com/photo-1768720407727-f4c4b9a17e58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjYW1wdXMlMjBsYXdufGVufDB8fHx8MTc2ODg4NzY2OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "campus lawn"
+    },
+    {
+      "id": "story-campus-4",
+      "description": "State-of-the-art sports complex with a swimming pool",
+      "imageUrl": "https://images.unsplash.com/photo-1518280828139-6db9e2c5a092?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzcG9ydHMlMjBjb21wbGV4fGVufDB8fHx8MTc2ODg4NzY2OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sports complex"
+    }
+  ]
+}
