@@ -97,15 +97,12 @@ export function AdmissionForm() {
       const result = await submitLead(apiPayload);
 
       if (result && result.success) {
-        // Track GA4 Event
+        // 1. Track GA4 Event
         gtag.event({
           action: 'form_submit',
           category: 'Admissions',
           label: 'Admission Form Submitted',
         });
-        
-        // Track Google Ads Conversion
-        gtag.reportConversion('0-vOCKKSuaYcENLgv5RC');
         
         const nameParts = values.name.trim().split(' ');
         const lastName = nameParts.length > 1 ? nameParts.pop() : '';
@@ -118,7 +115,7 @@ export function AdmissionForm() {
             ln: lastName,
         };
         
-        // Track Meta Pixel + CAPI Event
+        // 2. Track Meta Pixel + CAPI Event
         trackMetaEvent('Lead', { content_name: 'Admission Enquiry' }, userData);
 
         const queryParams = new URLSearchParams();
@@ -134,7 +131,10 @@ export function AdmissionForm() {
           queryParams.set('assigned_user_phone', '9363087377');
         }
 
-        router.push(`/admission/enquiry/2026-2027?${queryParams.toString()}`);
+        // 3. Track Google Ads Conversion with navigation callback
+        gtag.reportConversion('0-vOCKKSuaYcENLgv5RC', () => {
+          router.push(`/admission/enquiry/2026-2027?${queryParams.toString()}`);
+        });
 
       } else {
         throw new Error(result.message || 'An unknown error occurred during submission.');

@@ -41,10 +41,19 @@ export const event = ({ action, category, label, value }: GTagEvent) => {
 /**
  * Reports a Google Ads conversion.
  * @param label The conversion label provided by Google Ads.
+ * @param callback Optional function to call after the event is sent.
  */
-export const reportConversion = (label: string) => {
-  if (typeof window.gtag !== 'function') return;
+export const reportConversion = (label: string, callback?: () => void) => {
+  if (typeof window.gtag !== 'function') {
+    if (callback) callback();
+    return;
+  }
+  
   window.gtag('event', 'conversion', {
     'send_to': `AW-17759727698/${label}`,
+    'event_callback': callback
   });
+  
+  // If no callback is provided, we should return true to indicate it was triggered
+  return false;
 };
