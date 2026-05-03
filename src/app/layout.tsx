@@ -227,6 +227,38 @@ const websiteSchema = {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
        <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-NTCJ08TSVC"
+          strategy="afterInteractive"
+        />
+        <Script id="google-tag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-NTCJ08TSVC');
+            gtag('config', 'AW-17759727698');
+          `}
+        </Script>
+        {/* Event snippet for Submit lead form conversion */}
+        <Script id="gtag-report-conversion" strategy="afterInteractive">
+          {`
+            function gtag_report_conversion(url) {
+              var callback = function () {
+                if (typeof(url) != 'undefined') {
+                  window.location = url;
+                }
+              };
+              gtag('event', 'conversion', {
+                  'send_to': 'AW-17759727698/0-vOCKKSuaYcENLgv5RC',
+                  'event_callback': callback
+              });
+              return false;
+            }
+          `}
+        </Script>
         <Script
             id="org-schema"
             type="application/ld+json"
