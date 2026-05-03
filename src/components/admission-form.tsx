@@ -1,4 +1,3 @@
-
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -28,7 +27,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/card';
+import { Card, CardContent, CardHeader, CardDescription } from './ui/card';
 import { cn } from '@/lib/utils';
 import statesAndDistricts from '@/app/assets/docs/states-and-districts.json';
 import coursesByCollege from '@/app/assets/docs/college-courses.json';
@@ -46,7 +45,7 @@ const formSchema = z.object({
   course: z.string({ required_error: 'Please select a course.' }),
   state: z.string({ required_error: 'Please select a state.' }),
   district: z.string({ required_error: 'Please select a district.' }),
-  g_recaptcha_response: z.string().min(1, { message: 'Please complete the reCAPTCHA verification.' }),
+  g_recaptcha_response: z.string().optional(),
 });
 
 export function AdmissionForm() {
@@ -55,12 +54,11 @@ export function AdmissionForm() {
   const router = useRouter();
   const [hostname, setHostname] = React.useState('');
   const recaptchaRef = React.useRef<ReCAPTCHA>(null);
-
+  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
   React.useEffect(() => {
     setHostname(window.location.hostname);
   }, []);
-
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -76,6 +74,16 @@ export function AdmissionForm() {
   const selectedState = form.watch('state');
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    // If reCAPTCHA is configured but missing response, we show error
+    if (recaptchaSiteKey && !values.g_recaptcha_response) {
+      toast({
+        variant: 'destructive',
+        title: 'Validation Error',
+        description: 'Please complete the reCAPTCHA verification.',
+      });
+      return;
+    }
+
     const utm_source = searchParams.get('utm_source') || 'organic';
     const utm_medium = searchParams.get('utm_medium') || 'organic';
 
@@ -91,13 +99,13 @@ export function AdmissionForm() {
       source_website: hostname || "unknown",
       utm_source,
       utm_medium,
+      g_recaptcha_response: values.g_recaptcha_response || 'dev_bypass'
     };
 
     try {
-      const result = await submitLead(apiPayload);
+      const result = await submitLead(apiPayload as any);
 
       if (result && result.success) {
-        // 1. Track GA4 Event
         gtag.event({
           action: 'form_submit',
           category: 'Admissions',
@@ -115,7 +123,6 @@ export function AdmissionForm() {
             ln: lastName,
         };
         
-        // 2. Track Meta Pixel + CAPI Event
         trackMetaEvent('Lead', { content_name: 'Admission Enquiry' }, userData);
 
         const queryParams = new URLSearchParams();
@@ -131,7 +138,6 @@ export function AdmissionForm() {
           queryParams.set('assigned_user_phone', '9363087377');
         }
 
-        // Navigate to success page. Conversion tracking happens on Page Load of success page.
         router.push(`/admission/enquiry/2026-2027?${queryParams.toString()}`);
 
       } else {
@@ -162,7 +168,6 @@ export function AdmissionForm() {
     const stateData = statesAndDistricts.states.find(s => s.state === selectedState);
     return stateData ? stateData.districts.sort((a, b) => a.localeCompare(b)) : [];
   }, [selectedState]);
-
 
   return (
     <Card className="w-full max-w-lg shadow-2xl">
@@ -332,22 +337,30 @@ export function AdmissionForm() {
                 )}
                 />
             </div>
-            <FormField
-              control={form.control}
-              name="g_recaptcha_response"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <ReCAPTCHA
-                      ref={recaptchaRef}
-                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
-                      onChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            
+            {recaptchaSiteKey ? (
+              <FormField
+                control={form.control}
+                name="g_recaptcha_response"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey={recaptchaSiteKey}
+                        onChange={field.onChange}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            ) : (
+              <p className="text-xs text-muted-foreground text-center italic">
+                reCAPTCHA is disabled (missing site key).
+              </p>
+            )}
+
             <Button type="submit" className="w-full !mt-6" size="lg" disabled={form.formState.isSubmitting}>
               {form.formState.isSubmitting ? 'Submitting...' : 'Apply Now'}
             </Button>

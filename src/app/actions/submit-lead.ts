@@ -19,6 +19,10 @@ const formSchema = z.object({
 
 type LeadPayload = z.infer<typeof formSchema>;
 
+/**
+ * Submits lead data to the external custom API.
+ * This is the "old method" as requested by the user.
+ */
 export async function submitLead(payload: LeadPayload) {
   try {
     const response = await fetch('https://cms-egspgoi.vercel.app/api/v1/leads/submit', {
@@ -33,11 +37,9 @@ export async function submitLead(payload: LeadPayload) {
     const result = await response.json();
 
     if (!response.ok) {
-        // Propagate the error message from the API if available
         throw new Error(result.message || `API request failed with status ${response.status}`);
     }
 
-    // The API response on success has a `data` property.
     return {
         success: true,
         message: result.message,
@@ -45,11 +47,10 @@ export async function submitLead(payload: LeadPayload) {
     };
 
   } catch (error: any) {
-    console.error('Server action error:', error);
-    // Return a structured error so the client can handle it gracefully
+    console.error('Submission error:', error);
     return {
         success: false,
-        message: error.message || 'An unexpected error occurred.',
+        message: error.message || 'An unexpected error occurred during submission.',
         data: null
     };
   }

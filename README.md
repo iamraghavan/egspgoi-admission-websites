@@ -5,17 +5,13 @@ This is the official Admissions and Enquiry portal for the EGS Pillay Group of I
 ## 🚀 Features
 - **Next.js 15 (App Router)**: Fast, server-side rendered application.
 - **ShadCN UI & Tailwind**: Modern, responsive design.
-- **Strapi Integration Ready**: Pre-configured utility in `src/lib/strapi.ts` for headless CMS connectivity.
+- **Custom API Integration**: Automated lead submission to the group's centralized admission system.
 - **Firebase Ready**: Infrastructure for Authentication and Firestore.
 - **SEO Optimized**: Dynamic metadata generation and Google Analytics/Ads integration.
 
-## 🛠 Setup & CMS Configuration
-For detailed instructions on how to set up and connect a **Strapi CMS** with this website, please refer to:
-👉 `docs/strapi-setup.md`
-
 ## 📦 Installation
 1. `npm install`
-2. Configure your `.env` with Firebase and Strapi credentials.
+2. Configure your `.env` with Firebase and required tracking IDs.
 3. `npm run dev`
 
 ## 📈 Analytics & Tracking
