@@ -32,10 +32,10 @@ function SuccessContent() {
                         <div className="mb-8 flex justify-center">
                             <div className="h-2 w-24 bg-accent"></div>
                         </div>
-                        <h1 className="text-4xl md:text-6xl font-bold font-headline text-white mb-6 uppercase tracking-tighter">
+                        <h1 className="text-4xl md:text-5xl font-bold font-headline text-white mb-6 tracking-tight">
                             Enquiry Received Successfully
                         </h1>
-                        <p className="text-xl md:text-2xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed font-body">
+                        <p className="text-lg md:text-xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed font-body">
                             Thank you for your interest in the EGS Pillay Group of Institutions. Your enquiry for the academic year 2026-27 has been processed. Our admissions team will reach out to you shortly to provide further assistance.
                         </p>
                     </div>
@@ -45,14 +45,14 @@ function SuccessContent() {
                 <section className="flex-grow grid lg:grid-cols-2 bg-white">
                     {/* Contact Column */}
                     <div className="p-8 md:p-16 lg:p-24 flex flex-col justify-center">
-                        <div className="max-w-xl">
-                            <h2 className="text-sm font-bold text-accent uppercase tracking-widest mb-10 border-l-4 border-accent pl-4">
+                        <div className="max-w-xl font-body">
+                            <h2 className="text-sm font-bold text-accent mb-10 border-l-4 border-accent pl-4 font-headline">
                                 Contact Information
                             </h2>
                             
                             <div className="space-y-12">
                                 <div className="space-y-4">
-                                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Admission Office Numbers</p>
+                                    <p className="text-xs font-bold text-slate-400 tracking-wide">Admission Office Numbers</p>
                                     <div className="text-2xl md:text-3xl font-bold font-headline text-primary leading-tight">
                                         <p className="block">(+91) 86089 54537</p>
                                         <p className="block">(+91) 99768 88999</p>
@@ -61,20 +61,20 @@ function SuccessContent() {
                                 </div>
 
                                 <div className="space-y-4">
-                                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Email Support</p>
+                                    <p className="text-xs font-bold text-slate-400 tracking-wide">Email Support</p>
                                     <a href="mailto:admission@egspec.org" className="text-xl md:text-2xl font-bold text-primary hover:text-accent transition-colors border-b-2 border-slate-100 pb-1">
                                         admission@egspec.org
                                     </a>
                                 </div>
 
                                 <div className="pt-6 flex flex-col sm:flex-row gap-4">
-                                    <Button asChild className="bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold h-16 px-10 text-lg rounded-none shadow-xl shadow-green-500/10">
+                                    <Button asChild className="bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold h-14 px-8 text-lg rounded-none shadow-xl shadow-green-500/10 font-headline">
                                         <a href="https://wa.me/919363087377" target="_blank" rel="noopener noreferrer">
-                                            WHATSAPP US
+                                            Chat on WhatsApp
                                         </a>
                                     </Button>
-                                    <Button variant="outline" asChild className="h-16 px-10 font-bold text-primary rounded-none border-2 border-primary hover:bg-primary hover:text-white transition-all">
-                                        <Link href="/">RETURN TO HOME</Link>
+                                    <Button variant="outline" asChild className="h-14 px-8 font-bold text-primary rounded-none border-2 border-primary hover:bg-primary hover:text-white transition-all font-headline">
+                                        <Link href="/">Return to Home</Link>
                                     </Button>
                                 </div>
                             </div>
@@ -106,9 +106,9 @@ export default function SuccessPage() {
     return (
         <Suspense fallback={
             <div className="flex h-screen items-center justify-center bg-slate-50">
-                <div className="text-center">
+                <div className="text-center font-body">
                     <div className="w-12 h-12 border-4 border-primary border-t-accent rounded-full animate-spin mx-auto mb-4"></div>
-                    <p className="font-bold text-slate-400 uppercase tracking-widest text-sm">Validating Submission...</p>
+                    <p className="font-bold text-slate-400 tracking-widest text-sm font-headline">Validating Submission...</p>
                 </div>
             </div>
         }>
