@@ -57,7 +57,9 @@ export function AdmissionForm() {
   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
   React.useEffect(() => {
-    setHostname(window.location.hostname);
+    if (typeof window !== 'undefined') {
+        setHostname(window.location.hostname || 'egspec.org');
+    }
   }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -74,7 +76,7 @@ export function AdmissionForm() {
   const selectedState = form.watch('state');
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // If reCAPTCHA is configured but missing response, we show error
+    // If reCAPTCHA is configured but missing response, show error
     if (recaptchaSiteKey && !values.g_recaptcha_response) {
       toast({
         variant: 'destructive',
@@ -84,9 +86,11 @@ export function AdmissionForm() {
       return;
     }
 
+    // Get UTM parameters from URL, default to 'organic'
     const utm_source = searchParams.get('utm_source') || 'organic';
     const utm_medium = searchParams.get('utm_medium') || 'organic';
 
+    // Format phone number (strip '91' prefix if it exists twice or redundant)
     let phoneNumber = values.phone;
     if (phoneNumber.startsWith('91') && phoneNumber.length > 10) {
       phoneNumber = phoneNumber.substring(2);
@@ -96,7 +100,7 @@ export function AdmissionForm() {
       ...values,
       phone: phoneNumber,
       admission_year: "2026",
-      source_website: hostname || "unknown",
+      source_website: hostname || "egspec.org",
       utm_source,
       utm_medium,
       g_recaptcha_response: values.g_recaptcha_response || 'dev_bypass'
@@ -106,12 +110,14 @@ export function AdmissionForm() {
       const result = await submitLead(apiPayload as any);
 
       if (result && result.success) {
+        // Track Conversion in GA4
         gtag.event({
           action: 'form_submit',
           category: 'Admissions',
           label: 'Admission Form Submitted',
         });
         
+        // Prepare User Data for Meta Pixel
         const nameParts = values.name.trim().split(' ');
         const lastName = nameParts.length > 1 ? nameParts.pop() : '';
         const firstName = nameParts.join(' ');
@@ -125,6 +131,7 @@ export function AdmissionForm() {
         
         trackMetaEvent('Lead', { content_name: 'Admission Enquiry' }, userData);
 
+        // Prepare redirect URL with success details
         const queryParams = new URLSearchParams();
         queryParams.set('success', 'true');
 
@@ -135,6 +142,7 @@ export function AdmissionForm() {
         if (result.data && result.data.assigned_user) {
           queryParams.set('assigned_user_name', result.data.assigned_user.name);
           queryParams.set('assigned_user_email', result.data.assigned_user.email);
+          // Using the specific phone number provided by the user
           queryParams.set('assigned_user_phone', '9363087377');
         }
 
@@ -155,7 +163,11 @@ export function AdmissionForm() {
   }
 
   const collegeNames = Object.keys(coursesByCollege) as CollegeName[];
-  const availableCourses = selectedCollege ? coursesByCollege[selectedCollege] : {};
+  
+  const availableCourses = React.useMemo(() => {
+    if (!selectedCollege) return {};
+    return coursesByCollege[selectedCollege];
+  }, [selectedCollege]);
   
   const sortedStates = React.useMemo(() => {
     const tn = statesAndDistricts.states.find(s => s.state === 'Tamil Nadu');
@@ -170,10 +182,10 @@ export function AdmissionForm() {
   }, [selectedState]);
 
   return (
-    <Card className="w-full max-w-lg shadow-2xl">
-      <CardHeader className="text-center">
-        <h2 className="font-headline text-2xl font-semibold leading-none tracking-tight">Admissions Open 2026 - 2027</h2>
-        <CardDescription>Fill out the form below to start your application.</CardDescription>
+    <Card className="w-full max-w-lg shadow-2xl border-none">
+      <CardHeader className="text-center pb-4">
+        <h2 className="font-headline text-2xl font-bold text-primary">Admissions Open 2026 - 2027</h2>
+        <CardDescription className="text-muted-foreground">Start your journey with EGS Pillay Group today.</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -183,9 +195,9 @@ export function AdmissionForm() {
                 name="name"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel>Full Name</FormLabel>
+                    <FormLabel className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Full Name</FormLabel>
                     <FormControl>
-                        <Input placeholder="Enter your full name" {...field} />
+                        <Input placeholder="Enter your full name" {...field} className="rounded-md border-gray-200 focus:border-accent" />
                     </FormControl>
                     <FormMessage />
                     </FormItem>
@@ -197,9 +209,9 @@ export function AdmissionForm() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email Address</FormLabel>
+                    <FormLabel className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Email Address</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="Enter your email" {...field} />
+                      <Input type="email" placeholder="example@email.com" {...field} className="rounded-md border-gray-200 focus:border-accent" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -210,7 +222,7 @@ export function AdmissionForm() {
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone/WhatsApp</FormLabel>
+                    <FormLabel className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Phone/WhatsApp</FormLabel>
                     <FormControl>
                       <PhoneInput
                         country={'in'}
@@ -220,7 +232,8 @@ export function AdmissionForm() {
                           name: 'phone',
                           required: true,
                         }}
-                        inputStyle={{ width: '100%' }}
+                        containerClass="!w-full"
+                        inputClass="!w-full !h-10 !rounded-md !border-gray-200 focus:!border-accent"
                       />
                     </FormControl>
                     <FormMessage />
@@ -233,14 +246,14 @@ export function AdmissionForm() {
               name="college"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>College</FormLabel>
+                  <FormLabel className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Institution Preference</FormLabel>
                   <Select onValueChange={(value) => {
                     field.onChange(value);
                     form.resetField('course');
                   }} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a college" />
+                      <SelectTrigger className="rounded-md border-gray-200">
+                        <SelectValue placeholder="Select an institution" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -260,17 +273,17 @@ export function AdmissionForm() {
               name="course"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Course</FormLabel>
+                  <FormLabel className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Desired Course</FormLabel>
                   <Select onValueChange={field.onChange} value={field.value} disabled={!selectedCollege}>
                     <FormControl>
-                      <SelectTrigger className={cn(!selectedCollege && "text-muted-foreground")}>
+                      <SelectTrigger className={cn("rounded-md border-gray-200", !selectedCollege && "text-muted-foreground")}>
                         <SelectValue placeholder={selectedCollege ? "Select a course" : "Select a college first"} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       {Object.entries(availableCourses).map(([category, courses]) => (
                         <React.Fragment key={category}>
-                          <FormLabel className="px-2 py-1.5 text-sm font-semibold">{category}</FormLabel>
+                          <div className="px-2 py-1.5 text-xs font-bold text-accent uppercase bg-secondary/50">{category}</div>
                           {(courses as string[]).sort((a,b) => a.localeCompare(b)).map(course => (
                             <SelectItem key={course} value={course}>
                               {course}
@@ -290,14 +303,14 @@ export function AdmissionForm() {
                 name="state"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel>State</FormLabel>
+                    <FormLabel className="text-xs font-bold uppercase tracking-wider text-muted-foreground">State</FormLabel>
                     <Select onValueChange={(value) => {
                         field.onChange(value);
                         form.resetField('district');
                     }} value={field.value}>
                         <FormControl>
-                        <SelectTrigger>
-                            <SelectValue placeholder="Select a state" />
+                        <SelectTrigger className="rounded-md border-gray-200">
+                            <SelectValue placeholder="Select state" />
                         </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -317,11 +330,11 @@ export function AdmissionForm() {
                 name="district"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel>District</FormLabel>
+                    <FormLabel className="text-xs font-bold uppercase tracking-wider text-muted-foreground">District</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value} disabled={!selectedState}>
                         <FormControl>
-                        <SelectTrigger className={cn(!selectedState && "text-muted-foreground")}>
-                            <SelectValue placeholder={selectedState ? "Select a district" : "Select a state first"} />
+                        <SelectTrigger className={cn("rounded-md border-gray-200", !selectedState && "text-muted-foreground")}>
+                            <SelectValue placeholder={selectedState ? "Select district" : "Select state first"} />
                         </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -338,12 +351,12 @@ export function AdmissionForm() {
                 />
             </div>
             
-            {recaptchaSiteKey ? (
+            {recaptchaSiteKey && (
               <FormField
                 control={form.control}
                 name="g_recaptcha_response"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="flex justify-center pt-2">
                     <FormControl>
                       <ReCAPTCHA
                         ref={recaptchaRef}
@@ -355,14 +368,10 @@ export function AdmissionForm() {
                   </FormItem>
                 )}
               />
-            ) : (
-              <p className="text-xs text-muted-foreground text-center italic">
-                reCAPTCHA is disabled (missing site key).
-              </p>
             )}
 
-            <Button type="submit" className="w-full !mt-6" size="lg" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? 'Submitting...' : 'Apply Now'}
+            <Button type="submit" className="w-full !mt-6 bg-accent hover:bg-accent/90 text-white font-bold py-6 rounded-md shadow-lg transition-all active:scale-[0.98]" size="lg" disabled={form.formState.isSubmitting}>
+              {form.formState.isSubmitting ? 'Processing Application...' : 'Apply Now'}
             </Button>
           </form>
         </Form>

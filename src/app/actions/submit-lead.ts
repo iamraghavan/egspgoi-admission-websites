@@ -14,14 +14,14 @@ const formSchema = z.object({
   source_website: z.string(),
   utm_source: z.string(),
   utm_medium: z.string(),
-  g_recaptcha_response: z.string(),
+  g_recaptcha_response: z.string().optional(),
 });
 
 type LeadPayload = z.infer<typeof formSchema>;
 
 /**
  * Submits lead data to the external custom API.
- * This is the "old method" as requested by the user.
+ * Uses the x-submission-secret header for authentication.
  */
 export async function submitLead(payload: LeadPayload) {
   try {
@@ -40,6 +40,7 @@ export async function submitLead(payload: LeadPayload) {
         throw new Error(result.message || `API request failed with status ${response.status}`);
     }
 
+    // Success response format: { success: true, message: "...", data: { lead_id: "...", assigned_user: { ... } } }
     return {
         success: true,
         message: result.message,
