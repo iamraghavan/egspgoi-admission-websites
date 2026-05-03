@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Suspense, useEffect } from 'react';
@@ -13,7 +12,7 @@ const SiteFooter = dynamic(() => import('@/components/site-footer').then(mod => 
 
 function SuccessContent() {
     useEffect(() => {
-        // Track Google Ads Conversion on Page Load (Label: 0-vOCKKSuaYcENLgv5RC)
+        // Track Google Ads Conversion on Page Load
         gtag.reportConversion('0-vOCKKSuaYcENLgv5RC');
         
         // Track ViewContent for the success page

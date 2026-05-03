@@ -1,4 +1,3 @@
-
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -77,7 +76,6 @@ export function AdmissionForm() {
   const selectedState = form.watch('state');
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // If reCAPTCHA is configured but missing response, show error
     if (recaptchaSiteKey && !values.g_recaptcha_response) {
       toast({
         variant: 'destructive',
@@ -87,11 +85,9 @@ export function AdmissionForm() {
       return;
     }
 
-    // Get UTM parameters from URL, default to 'organic'
     const utm_source = searchParams.get('utm_source') || 'organic';
     const utm_medium = searchParams.get('utm_medium') || 'organic';
 
-    // Format phone number: remove all non-digits and take the last 10 digits
     const cleanPhone = values.phone.replace(/\D/g, '');
     const phoneNumber = cleanPhone.slice(-10);
 
@@ -114,14 +110,12 @@ export function AdmissionForm() {
       const result = await submitLead(apiPayload as any);
 
       if (result && result.success) {
-        // Track Conversion in GA4
         gtag.event({
           action: 'form_submit',
           category: 'Admissions',
           label: 'Admission Form Submitted',
         });
         
-        // Prepare User Data for Meta Pixel
         const nameParts = values.name.trim().split(' ');
         const lastName = nameParts.length > 1 ? nameParts.pop() : '';
         const firstName = nameParts.join(' ');
@@ -135,19 +129,11 @@ export function AdmissionForm() {
         
         trackMetaEvent('Lead', { content_name: 'Admission Enquiry' }, userData);
 
-        // Prepare redirect URL with success details
         const queryParams = new URLSearchParams();
         queryParams.set('success', 'true');
 
         if (result.data && result.data.lead_id) {
           queryParams.set('lead_id', result.data.lead_id);
-        }
-
-        if (result.data && result.data.assigned_user) {
-          queryParams.set('assigned_user_name', result.data.assigned_user.name);
-          queryParams.set('assigned_user_email', result.data.assigned_user.email);
-          // Using the specific phone number provided for success context
-          queryParams.set('assigned_user_phone', '9363087377');
         }
 
         router.push(`/admission/enquiry/2026-2027?${queryParams.toString()}`);

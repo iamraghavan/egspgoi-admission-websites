@@ -1,4 +1,3 @@
-
 'use server';
 
 import { z } from 'zod';
@@ -41,7 +40,6 @@ export async function submitLead(payload: LeadPayload) {
         throw new Error(result.message || `API request failed with status ${response.status}`);
     }
 
-    // Success response format: { success: true, message: "...", data: { lead_id: "...", assigned_user: { ... } } }
     return {
         success: true,
         message: result.message,
