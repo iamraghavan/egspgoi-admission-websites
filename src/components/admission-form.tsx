@@ -1,3 +1,4 @@
+
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -90,15 +91,18 @@ export function AdmissionForm() {
     const utm_source = searchParams.get('utm_source') || 'organic';
     const utm_medium = searchParams.get('utm_medium') || 'organic';
 
-    // Format phone number (strip '91' prefix if it exists twice or redundant)
-    let phoneNumber = values.phone;
-    if (phoneNumber.startsWith('91') && phoneNumber.length > 10) {
-      phoneNumber = phoneNumber.substring(2);
-    }
+    // Format phone number: remove all non-digits and take the last 10 digits
+    const cleanPhone = values.phone.replace(/\D/g, '');
+    const phoneNumber = cleanPhone.slice(-10);
 
     const apiPayload = {
-      ...values,
+      name: values.name,
+      email: values.email,
       phone: phoneNumber,
+      college: values.college,
+      course: values.course,
+      state: values.state,
+      district: values.district,
       admission_year: "2026",
       source_website: hostname || "egspec.org",
       utm_source,
@@ -142,7 +146,7 @@ export function AdmissionForm() {
         if (result.data && result.data.assigned_user) {
           queryParams.set('assigned_user_name', result.data.assigned_user.name);
           queryParams.set('assigned_user_email', result.data.assigned_user.email);
-          // Using the specific phone number provided by the user
+          // Using the specific phone number provided for success context
           queryParams.set('assigned_user_phone', '9363087377');
         }
 
