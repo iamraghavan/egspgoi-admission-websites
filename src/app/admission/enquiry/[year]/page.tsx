@@ -3,7 +3,7 @@
 
 import { Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardDescription } from '@/components/ui/card';
 import { CheckCircle, Mail, Phone, User } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 import Link from 'next/link';
@@ -22,7 +22,7 @@ function SuccessContent() {
     const assignedUserPhone = searchParams.get('assigned_user_phone');
 
     useEffect(() => {
-        // Track Google Ads Conversion on Page Load
+        // Track Google Ads Conversion on Page Load (Conversion ID: AW-17759727698, Label: 0-vOCKKSuaYcENLgv5RC)
         gtag.reportConversion('0-vOCKKSuaYcENLgv5RC');
         
         // Track ViewContent for the success page
@@ -96,10 +96,9 @@ function SuccessContent() {
     );
 }
 
-
 export default function SuccessPage() {
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading success details...</div>}>
             <SuccessContent />
         </Suspense>
     )

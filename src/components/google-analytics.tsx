@@ -21,10 +21,12 @@ export default function GoogleAnalytics() {
 
   return (
     <>
+      {/* Primary Google Tag script load */}
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_MEASUREMENT_IDS[0]}`}
       />
+      {/* Initialization for all configured measurement IDs */}
       <Script
         id="gtag-init"
         strategy="afterInteractive"
