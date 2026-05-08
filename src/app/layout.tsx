@@ -77,6 +77,7 @@ export default function RootLayout({
             gtag('config', 'AW-17759727698');
           `}
         </Script>
+
         {/* Event snippet for Submit lead form conversion */}
         <Script id="gtag-report-conversion" strategy="afterInteractive">
           {`
@@ -94,6 +95,7 @@ export default function RootLayout({
             }
           `}
         </Script>
+        
         <Script
           id="fb-pixel"
           strategy="afterInteractive"
