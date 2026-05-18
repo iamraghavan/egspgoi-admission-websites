@@ -16,6 +16,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '', // Homepage
     '/academics',
     '/admissions',
+    '/engineering/undergraduate',
+    '/arts-science',
+    '/polytechnic',
+    '/nursing',
+    '/mba-and-mca',
   ];
 
   const staticUrls = staticRoutes.map((route) => ({
@@ -27,25 +32,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '' ? 1.0 : 0.8,
   }));
 
-  // --- DYNAMIC ROUTES ---
-  // If you had dynamic pages, like a blog or individual course pages,
-  // you would fetch that data here and map it to URL objects.
-  // Example for courses (if you had a page at /academics/[course-slug]):
-  /*
-  const courseData = await getCoursesFromDatabase(); // Fictional function
-  const courseUrls = courseData.map(course => ({
-    url: `${siteUrl}/academics/${course.slug}`,
-    lastModified: new Date(course.updatedAt).toISOString(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.7,
-  }));
-  */
-
   // Combine all URL sets here
   return [
     ...staticUrls,
-    // ...courseUrls, // Uncomment when you have dynamic course pages
   ];
 }
-
-//0210
